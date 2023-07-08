@@ -2,6 +2,7 @@
     import { extent, rollup, mean } from "d3-array";
     import { scaleLinear, scaleTime } from "d3-scale";
     import { timeParse } from 'd3-time-format';
+    import { browser } from '$app/environment';
 
     export let data;
 
@@ -13,27 +14,41 @@
     let yearlyMean = rollup(data.magazines, v => mean(v, d => d.ratio), d => d.year);
 
     // set-up
-    let width = 700;
-    let height = 600;
+    // let browserWidth;
+    // let browserHeight;
+
+    let iW // you can also set your default width
+
+    const updateWindowSize = () =>{
+        iW = window.innerWidth;
+    }
+    if (browser){
+        updateWindowSize() // to set the initial window size
+        window.onresize = updateWindowSize; // run when ever the window size change
+        
+    }
+        
+    $: width = 0.8 * iW;
+    $: height = 0.8 * iW;
 
     const margin = {top: 30, left: 50, right: 30, bottom:30};
 
-    let innerWidth = width - margin.left - margin.right;
-    let innerHeight = height - margin.top - margin.bottom;
+    $: innerWidth = width - margin.left - margin.right;
+    $: innerHeight = height - margin.top - margin.bottom;
     
     // scales
     let xExtent = extent(data.magazines, (d) =>  parseYear(d.year));
     let yExtent = extent(data.magazines, (d) =>  d.ratio);
 
-    let xScale = scaleTime().domain(xExtent).range([0,innerWidth]);
-    let yScale = scaleLinear().domain(yExtent).range([innerHeight, 0]);
+    $: xScale = scaleTime().domain(xExtent).range([0,innerWidth]);
+    $: yScale = scaleLinear().domain(yExtent).range([innerHeight, 0]);
 
     // make ticks
-	let xTicks = xScale.ticks(5);
-    let xTickFormat = xScale.tickFormat(5, "%Y");
+	$: xTicks = xScale.ticks(5);
+    $: xTickFormat = xScale.tickFormat(5, "%Y");
 
-	let yTicks = yScale.ticks(5);
-    let yTickFormat = yScale.tickFormat(5, "%");
+	$: yTicks = yScale.ticks(5);
+    $: yTickFormat = yScale.tickFormat(5, "%");
 
     // attributes
     let datapointHeight = 2;
@@ -42,6 +57,8 @@
     let meanFillColour = "#fc0000"
 
 </script>
+
+<!-- <svelte:window bind:innerWidth={browserWidth} bind:innerHeight={browserHeight}/> -->
 
 <svg id = "scatterplot" {width} {height}>
 
@@ -53,9 +70,9 @@
 			</g>
 		{/each}
 
-        <line x1=0         y1={innerHeight + margin.top} 
+        <!-- <line x1=0         y1={innerHeight + margin.top} 
               x2={width}   y2={innerHeight + margin.top} 
-              stroke = "#e3e3e3"/>
+              stroke = "#e3e3e3"/> -->
 	</g>
 
     <g id= "scatterplot-y-axis" class="y-axis axis" transform='translate(0, {margin.top})'>
@@ -79,7 +96,7 @@
                 width={datapointWidth}
                 height={datapointHeight}
                 fill-opacity = {datapointOpacity}
-            />
+                />
 		{/each}
 	</g>
 
@@ -104,5 +121,9 @@
         font-family: sans-serif;
         font-size: 10pt;
         fill: #000000;
+    }
+
+    #scatterplot {
+        margin-left: 10%;
     }
 </style>
