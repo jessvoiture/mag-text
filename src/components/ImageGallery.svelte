@@ -1,14 +1,32 @@
 <script>
-  import { fade } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
   import Scroll from "./Scrolly.svelte";
+  import { onMount } from 'svelte';
+  import { sort } from 'd3-array';
   import { browser } from '$app/environment';
+  import Image from './Image.svelte';
 
   export let data;
+
+  // dimensions
+  let screenWidth; 
+  let screenHeight;
+
+  function resize() {
+    screenWidth = window.innerWidth;
+    screenHeight = window.innerHeight;
+  }
+
+  if (browser) {
+    resize()
+  }
+
+  $: mag_height = 0.7 * screenHeight;
 
   // Sort the magazines array based on the Date
   let sortedMagazines = [...data.magazines]
                     .sort((a, b) => a.Date.localeCompare(b.Date))
-                    .slice(100, 102);
+                    .slice(100, 101);
 
   // const toggleImage = (event) => {
   //   const img = event.target;
@@ -21,61 +39,123 @@
   // scroll
   let currentStep = 0;
   const steps = ["<p>these are the original images</p>", 
+                 "<p>these are the annotations overlayed</p>",
                  "<p>these are the annotations</p>",
-                ""];
+                "<p>these are the ratios</p>"];
 
-  let show_annotated = false;
+  let nowShowing = 'original';
 
-  $: if (currentStep >= 1) {
-      show_annotated = true;
-    } else {
-      show_annotated = false;
+  $: if (currentStep == 0) {
+      nowShowing = 'original';
+    } else if (currentStep == 1) {
+      nowShowing = 'overlay';
+    } else if (currentStep == 2) {
+      nowShowing = 'annotated';
+    } else if (currentStep == 3) {
+      nowShowing = 'ratios';
+    } 
+
+    let mag_width;
+
+    function findMagWidth(magazine, mag_height) {
+      mag_width = mag_height * magazine.wh_ratio;
+      return mag_width
     }
-
-  // get image path
-  const getImagePath = (path, image_type, ending) => `/${image_type}/${path}${ending}`;
-
-  // dimensions
-  // let browserHeight;
-  // let browserWidth;
 
 </script>
 
-<!-- <svelte:window bind:innerWidth={browserWidth} bind:innerHeight={browserHeight}/> -->
+<svelte:window on:resize={resize} />
 
 <div class="scroller">
   <div class="mag-gallery" >
     <div class="mag-wrapper">
-      <div class='all-original-covers all-covers'>
-        {#each sortedMagazines as magazine}
-          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-          <img
-            class="original-cover cover"
-            src={getImagePath(magazine.Date, "original", ".jpg")} 
-            alt='Vogue magazine cover from {magazine.Date}'
-          />
-        {/each}
-      </div>
 
-      {#if show_annotated}
-        <div class = 'all-annotated-covers all-covers'
-          transition:fade> 
-          {#each sortedMagazines as magazine}
-            <img 
-              class="annotated-cover cover"
-              src={getImagePath(magazine.Date, "annotated", "-01.png")} 
-              alt='A vogue magazine cover from {magazine.Date} (ie the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white'
-            />
-          {/each}
+      {#if nowShowing == 'original'}
+        <div class='all-original-covers all-covers'
+          out:fade>
+          <Image 
+            {sortedMagazines}
+            {mag_height}
+            type={'original'}
+            imagePathEnding={'.jpg'}
+            {nowShowing}
+            alt={"Vogue magazine cover"}
+          />
         </div>
       {/if}
+
+      {#if nowShowing == 'overlay'}
+        <div class='all-original-covers all-covers'
+          transition:fade>
+            <Image 
+              {sortedMagazines}
+              {mag_height}
+              type={'original'}
+              imagePathEnding={'.jpg'}
+              {nowShowing}
+              alt={"Vogue magazine cover"}
+            />
+        </div>
+
+        <div class='all-annotated-covers all-covers'
+          transition:fade> 
+            <Image 
+              {sortedMagazines}
+              {mag_height}
+              type={'annotated'}
+              imagePathEnding={'-01.png'}
+              {nowShowing}
+              alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
+            />
+        </div>
+      {/if}
+
+      {#if nowShowing == 'annotated'}
+        <div class='all-annotated-only-covers all-covers'
+          transition:fade> 
+            <Image 
+              {sortedMagazines}
+              {mag_height}
+              type={'annotated'}
+              imagePathEnding={'-01.png'}
+              {nowShowing}
+              alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
+            />
+        </div>
+      {/if}
+
+      {#if nowShowing == 'ratios'}
+        <div class = 'all-ratios-covers all-covers' 
+          style = 'width: {findMagWidth(sortedMagazines[0], mag_height)}px' 
+          in:slide={{ delay: 200 }}
+          out:slide> 
+
+          {#each sortedMagazines as magazine}
+
+            <div id="no-text-mag" class="ratio-cover"
+            style = "height: {mag_height * (1 - magazine.ratio)}px;
+                    width: {findMagWidth(magazine, mag_height)}px"
+            >
+            </div>
+
+            <div id="text-mag" class="ratio-cover"
+            style = "height: {mag_height * magazine.ratio}px;
+                    width: {findMagWidth(magazine, mag_height)}px"
+            >
+            </div> 
+
+          {/each}
+
+        </div>
+      {/if}
+
 
     </div>
   </div>
 
   <Scroll bind:value={currentStep}>
     {#each steps as text, i}
-      <div class="step {currentStep == 2 ? "hidden-step" : ""}" 
+      <div class="step" 
            class:active={currentStep === i}>
         <div class="step-content">
           {@html text}
@@ -86,6 +166,10 @@
 </div>
 
 <style>
+  .all-covers {
+    margin-top: 15vh;
+  }
+
   .step {
     height:110vh;
     display: flex;
@@ -111,43 +195,48 @@
     color: black;
   }
 
-  .hidden-step {
+  /* .hidden-step {
     visibility: hidden;
-  }
+  } */
 
   .mag-gallery {
     position: sticky;
     margin: auto;
 		flex: 1 1 60%;
     top: 0vh;
-    height: 60vh;
+    height: 100vh;
   }
 
   .mag-wrapper {
-    position: relative;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    vertical-align: middle;
-    height: 100%;
-    margin: 0 auto;
+    align-content: center;
   }
 
-  .all-original-covers {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .all-original-covers, .all-annotated-only-covers {
+      position: absolute;
+      top: 0;
   }
 
   .all-annotated-covers {
-    opacity: 0.7;
+      opacity: 0.7;
   }
 
   .all-covers {
-    flex-direction: column
+      display: flex;
+      flex-wrap: wrap;
+      align-self: center;
+      justify-content: center;
+      column-gap: 40px;
   }
 
-  .cover {
-    height: 50vh;
+  #no-text-mag {
+    background:lightgrey;
+  }
+
+  #text-mag {
+    background:black;
   }
 
 </style>

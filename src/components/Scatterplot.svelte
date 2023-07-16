@@ -17,19 +17,28 @@
     // let browserWidth;
     // let browserHeight;
 
-    let iW // you can also set your default width
+     // dimensions
+    let screenWidth; 
+    let screenHeight;
 
-    const updateWindowSize = () =>{
-        iW = window.innerWidth;
+    function resize() {
+        screenWidth = window.innerWidth;
+        screenHeight = window.innerHeight;
     }
-    if (browser){
-        updateWindowSize() // to set the initial window size
-        window.onresize = updateWindowSize; // run when ever the window size change
-        
+
+    if (browser) {
+        resize()
     }
-        
-    $: width = 0.8 * iW;
-    $: height = 0.8 * iW;
+    
+    let width;
+
+    $: if (screenWidth <= 860) {
+        width = 0.8 * screenWidth
+    } else {
+        width = 0.6 * screenWidth;
+    }
+
+    $: height = 0.6 * screenHeight;
 
     const margin = {top: 30, left: 50, right: 30, bottom:30};
 
@@ -52,13 +61,13 @@
 
     // attributes
     let datapointHeight = 2;
-    let datapointWidth = 20;
     let datapointOpacity = 0.3
     let meanFillColour = "#fc0000"
+    $: datapointWidth = innerWidth / 13;
 
 </script>
 
-<!-- <svelte:window bind:innerWidth={browserWidth} bind:innerHeight={browserHeight}/> -->
+ <svelte:window on:resize={resize}/>
 
 <svg id = "scatterplot" {width} {height}>
 
