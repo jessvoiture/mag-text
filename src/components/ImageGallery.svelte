@@ -1,12 +1,18 @@
 <script>
-  import { fade, slide } from 'svelte/transition';
-  import Scroll from "./Scrolly.svelte";
+  import { fade, slide, draw } from 'svelte/transition';
   import { onMount } from 'svelte';
-  import { sort } from 'd3-array';
+  import { sort, group } from 'd3-array';
   import { browser } from '$app/environment';
+  import { currentStep, nowShowing } from '../stores';
+
   import Image from './Image.svelte';
+  import Scroll from "./Scrolly.svelte";
+  import Barchart from './Barchart.svelte';
 
   export let data;
+
+  let groupedData = [];
+  groupedData = group(data.magazines, d => d.year)
 
   // dimensions
   let screenWidth; 
@@ -25,7 +31,7 @@
 
   // Sort the magazines array based on the Date
   let sortedMagazines = [...data.magazines]
-                    .sort((a, b) => a.Date.localeCompare(b.Date))
+                    .sort((a, b) => a.Date - b.Date)
                     .slice(100, 101);
 
   // const toggleImage = (event) => {
@@ -37,22 +43,33 @@
   // };
 
   // scroll
-  let currentStep = 0;
+  // let currentStep = 0;
   const steps = ["<p>these are the original images</p>", 
                  "<p>these are the annotations overlayed</p>",
                  "<p>these are the annotations</p>",
-                "<p>these are the ratios</p>"];
+                 "<p>these are the ratios</p>",
+                 "<p>this is the data by month</p>",
+                 "<p>this is the data by month but the heights are better</p>",
+                 "<p>this is the data as a bar chart</p>",
+                 "<p>this is the data as a scatterplot</p>"
+                ];
 
-  let nowShowing = 'original';
-
-  $: if (currentStep == 0) {
-      nowShowing = 'original';
-    } else if (currentStep == 1) {
-      nowShowing = 'overlay';
-    } else if (currentStep == 2) {
-      nowShowing = 'annotated';
-    } else if (currentStep == 3) {
-      nowShowing = 'ratios';
+  $: if ($currentStep == 0) {
+      nowShowing.set('original');
+    } else if ($currentStep == 1) {
+      nowShowing.set('overlay');
+    } else if ($currentStep == 2) {
+      nowShowing.set('annotated');
+    } else if ($currentStep == 3) {
+      nowShowing.set('ratios');
+    } else if ($currentStep == 4) {
+      nowShowing.set('chart');
+    } else if ($currentStep == 5) {
+      nowShowing.set('chart');
+    } else if ($currentStep == 6) {
+      nowShowing.set('chart');
+    } else if ($currentStep == 7) {
+      nowShowing.set('chart');
     } 
 
     let mag_width;
@@ -70,7 +87,7 @@
   <div class="mag-gallery" >
     <div class="mag-wrapper">
 
-      {#if nowShowing == 'original'}
+      {#if $nowShowing == 'original'}
         <div class='all-original-covers all-covers'
           out:fade>
           <Image 
@@ -78,13 +95,13 @@
             {mag_height}
             type={'original'}
             imagePathEnding={'.jpg'}
-            {nowShowing}
+            {$nowShowing}
             alt={"Vogue magazine cover"}
           />
         </div>
       {/if}
 
-      {#if nowShowing == 'overlay'}
+      {#if $nowShowing == 'overlay'}
         <div class='all-original-covers all-covers'
           transition:fade>
             <Image 
@@ -92,7 +109,7 @@
               {mag_height}
               type={'original'}
               imagePathEnding={'.jpg'}
-              {nowShowing}
+              {$nowShowing}
               alt={"Vogue magazine cover"}
             />
         </div>
@@ -104,13 +121,13 @@
               {mag_height}
               type={'annotated'}
               imagePathEnding={'-01.png'}
-              {nowShowing}
+              {$nowShowing}
               alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
             />
         </div>
       {/if}
 
-      {#if nowShowing == 'annotated'}
+      {#if $nowShowing == 'annotated'}
         <div class='all-annotated-only-covers all-covers'
           transition:fade> 
             <Image 
@@ -118,17 +135,17 @@
               {mag_height}
               type={'annotated'}
               imagePathEnding={'-01.png'}
-              {nowShowing}
+              {$nowShowing}
               alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
             />
         </div>
       {/if}
 
-      {#if nowShowing == 'ratios'}
-        <div class = 'all-ratios-covers all-covers' 
+      {#if $nowShowing == 'ratios'}
+        <div class = 'all-ratio-covers all-covers' 
           style = 'width: {findMagWidth(sortedMagazines[0], mag_height)}px' 
-          in:slide={{ delay: 200 }}
-          out:slide> 
+          in:fade={{ delay: 200 }}
+          out:fade> 
 
           {#each sortedMagazines as magazine}
 
@@ -145,18 +162,34 @@
             </div> 
 
           {/each}
-
         </div>
+        <!-- 
+        <svg>
+          <path
+            in:draw = {{ duration: 2000, delay: 1000 }}
+            out:draw = {{ duration: 400 }}
+            d="M {(screenWidth - findMagWidth(sortedMagazines[0], mag_height)) / 2 - 50},
+                  {0.15 * screenHeight + mag_height * (1 - sortedMagazines[0].ratio)} 
+              h {findMagWidth(sortedMagazines[0], mag_height) + 85 }
+              z"
+            fill="none"
+            stroke="red"
+            stroke-width="2px"
+          />
+        </svg> -->
       {/if}
 
-
+      {#if $nowShowing == 'chart'}
+        <p>hello</p>
+      {/if}
+      
     </div>
   </div>
 
-  <Scroll bind:value={currentStep}>
+  <Scroll bind:value={$currentStep}>
     {#each steps as text, i}
       <div class="step" 
-           class:active={currentStep === i}>
+           class:active={$currentStep === i}>
         <div class="step-content">
           {@html text}
         </div>
@@ -214,7 +247,7 @@
     align-content: center;
   }
 
-  .all-original-covers, .all-annotated-only-covers {
+  .all-original-covers, .all-annotated-only-covers, .all-ratio-covers {
       position: absolute;
       top: 0;
   }
@@ -232,11 +265,16 @@
   }
 
   #no-text-mag {
-    background:lightgrey;
+    background:#f2f2f2;
   }
 
   #text-mag {
     background:black;
   }
+
+  /* svg {
+    overflow: visible;
+    z-index: 999;
+  } */
 
 </style>
