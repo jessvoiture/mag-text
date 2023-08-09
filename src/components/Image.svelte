@@ -1,13 +1,14 @@
 <script>
+    import { nowShowing } from "../stores";
+
     export let sortedMagazines;
     export let mag_height;
 
     export let alt;
     export let type;
     export let imagePathEnding;
-    export let nowShowing;
 
-    let imgClassName = nowShowing + "-covers";
+    let imgClassName = $nowShowing + "-covers";
 
     const getImagePath = (path, image_type, ending) => `/${image_type}/${path}${ending}`;
 

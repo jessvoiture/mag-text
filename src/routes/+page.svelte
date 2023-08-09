@@ -3,6 +3,7 @@
     import Hero from "../components/Hero.svelte";
     import Barchart from "../components/Barchart.svelte";
     import { browser } from '$app/environment';
+  import ScrollWrapper from "../components/ScrollWrapper.svelte";
     
     export let data;
 
@@ -40,5 +41,6 @@
 <svelte:window on:resize={resize}/>
 
 <Hero />
-<ImageGallery {data} {height} />
-<Barchart {data} {height} {width} top={margin.top} left={margin.left} {innerHeight} {innerWidth} />
+<!-- <ImageGallery {data} {height} /> -->
+<!-- <Barchart {data} {height} {width} top={margin.top} left={margin.left} {innerHeight} {innerWidth} /> -->
+<ScrollWrapper {data} {screenHeight} {screenWidth} />
