@@ -1,5 +1,5 @@
 <script>
-    import { fade, slide, draw } from 'svelte/transition';
+    import { fade, slide, fly, draw } from 'svelte/transition';
     import { onMount } from 'svelte';
     import { sort, group, extent } from 'd3-array';
     import { browser } from '$app/environment';
@@ -23,7 +23,7 @@
     $: if (screenWidth <= 860) {
         width = 0.8 * screenWidth
     } else {
-        width = 0.6 * screenWidth;
+        width = 0.7 * screenWidth;
     }
 
     $: height = 0.6 * screenHeight;
@@ -62,9 +62,8 @@
 
     groupedMags.forEach((values, year) => {
         let cumulativeSum = 0
-        values.forEach((d, index) => {
+        values.forEach((d) => {
             cumulativeSum += d.ratio;
-            // const total = index === 0 ? 0 : cumulativeSum - d.ratio; 
             cumulativeData.push({...d, total: cumulativeSum});
         });
     });
@@ -72,11 +71,6 @@
     $: tweenedY = tweened(cumulativeData.map((d) => d.month));
     $: rectWidth = (innerWidth / 14) * 0.95;
     $: yScaleTranslate = (innerWidth / 12) / 4
-
-    const setTotalValues = function () {
-        yVals = "total";
-        tweenedY.set(cumulativeData.map((d) => d.total));
-    };
 
     const setRatioValues = function () {
         yVals = "ratio";
@@ -104,11 +98,6 @@
         rectHeightAddition = 0;
         rectTranslation = (innerHeight / 12);
         yTickCount = 12;
-    }  else if (yVals == "total") {
-        rectHeightMultiplyingFactor = innerHeight / yExtent[1];
-        rectHeightAddition = 0;
-        rectTranslation = 0;
-        yTickCount = 4;
     } else if (yVals == "ratio") {
         rectHeightMultiplyingFactor = 0;
         rectHeightAddition = 2;
@@ -124,11 +113,7 @@
     // make ticks
     $: xTicks = xScale.ticks(5);
     $: yTicks = yScale.ticks(yTickCount);
-
-    let colScale = scaleOrdinal()
-        .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'])
-        .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-                        
+              
     const setMousePosition = function(event) {      
         mouse_x = event.clientX;
         mouse_y = event.clientY;
@@ -142,7 +127,6 @@
                    "<p>these are the ratios</p>",
                    "<p>this is the data by month</p>",
                    "<p>this is the data by month but the heights are better</p>",
-                   "<p>this is the data as a bar chart</p>",
                    "<p>this is the data as a scatterplot</p>"
                   ];
   
@@ -161,9 +145,6 @@
         nowShowing.set('chart');
         setRelativeHeightValues();
       } else if ($currentStep == 6) {
-        nowShowing.set('chart');
-        setTotalValues();
-      } else if ($currentStep == 7) {
         nowShowing.set('chart');
         setRatioValues();
       } 
@@ -234,24 +215,46 @@
         {#if $nowShowing == 'ratios'}
           <div class = 'all-ratio-covers all-covers' 
             style = 'width: {findMagWidth(sortedMagazines[0], mag_height)}px' 
-            in:fade={{ delay: 200 }}
+            in:slide={{ delay: 200 }}
             out:fade> 
   
-            {#each sortedMagazines as magazine}
-  
-              <div id="no-text-mag" class="ratio-cover"
-              style = "height: {mag_height * (1 - magazine.ratio)}px;
-                      width: {findMagWidth(magazine, mag_height)}px"
-              >
-              </div>
-  
-              <div id="text-mag" class="ratio-cover"
-              style = "height: {mag_height * magazine.ratio}px;
-                      width: {findMagWidth(magazine, mag_height)}px"
-              >
-              </div> 
-  
-            {/each}
+            <svg>
+                {#each sortedMagazines as magazine}
+
+                    <!-- <div id="text-mag" class="ratio-cover"
+                    style = "height: {mag_height * magazine.ratio}px;
+                            width: {findMagWidth(magazine, mag_height)}px"
+                    >
+                    </div> 
+    
+                    <div id="no-text-mag" class="ratio-cover"
+                    style = "height: {mag_height * (1 - magazine.ratio)}px;
+                            width: {findMagWidth(magazine, mag_height)}px"
+                    >
+                    </div> -->
+
+                    <rect 
+                        id = "text-mag"
+                        class = "ratio-cover"
+                        x = 0
+                        y = 0
+                        height = {mag_height * magazine.ratio}
+                        width = {findMagWidth(magazine, mag_height)}
+                        fill = "black"
+                    />
+
+                    <rect 
+                        id = "no-text-mag"
+                        class = "ratio-cover"
+                        x = 0
+                        y = {mag_height * magazine.ratio}
+                        height = {mag_height * (1 - magazine.ratio)}
+                        width = {findMagWidth(magazine, mag_height)}
+                        fill = "grey"
+                    />
+    
+                {/each}
+            </svg>
           </div>
           <!-- 
           <svg>
@@ -270,49 +273,52 @@
         {/if}
   
         {#if $nowShowing == 'chart'}
-            <svg {width} {height}>
+            <div class="chart"
+                >
+                <svg {width} {height}>
 
-                <g height={innerHeight} width={innerWidth}
-                    transform='translate({margin.left}, {margin.top})'>
-                    {#each cumulativeData as d, index}
-                        <!-- svelte-ignore a11y-no-static-element-interactions -->
-                        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-                        <rect
-                            class="mag-chart-rect"
-                            x={xScale(d.year)} 
-                            y={yScale($tweenedY[index]) - rectTranslation} 
-                            width={rectWidth}
-                            height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
-                            fill={colScale(d.month)}
-                            on:mouseover={function(event) {hoveredDatapoint = d; setMousePosition(event)}}
-                            on:mouseout={function() {hoveredDatapoint = undefined}}
-            
-                        />
-                    {/each}
-                </g>
-            
-                <g transform='translate({margin.left},0)'>
-                    {#each xTicks as tick}
-                        <g transform='translate({xScale(tick)}, 0)'>
-                            <text y={height}>{tick}</text>
-                        </g>
-                    {/each}
-                </g>
-            
-                <g transform='translate(0, {margin.top})'>
-                    {#each yTicks as tick}
-                        <g class = "tick" transform='translate(0, {yScale(tick) - yScaleTranslate})'>
-                            <text>{tick}</text>
-                        </g>
-            
-            
-                        <line x1=0         y1={yScale(tick)} 
-                            x2={width}   y2={yScale(tick)} 
-                        stroke = "#e3e3e3"/>
-                    {/each}
-                </g> 
-            
-            </svg>
+                    <g height={innerHeight} width={innerWidth}
+                        transform='translate({margin.left}, {margin.top})'>
+                        {#each cumulativeData as d, index}
+                            <!-- svelte-ignore a11y-no-static-element-interactions -->
+                            <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+                            <rect
+                                class="mag-chart-rect"
+                                x={xScale(d.year)} 
+                                y={yScale($tweenedY[index]) - rectTranslation} 
+                                width={rectWidth}
+                                height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
+                                in:fly={{ delay: index * 5 }}
+                     
+                                on:mouseover={function(event) {hoveredDatapoint = d; setMousePosition(event)}}
+                                on:mouseout={function() {hoveredDatapoint = undefined}}
+                
+                            />
+                        {/each}
+                    </g>
+                
+                    <g transform='translate({margin.left},0)'>
+                        {#each xTicks as tick}
+                            <g transform='translate({xScale(tick)}, 0)'>
+                                <text y={height}>{tick}</text>
+                            </g>
+                        {/each}
+                    </g>
+                
+                    <g transform='translate(0, {margin.top})'>
+                        {#each yTicks as tick}
+                            <g class = "tick" transform='translate(0, {yScale(tick) - yScaleTranslate})'>
+                                <text>{tick}</text>
+                            </g>
+                
+                            <!-- <line x1=0         y1={yScale(tick)} 
+                                x2={width}   y2={yScale(tick)} 
+                            stroke = "#e3e3e3"/> -->
+                        {/each}
+                    </g> 
+                
+                </svg>
+            </div>
 
             {#if hoveredDatapoint != undefined }
                 <div class="tooltip"
@@ -389,9 +395,17 @@
       align-content: center;
     }
   
-    .all-original-covers, .all-annotated-only-covers, .all-ratio-covers {
+    .all-original-covers, .all-annotated-only-covers, .all-ratio-covers, .chart {
         position: absolute;
         top: 0;
+    }
+
+    .chart {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
   
     .all-annotated-covers {
