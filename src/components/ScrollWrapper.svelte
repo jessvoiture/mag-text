@@ -98,6 +98,11 @@
         rectHeightAddition = 0;
         rectTranslation = (innerHeight / 12);
         yTickCount = 12;
+    }  else if (yVals == "total") {
+        rectHeightMultiplyingFactor = innerHeight / yExtent[1];
+        rectHeightAddition = 0;
+        rectTranslation = 0;
+        yTickCount = 4;
     } else if (yVals == "ratio") {
         rectHeightMultiplyingFactor = 0;
         rectHeightAddition = 2;
@@ -113,7 +118,11 @@
     // make ticks
     $: xTicks = xScale.ticks(5);
     $: yTicks = yScale.ticks(yTickCount);
-              
+
+    let colScale = scaleOrdinal()
+        .range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'])
+        .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+                        
     const setMousePosition = function(event) {      
         mouse_x = event.clientX;
         mouse_y = event.clientY;
@@ -127,6 +136,7 @@
                    "<p>these are the ratios</p>",
                    "<p>this is the data by month</p>",
                    "<p>this is the data by month but the heights are better</p>",
+                //    "<p>this is the data as a bar chart</p>",
                    "<p>this is the data as a scatterplot</p>"
                   ];
   
@@ -144,6 +154,9 @@
       } else if ($currentStep == 5) {
         nowShowing.set('chart');
         setRelativeHeightValues();
+      } else if ($currentStep == 6) {
+        nowShowing.set('chart');
+        setTotalValues();
       } else if ($currentStep == 6) {
         nowShowing.set('chart');
         setRatioValues();
@@ -218,43 +231,21 @@
             in:slide={{ delay: 200 }}
             out:fade> 
   
-            <svg>
-                {#each sortedMagazines as magazine}
+            {#each sortedMagazines as magazine}
 
-                    <!-- <div id="text-mag" class="ratio-cover"
-                    style = "height: {mag_height * magazine.ratio}px;
-                            width: {findMagWidth(magazine, mag_height)}px"
-                    >
-                    </div> 
-    
-                    <div id="no-text-mag" class="ratio-cover"
-                    style = "height: {mag_height * (1 - magazine.ratio)}px;
-                            width: {findMagWidth(magazine, mag_height)}px"
-                    >
-                    </div> -->
+                <div id="text-mag" class="ratio-cover"
+                style = "height: {mag_height * magazine.ratio}px;
+                        width: {findMagWidth(magazine, mag_height)}px"
+                >
+                </div> 
 
-                    <rect 
-                        id = "text-mag"
-                        class = "ratio-cover"
-                        x = 0
-                        y = 0
-                        height = {mag_height * magazine.ratio}
-                        width = {findMagWidth(magazine, mag_height)}
-                        fill = "black"
-                    />
+                <div id="no-text-mag" class="ratio-cover"
+                style = "height: {mag_height * (1 - magazine.ratio)}px;
+                        width: {findMagWidth(magazine, mag_height)}px"
+                >
+                </div>
 
-                    <rect 
-                        id = "no-text-mag"
-                        class = "ratio-cover"
-                        x = 0
-                        y = {mag_height * magazine.ratio}
-                        height = {mag_height * (1 - magazine.ratio)}
-                        width = {findMagWidth(magazine, mag_height)}
-                        fill = "grey"
-                    />
-    
-                {/each}
-            </svg>
+            {/each}
           </div>
           <!-- 
           <svg>
