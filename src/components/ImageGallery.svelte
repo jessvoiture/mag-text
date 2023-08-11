@@ -50,7 +50,6 @@
                  "<p>these are the ratios</p>",
                  "<p>this is the data by month</p>",
                  "<p>this is the data by month but the heights are better</p>",
-                 "<p>this is the data as a bar chart</p>",
                  "<p>this is the data as a scatterplot</p>"
                 ];
 

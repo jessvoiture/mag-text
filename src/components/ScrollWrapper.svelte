@@ -156,9 +156,6 @@
         setRelativeHeightValues();
       } else if ($currentStep == 6) {
         nowShowing.set('chart');
-        setTotalValues();
-      } else if ($currentStep == 6) {
-        nowShowing.set('chart');
         setRatioValues();
       } 
   
