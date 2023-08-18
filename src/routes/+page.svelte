@@ -4,6 +4,7 @@
     import Barchart from "../components/Barchart.svelte";
     import { browser } from '$app/environment';
   import ScrollWrapper from "../components/ScrollWrapper.svelte";
+  import Colophon from "../components/Colophon.svelte";
     
     export let data;
 
@@ -63,6 +64,8 @@
 </div>
 
 <ScrollWrapper {data} {screenHeight} {screenWidth} />
+
+<Colophon />
 
 <style>
     .section-heading, .body-text {
