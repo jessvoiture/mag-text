@@ -7,7 +7,6 @@
 
   import Image from './Image.svelte';
   import Scroll from "./Scrolly.svelte";
-  import Barchart from './Barchart.svelte';
 
   export let data;
 

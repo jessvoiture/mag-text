@@ -1,47 +1,23 @@
 <script>
     import { fade, slide, fly, draw } from 'svelte/transition';
-    import { onMount } from 'svelte';
-    import { sort, group, extent } from 'd3-array';
-    import { browser } from '$app/environment';
+    import { group, extent } from 'd3-array';
     import { currentStep, nowShowing } from '../stores';
     import { scaleOrdinal, scaleLinear } from 'd3-scale';
     import { tweened } from 'svelte/motion';
   
     import Image from './Image.svelte';
     import Scroll from "./Scrolly.svelte";
-    import Barchart from './Barchart.svelte';
   
     export let data;
     export let screenHeight;
     export let screenWidth;
+    export let screenRatio;
 
     let width;
+    let stepWidth;
+    let mag_height;
+    let mag_width;
     let groupedData = [];
-
-    const margin = {top: 30, left: 50, right: 30, bottom:30};
-
-    $: if (screenWidth <= 860) {
-        width = 0.8 * screenWidth
-    } else {
-        width = 0.7 * screenWidth;
-    }
-
-    $: height = 0.6 * screenHeight;
-
-    $: innerWidth = width - margin.left - margin.right;
-    $: innerHeight = height - margin.top - margin.bottom;
-  
-    groupedData = group(data.magazines, d => d.year)
-  
-    $: mag_height = 0.7 * screenHeight;
-  
-    // Sort the magazines array based on the Date
-    let sortedMagazines = [...data.magazines]
-                      .sort((a, b) => a.Date - b.Date)
-                      .slice(100, 101);
-  
-
-    let mags = data.magazines;
 
     let tweenedY;
     let rectHeightMultiplyingFactor;
@@ -50,12 +26,45 @@
     let mouse_x, mouse_y; 
     let yTickCount; 
 
+    const margin = {top: 30, left: 30, right: 30, bottom: 30};
+
+    $: screenRatio = screenWidth / screenHeight;
+
+    $: height = 0.8 * screenHeight;
+    $: width = 0.8 * screenWidth;
+
+    $: innerWidth = width - margin.left - margin.right;
+    $: innerHeight = height - margin.top - margin.bottom;
+  
+    groupedData = group(data.magazines, d => d.year)
+  
+    // Sort the magazines array based on the Date
+    let sortedMagazines = [...data.magazines]
+                      .sort((a, b) => a.Date - b.Date)
+                      .filter((d) => d.Date == 20110901)
+  
+    let guineaPigMag = sortedMagazines[0];
+    let magConstrainingDimension;
+    let whRatio = guineaPigMag.wh_ratio
+
+    $: if (screenRatio <= whRatio) {
+      magConstrainingDimension = "width"
+      mag_height = findMagHeight(whRatio, mag_width);
+      mag_width = 0.9 * screenWidth;
+    } else {
+      magConstrainingDimension = "height"
+      mag_height = 0.7 * screenHeight;
+      mag_width = findMagWidth(whRatio, mag_height);
+    }
+
+    let mags = data.magazines;
+
+    mags.sort((a, b) => a.Date - b.Date)
+
     let yVals = "month";
     let hoveredDatapoint = undefined;
     let ratioExtent = extent(mags, (d) => d.ratio)
     let ratioMax = ratioExtent[1];
-
-    mags.sort((a, b) => a.Date - b.Date)
 
     const groupedMags = group(mags, d => d.year);
     const cumulativeData = [];
@@ -130,10 +139,11 @@
 
     // scroll
     // let currentStep = 0;
-    const steps = ["<p>these are the original images</p>", 
-                   "<p>these are the annotations overlayed</p>",
-                   "<p>these are the annotations</p>",
-                   "<p>these are the ratios</p>",
+    const steps = ["<p>In [year], [person] graced the cover of Vogue’s [Month] issue.</p>", 
+                   "<p>Next, we can identify all of the text areas on the cover excluding the title</p>",
+                   "<p>When we remove the background image, we can start to see the skeleton of the cover and the relative proportions of text to cover.</p>",
+                   "<p>The ratio of the text areas to the whole cover is [ratio]. In other words, [percent] of the cover is covered by text.</p>",
+                   "<p>Let’s now look at this ratio for all the covers analysed. </p>",
                    "<p>this is the data by month</p>",
                    "<p>this is the data by month but the heights are better</p>",
                 //    "<p>this is the data as a bar chart</p>",
@@ -146,26 +156,31 @@
         nowShowing.set('overlay');
       } else if ($currentStep == 2) {
         nowShowing.set('annotated');
-      } else if ($currentStep == 3) {
+      } else if ($currentStep == 3 | $currentStep == 4) {
         nowShowing.set('ratios');
-      } else if ($currentStep == 4) {
-        nowShowing.set('chart');
-        setMonthValues();
       } else if ($currentStep == 5) {
         nowShowing.set('chart');
-        setRelativeHeightValues();
+        setMonthValues();
       } else if ($currentStep == 6) {
+        nowShowing.set('chart');
+        setRelativeHeightValues();
+      } else if ($currentStep == 7) {
         nowShowing.set('chart');
         setRatioValues();
       } 
   
-      let mag_width;
-  
-      function findMagWidth(magazine, mag_height) {
-        mag_width = mag_height * magazine.wh_ratio;
-        return mag_width
+      function findMagHeight(ratio, mag_width) {
+        const h = mag_width * (1 / ratio);
+        return h
+      }
+
+      function findMagWidth(ratio, mag_height) {
+        const w = mag_height * ratio;
+        return w
       }
   
+      
+
   </script>
   
   <div class="scroller">
@@ -177,6 +192,7 @@
             out:fade>
             <Image 
               {sortedMagazines}
+              {mag_width}
               {mag_height}
               type={'original'}
               imagePathEnding={'.jpg'}
@@ -190,6 +206,7 @@
             transition:fade>
               <Image 
                 {sortedMagazines}
+                {mag_width}
                 {mag_height}
                 type={'original'}
                 imagePathEnding={'.jpg'}
@@ -201,6 +218,7 @@
             transition:fade> 
               <Image 
                 {sortedMagazines}
+                {mag_width}
                 {mag_height}
                 type={'annotated'}
                 imagePathEnding={'-01.png'}
@@ -214,6 +232,7 @@
             transition:fade> 
               <Image 
                 {sortedMagazines}
+                {mag_width}
                 {mag_height}
                 type={'annotated'}
                 imagePathEnding={'-01.png'}
@@ -224,23 +243,25 @@
   
         {#if $nowShowing == 'ratios'}
           <div class = 'all-ratio-covers all-covers' 
-            style = 'width: {findMagWidth(sortedMagazines[0], mag_height)}px' 
+            style="height: {mag_height}px; width: {mag_width}px;"
             in:slide={{ delay: 200 }}
             out:fade> 
   
             {#each sortedMagazines as magazine}
 
-                <div id="text-mag" class="ratio-cover"
-                style = "height: {mag_height * magazine.ratio}px;
-                        width: {findMagWidth(magazine, mag_height)}px"
-                >
-                </div> 
+              <div>
+                  <div id="text-mag" class="ratio-cover"
+                  style = "height: {mag_height * magazine.ratio}px;
+                          width: {mag_width}px"
+                  >
+                  </div> 
 
-                <div id="no-text-mag" class="ratio-cover"
-                style = "height: {mag_height * (1 - magazine.ratio)}px;
-                        width: {findMagWidth(magazine, mag_height)}px"
-                >
-                </div>
+                  <div id="no-text-mag" class="ratio-cover"
+                  style = "height: {mag_height * (1 - magazine.ratio)}px;
+                          width: {mag_width}px"
+                  >
+                  </div>
+              </div>
 
             {/each}
           </div>
@@ -326,7 +347,7 @@
       {#each steps as text, i}
         <div class="step" 
              class:active={$currentStep === i}>
-          <div class="step-content">
+          <div class="step-content" width={stepWidth}>
             {@html text}
           </div>
         </div>
@@ -335,10 +356,7 @@
   </div>
   
   <style>
-    .all-covers {
-      margin-top: 15vh;
-    }
-  
+
     .step {
       height:110vh;
       display: flex;
@@ -354,19 +372,29 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      text-align: center;
       transition: background 500ms ease;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
       z-index: 10;
+      height: auto;
+    }
+
+    @media (max-width: 800px) {
+      .step-content {
+        max-width: 85vw;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .step-content {
+        max-width: 30vw;
+      }
     }
   
     .step.active .step-content {
       background: white;
       color: black;
     }
-  
-    /* .hidden-step {
-      visibility: hidden;
-    } */
   
     .mag-gallery {
       position: sticky;
@@ -383,9 +411,12 @@
       align-content: center;
     }
   
-    .all-original-covers, .all-annotated-only-covers, .all-ratio-covers, .chart {
+    .all-covers, .chart {
         position: absolute;
-        top: 0;
+        left: 50%;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 
     .chart {
@@ -436,5 +467,9 @@
         transition: height 0.3s ease
     }
   
+
+    svg {
+      overflow: visible;
+    }
   </style>
   
