@@ -362,6 +362,7 @@
       display: flex;
       place-items: center;
       justify-content: center;
+      z-index: 999;
     }
   
     .step-content {
