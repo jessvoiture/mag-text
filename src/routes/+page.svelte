@@ -3,8 +3,8 @@
     import Hero from "../components/Hero.svelte";
     import Barchart from "../components/Barchart.svelte";
     import { browser } from '$app/environment';
-  import ScrollWrapper from "../components/ScrollWrapper.svelte";
-  import Colophon from "../components/Colophon.svelte";
+    import ScrollWrapper from "../components/ScrollWrapper.svelte";
+    import Colophon from "../components/Colophon.svelte";
     
     export let data;
 

@@ -16,7 +16,15 @@ export const load = ({ fetch }) => {
     return data;
   };
 
+  const fetchContours = async () => {
+    const res = await fetch("/contours.json");
+    const data = await res.json();
+
+    return data;
+  };
+
   return {
     magazines: fetchText(),
+    contours: fetchContours(),
   };
 };

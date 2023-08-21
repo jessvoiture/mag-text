@@ -47,6 +47,8 @@
     let magConstrainingDimension;
     let whRatio = guineaPigMag.wh_ratio
 
+    console.log(guineaPigMag)
+
     $: if (screenRatio <= whRatio) {
       magConstrainingDimension = "width"
       mag_height = findMagHeight(whRatio, mag_width);
@@ -58,6 +60,7 @@
     }
 
     let mags = data.magazines;
+    let contours = data.contours;
 
     mags.sort((a, b) => a.Date - b.Date)
 
@@ -101,6 +104,9 @@
 
     $: xScale = scaleLinear().domain(xExtent).range([0, innerWidth]);
     $: yScale = scaleLinear().domain(yExtent).range([innerHeight, 0]);
+
+    $: contourXScale = scaleLinear().domain([0, guineaPigMag.width]).range([0, mag_width]);
+    $: contourYScale = scaleLinear().domain([0, guineaPigMag.height]).range([0, mag_height]);
 
     $: if (yVals == "month") {
         rectHeightMultiplyingFactor = (innerHeight / 12);
@@ -214,57 +220,62 @@
               />
           </div>
   
-          <div class='all-annotated-covers all-covers'
-            transition:fade> 
-              <Image 
-                {sortedMagazines}
-                {mag_width}
-                {mag_height}
-                type={'annotated'}
-                imagePathEnding={'-01.png'}
-                alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
-              />
-          </div>
+          <svg height = {mag_height} width = {mag_width}
+          class = 'all-annotated-covers all-covers'
+          transition:fade>
+            <g>
+                <rect
+                  x=0
+                  y=0
+                  width={mag_width}
+                  height={mag_height}
+                  fill="white"
+                  opacity=0.7
+                />
+            </g>
+
+            <g transform="scale(1, -1)" transform-origin="center">
+              {#each contours as contour}
+                <rect
+                  x={contourXScale(contour.x)}
+                  y={mag_height - contourYScale(contour.y + contour.h)}
+                  width={contourXScale(contour.w)}
+                  height={contourYScale(contour.h)}
+                  fill="black"
+                />
+              {/each}
+            </g>
+          </svg>
         {/if}
   
         {#if $nowShowing == 'annotated'}
-          <div class='all-annotated-only-covers all-covers'
-            transition:fade> 
-              <Image 
-                {sortedMagazines}
-                {mag_width}
-                {mag_height}
-                type={'annotated'}
-                imagePathEnding={'-01.png'}
-                alt={"Vogue magazine cover (the same one displayed earlier in the page) BUT the text areas on the cover are covered by semi-opaque black rectangles and the rest of the cover is a transparent white"}
-              />
-          </div>
+          <svg height = {mag_height} width = {mag_width}
+          class = 'all-ratio-covers all-covers'
+          transition:fade>
+            <g>
+                <rect
+                  x=0
+                  y=0
+                  width={mag_width}
+                  height={mag_height}
+                  fill="white"
+                />
+            </g>
+            <g transform="scale(1, -1)" transform-origin="center">
+              {#each contours as contour}
+                <rect
+                  x={contourXScale(contour.x)}
+                  y={mag_height - contourYScale(contour.y + contour.h)}
+                  width={contourXScale(contour.w)}
+                  height={contourYScale(contour.h)}
+                  fill="black"
+                />
+              {/each}
+            </g>
+          </svg>
         {/if}
   
         {#if $nowShowing == 'ratios'}
-          <div class = 'all-ratio-covers all-covers' 
-            style="height: {mag_height}px; width: {mag_width}px;"
-            in:slide={{ delay: 200 }}
-            out:fade> 
-  
-            {#each sortedMagazines as magazine}
-
-              <div>
-                  <div id="text-mag" class="ratio-cover"
-                  style = "height: {mag_height * magazine.ratio}px;
-                          width: {mag_width}px"
-                  >
-                  </div> 
-
-                  <div id="no-text-mag" class="ratio-cover"
-                  style = "height: {mag_height * (1 - magazine.ratio)}px;
-                          width: {mag_width}px"
-                  >
-                  </div>
-              </div>
-
-            {/each}
-          </div>
           <!-- 
           <svg>
             <path
@@ -279,6 +290,30 @@
               stroke-width="2px"
             />
           </svg> -->
+
+          <svg height = {mag_height} width = {mag_width}
+            class = 'all-ratio-covers all-covers'>
+            <g>
+                <rect
+                  x=0
+                  y=0
+                  width={mag_width}
+                  height={mag_height}
+                  fill="white"
+                />
+            </g>
+            <g transform="scale(1, -1)" transform-origin="center">
+              {#each contours as contour}
+                <rect
+                  x={contourXScale(contour.x)}
+                  y={mag_height - contourYScale(contour.y + contour.h)}
+                  width={contourXScale(contour.w)}
+                  height={contourYScale(contour.h)}
+                  fill="black"
+                />
+              {/each}
+            </g>
+          </svg>
         {/if}
   
         {#if $nowShowing == 'chart'}
