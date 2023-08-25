@@ -510,4 +510,8 @@
   svg {
     overflow: visible;
   }
+
+  .scroller {
+    z-index: 1;
+  }
 </style>
