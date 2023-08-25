@@ -1,50 +1,49 @@
 <script>
-    import ImageGallery from "../components/ImageGallery.svelte";
-    import Hero from "../components/Hero.svelte";
-    import Barchart from "../components/Barchart.svelte";
-    import { browser } from '$app/environment';
-    import ScrollWrapper from "../components/ScrollWrapper.svelte";
-    import Colophon from "../components/Colophon.svelte";
-    
-    export let data;
+  import ImageGallery from "../components/ImageGallery.svelte";
+  import Hero from "../components/Hero.svelte";
+  import Barchart from "../components/Barchart.svelte";
+  import { browser } from "$app/environment";
+  import ScrollWrapper from "../components/ScrollWrapper.svelte";
+  import Colophon from "../components/Colophon.svelte";
 
-    let screenWidth; 
-    let screenHeight;
-    let innerHeight;
-    let innerWidth;
+  export let data;
 
-    function resize() {
-        screenWidth = window.innerWidth;
-        screenHeight = window.innerHeight;
-    }
+  let screenWidth;
+  let screenHeight;
+  let innerHeight;
+  let innerWidth;
 
-    if (browser) {
-        resize()
-    }
-    
-    let width;
+  function resize() {
+    screenWidth = window.innerWidth;
+    screenHeight = window.innerHeight;
+  }
 
-    $: if (screenWidth <= 860) {
-        width = 0.8 * screenWidth
-    } else {
-        width = 0.6 * screenWidth;
-    }
+  if (browser) {
+    resize();
+  }
 
-    $: height = 0.6 * screenHeight;
+  let width;
 
-    const margin = {top: 30, left: 50, right: 30, bottom:30};
+  $: if (screenWidth <= 860) {
+    width = 0.8 * screenWidth;
+  } else {
+    width = 0.6 * screenWidth;
+  }
 
-    $: innerWidth = width - margin.left - margin.right;
-    $: innerHeight = height - margin.top - margin.bottom;
-    
+  $: height = 0.6 * screenHeight;
+
+  const margin = { top: 30, left: 50, right: 30, bottom: 30 };
+
+  $: innerWidth = width - margin.left - margin.right;
+  $: innerHeight = height - margin.top - margin.bottom;
 </script>
 
-<svelte:window on:resize={resize}/>
+<svelte:window on:resize={resize} />
 
 <Hero />
 
 <div class="body-section">
-    <div class="section">
+  <!-- <div class="section">
         <div class="section-heading">Love Confessions!</div>
         <div class="body-text">
             As a child in the 2000s, I sourced my social capital from my J-14 magazine subscription. The covers were chalk full of celebrity cutouts and text, in a seemingly silent protest against negative space. They were an exercise in graphic design maximalism and not a far cry from my creations in MyPaint. Like crypto, however, this capital quickly became a liability, and I had to graduate to more cool forms of literature. 
@@ -60,7 +59,7 @@
 
             To begin, let’s look at a cover…
         </div>
-    </div>
+    </div>-->
 </div>
 
 <ScrollWrapper {data} {screenHeight} {screenWidth} />
@@ -68,33 +67,34 @@
 <Colophon />
 
 <style>
-    .section-heading, .body-text {
-        font-family: sans-serif;
-    }
+  .section-heading,
+  .body-text {
+    font-family: sans-serif;
+  }
 
-    .section-heading {
-        font-size: 18pt;
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
+  .section-heading {
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
+  .body-section {
+    font-size: 12pt;
+  }
+
+  .section {
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 800px) {
     .body-section {
-        font-size: 12pt;
+      max-width: 85vw;
     }
+  }
 
-    .section {
-        margin-bottom: 20px;
-    }
-
-    @media (max-width: 800px) {
+  @media (min-width: 800px) {
     .body-section {
-        max-width: 85vw;
-      }
+      max-width: 50vw;
     }
-
-    @media (min-width: 800px) {
-    .body-section {
-        max-width: 50vw;
-      }
-    }
+  }
 </style>

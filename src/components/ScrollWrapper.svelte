@@ -1,8 +1,8 @@
 <script>
-  import { fade, slide, fly, draw } from "svelte/transition";
+  import { fade, fly } from "svelte/transition";
   import { group, extent } from "d3-array";
   import { currentStep, nowShowing } from "../stores";
-  import { scaleOrdinal, scaleLinear } from "d3-scale";
+  import { scaleLinear } from "d3-scale";
   import { tweened } from "svelte/motion";
 
   import Image from "./Image.svelte";
@@ -22,11 +22,15 @@
   let tweenedY;
   let contourTweenedY;
   let contourTweenedX;
+  let contourTweenedH;
+  let contourTweenedW;
+
   let rectHeightMultiplyingFactor;
   let rectHeightAddition;
   let rectTranslation;
   let mouse_x, mouse_y;
   let yTickCount;
+  let contourWidthFactor = 1;
 
   const margin = { top: 30, left: 30, right: 30, bottom: 30 };
 
@@ -48,8 +52,6 @@
   let guineaPigMag = sortedMagazines[0];
   let magConstrainingDimension;
   let whRatio = guineaPigMag.wh_ratio;
-
-  console.log(guineaPigMag);
 
   $: if (screenRatio <= whRatio) {
     magConstrainingDimension = "width";
@@ -93,20 +95,19 @@
 
   contours.forEach((item) => {
     item.areaProportion =
-      ((item.w * item.h) / totalContourArea) * guineaPigMag.ratio;
+      ((item.w * item.h) / totalContourArea) * guineaPigMag.ratio * 100;
     item.cumulativeAreaProportion = cumulativeAreaProportion;
     cumulativeAreaProportion += item.areaProportion;
   });
-
-  console.log(totalContourArea);
-  console.log(contours);
 
   $: tweenedY = tweened(cumulativeData.map((d) => d.month));
   $: rectWidth = (innerWidth / 14) * 0.95;
   $: yScaleTranslate = innerWidth / 12 / 4;
 
-  $: contourTweenedY = tweened(contours.map((d) => d.y));
-  $: contourTweenedX = tweened(contours.map((d) => d.x));
+  $: contourTweenedY = tweened(contours.map((d) => d.y_pct));
+  $: contourTweenedX = tweened(contours.map((d) => d.x_pct));
+  $: contourTweenedH = tweened(contours.map((d) => d.h_pct));
+  $: contourTweenedW = tweened(contours.map((d) => d.w_pct));
 
   const setRatioValues = function () {
     yVals = "ratio";
@@ -124,13 +125,17 @@
   };
 
   const setContoursOnMag = () => {
-    contourTweenedY.set(contours.map((d) => d.y));
-    contourTweenedX.set(contours.map((d) => d.x));
+    contourTweenedY.set(contours.map((d) => d.y_pct));
+    contourTweenedX.set(contours.map((d) => d.x_pct));
+    contourTweenedH.set(contours.map((d) => d.h_pct));
+    contourTweenedW.set(contours.map((d) => d.w_pct));
   };
 
   const setContoursRatio = () => {
     contourTweenedY.set(contours.map((d) => d.cumulativeAreaProportion));
-    contourTweenedX.set(0);
+    contourTweenedX.set(contours.map(() => 0));
+    contourTweenedH.set(contours.map((d) => d.areaProportion + 1));
+    contourTweenedW.set(contours.map(() => 100));
   };
 
   $: yExtent = extent($tweenedY);
@@ -139,12 +144,8 @@
   $: xScale = scaleLinear().domain(xExtent).range([0, innerWidth]);
   $: yScale = scaleLinear().domain(yExtent).range([innerHeight, 0]);
 
-  $: contourXScale = scaleLinear()
-    .domain([0, guineaPigMag.width])
-    .range([0, mag_width]);
-  $: contourYScale = scaleLinear()
-    .domain([0, guineaPigMag.height])
-    .range([0, mag_height]);
+  $: contourXScale = scaleLinear().domain([0, 100]).range([0, mag_width]);
+  $: contourYScale = scaleLinear().domain([100, 0]).range([mag_height, 0]);
 
   $: if (yVals == "month") {
     rectHeightMultiplyingFactor = innerHeight / 12;
@@ -194,10 +195,18 @@
     nowShowing.set("original");
   } else if ($currentStep == 1) {
     nowShowing.set("overlay");
+    setContoursOnMag();
   } else if ($currentStep == 2) {
-    nowShowing.set("annotated");
-  } else if (($currentStep == 3) | ($currentStep == 4)) {
     nowShowing.set("ratios");
+    setContoursOnMag();
+  } else if ($currentStep == 3) {
+    nowShowing.set("ratios");
+    setContoursRatio();
+    contourWidthFactor = mag_width;
+  } else if ($currentStep == 4) {
+    setContoursRatio();
+    nowShowing.set("ratios");
+    contourWidthFactor = mag_width;
   } else if ($currentStep == 5) {
     nowShowing.set("chart");
     setMonthValues();
@@ -219,6 +228,8 @@
     return w;
   }
 </script>
+
+<div width={mag_width} style="background-color: black;" />
 
 <div class="scroller">
   <div class="mag-gallery">
@@ -265,43 +276,13 @@
             />
           </g>
 
-          <g transform="scale(1, -1)" transform-origin="center">
-            {#each contours as contour}
-              <rect
-                x={contourXScale(contour.x)}
-                y={mag_height - contourYScale(contour.y + contour.h)}
-                width={contourXScale(contour.w)}
-                height={contourYScale(contour.h)}
-                fill="black"
-              />
-            {/each}
-          </g>
-        </svg>
-      {/if}
-
-      {#if $nowShowing == "annotated"}
-        <svg
-          height={mag_height}
-          width={mag_width}
-          class="all-ratio-covers all-covers"
-          transition:fade
-        >
           <g>
-            <rect
-              x="0"
-              y="0"
-              width={mag_width}
-              height={mag_height}
-              fill="white"
-            />
-          </g>
-          <g transform="scale(1, -1)" transform-origin="center">
-            {#each contours as contour}
+            {#each contours as contour, index}
               <rect
-                x={contourXScale(contour.x)}
-                y={mag_height - contourYScale(contour.y + contour.h)}
-                width={contourXScale(contour.w)}
-                height={contourYScale(contour.h)}
+                x={contourXScale($contourTweenedX[index])}
+                y={contourYScale($contourTweenedY[index])}
+                width={contourXScale($contourTweenedW[index])}
+                height={contourYScale($contourTweenedH[index])}
                 fill="black"
               />
             {/each}
@@ -326,13 +307,13 @@
             />
           </g>
 
-          <g transform="scale(1, -1)" transform-origin="center">
-            {#each contours as contour}
+          <g>
+            {#each contours as contour, index}
               <rect
-                x={contourXScale(contour.x)}
-                y={mag_height - contourYScale(contour.y + contour.h)}
-                width={contourXScale(contour.w)}
-                height={contourYScale(contour.h)}
+                x={contourXScale($contourTweenedX[index])}
+                y={contourYScale($contourTweenedY[index])}
+                width={contourXScale($contourTweenedW[index])}
+                height={contourYScale($contourTweenedH[index])}
                 fill="black"
               />
             {/each}
