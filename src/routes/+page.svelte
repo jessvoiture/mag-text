@@ -1,8 +1,7 @@
 <script>
-  import ImageGallery from "../components/ImageGallery.svelte";
-  import Hero from "../components/Hero.svelte";
-  import Barchart from "../components/Barchart.svelte";
   import { browser } from "$app/environment";
+
+  import Hero from "../components/Hero.svelte";
   import ScrollWrapper from "../components/ScrollWrapper.svelte";
   import Colophon from "../components/Colophon.svelte";
 

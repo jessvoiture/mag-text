@@ -1,12 +1,13 @@
 <div class="hero">
-    <div class="title">does Vogue hate text now?</div>
+  <div class="title">
+    A quantitative analysis of the textual landscape of Vogue Covers
+  </div>
 </div>
 
 <style>
-
   @font-face {
     font-family: "magazine";
-    src:url("../fonts/MagazineLetterByBrntlbrnl-Regular.ttf");
+    src: url("../fonts/MagazineLetterByBrntlbrnl-Regular.ttf");
   }
 
   .hero {
@@ -18,10 +19,10 @@
   }
 
   .title {
-      width: 70%;
-      font-family: "magazine";
-      font-size: 64pt;
-      text-align: center;
-      margin-top: 20vh;
+    width: 70%;
+    font-family: "magazine";
+    font-size: 64pt;
+    text-align: center;
+    margin-top: 20vh;
   }
-</style> 
+</style>
