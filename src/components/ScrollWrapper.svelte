@@ -44,6 +44,7 @@
   let annotationBackgroundCapacity = "0.7";
   let magOpacity = 1;
   let showingAnnotations = false;
+  let translucentMag = true;
 
   const margin = { top: 30, left: 30, right: 30, bottom: 30 };
 
@@ -213,6 +214,7 @@
     "<p>The ratio of the text areas to the whole cover is [ratio]. In other words, [percent] of the cover is covered by text.</p>",
     "<p>Let’s now look at this ratio for all the covers analysed. </p>",
     "<p>this is the data by month</p>",
+    "<p>this is the data by month</p>",
     "<p>this is the data by month but the heights are better</p>",
     "<p>this is the data as a scatterplot</p>",
     "<p>here are the averages</p>",
@@ -225,48 +227,45 @@
   } else if ($currentStep == 1) {
     nowShowing.set("ratios");
     showingImage = true;
+    translucentMag = true;
     showingAnnotations = true;
     setContoursOnMag();
   } else if ($currentStep == 2) {
     nowShowing.set("ratios");
     showingImage = false;
-    annotationBackgroundCapacity = "1";
+    translucentMag = false;
     showingAnnotations = true;
     setContoursOnMag();
   } else if ($currentStep == 3) {
     nowShowing.set("ratios");
     showingImage = false;
-    annotationBackgroundCapacity = "1";
+    translucentMag = false;
     contourWidthFactor = mag_width;
     showingAnnotations = true;
     setContoursRatio();
   } else if ($currentStep == 4) {
     nowShowing.set("ratios");
     showingImage = false;
-    annotationBackgroundCapacity = 1;
+    translucentMag = false;
     contourWidthFactor = mag_width;
     showingAnnotations = true;
     setContoursRatio();
   } else if ($currentStep == 5) {
     nowShowing.set("chart");
     showingMeanValues = false;
-    magOpacity = 1;
     showingAnnotations = false;
     setMonthValues();
   } else if ($currentStep == 6) {
     nowShowing.set("chart");
     showingMeanValues = false;
-    magOpacity = 1;
     setRelativeHeightValues();
   } else if ($currentStep == 7) {
     nowShowing.set("chart");
     showingMeanValues = false;
-    magOpacity = 1;
     setRatioValues();
   } else if ($currentStep == 8) {
     nowShowing.set("chart");
     showingMeanValues = true;
-    magOpacity = 0.1;
     setRatioValues();
   }
 
@@ -280,8 +279,6 @@
     return w;
   }
 </script>
-
-<div width={mag_width} style="background-color: black;" />
 
 <div class="scroller">
   <div class="mag-gallery">
@@ -309,12 +306,13 @@
           >
             <g>
               <rect
+                class:translucent={translucentMag}
+                class="annotation-cover"
                 x="0"
                 y="0"
                 width={mag_width}
                 height={mag_height}
                 fill="white"
-                opacity={annotationBackgroundCapacity}
               />
             </g>
 
@@ -549,5 +547,15 @@
 
   .mag-chart-rect.grayedout {
     fill-opacity: 0.1;
+  }
+
+  .annotation-cover {
+    fill-opacity: 1;
+    transition: fill-opacity 0.3s ease;
+  }
+
+  .annotation-cover.translucent {
+    fill-opacity: 0.7;
+    transition: fill-opacity 0.3s ease;
   }
 </style>
