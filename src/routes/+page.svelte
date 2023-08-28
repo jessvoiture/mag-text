@@ -4,6 +4,7 @@
   import Hero from "../components/Hero.svelte";
   import ScrollWrapper from "../components/ScrollWrapper.svelte";
   import Colophon from "../components/Colophon.svelte";
+  import DataPrep from "../components/DataPrep.svelte";
 
   export let data;
 
@@ -60,9 +61,7 @@
         </div>
     </div>-->
 </div>
-
-<ScrollWrapper {data} {screenHeight} {screenWidth} />
-
+<DataPrep {data} {screenHeight} {screenWidth} />
 <Colophon />
 
 <style>
