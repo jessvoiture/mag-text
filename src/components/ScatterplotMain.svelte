@@ -88,7 +88,7 @@
   };
 </script>
 
-<div class="chart" {width} {height} transition:fade>
+<div class="chart" {width} {height}>
   <svg {width} {height}>
     <g
       height={innerHeight}

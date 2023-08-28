@@ -3,6 +3,7 @@
   import { currentStep } from "../stores";
   import { tweened } from "svelte/motion";
   import { fade } from "svelte/transition";
+  import { onMount } from "svelte";
 
   import Image from "./Image.svelte";
   import Scroll from "./Scrolly.svelte";
@@ -16,9 +17,9 @@
   export let screenWidth;
   export let guineaPigMag;
 
-  console.log(cumulativeData);
-  console.log(contours);
-  console.log(guineaPigMag);
+  onMount(() => {
+    cumulativeData.sort((a, b) => a.Date - b.Date);
+  });
 
   // scroll
   const steps = [

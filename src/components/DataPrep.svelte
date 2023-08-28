@@ -36,6 +36,8 @@
     });
   });
 
+  cumulativeData.sort((a, b) => a.Date - b.Date);
+
   contours.sort((a, b) => a.y - b.y);
 
   contours.forEach((item) => {
