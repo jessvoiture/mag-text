@@ -24,7 +24,7 @@
   <g>
     <rect
       class:translucent={showingImage}
-      class="annotation-cover"
+      class="annotation-cover annotation-cover-background"
       x="0"
       y="0"
       width={mag_width}
@@ -36,6 +36,8 @@
   <g>
     {#each contours as contour, index}
       <rect
+        class:translucent={showingImage}
+        class="annotation-cover annotation-cover-contour"
         x={contourXScale($contourTweenedX[index])}
         y={contourYScale($contourTweenedY[index])}
         width={contourXScale($contourTweenedW[index])}
@@ -47,17 +49,19 @@
 </svg>
 
 <style>
-  .all-annotated-covers {
-    opacity: 0.7;
+  .annotation-cover-background,
+  .annotation-cover-contour {
+    fill-opacity: 1;
+    transition: fill-opacity 1s ease;
   }
 
-  .annotation-cover {
-    fill-opacity: 1;
+  .annotation-cover-background.translucent {
+    fill-opacity: 0.4;
     transition: fill-opacity 0.3s ease;
   }
 
-  .annotation-cover.translucent {
-    fill-opacity: 0.7;
+  .annotation-cover-contour.translucent {
+    fill-opacity: 0.6;
     transition: fill-opacity 0.3s ease;
   }
 </style>
