@@ -23,6 +23,8 @@
   let rectHeightAddition;
   let rectTranslation;
   let yTickCount;
+  let uniqueYears = new Set();
+  let uniqueMonths = new Set();
 
   let yearlyMean = rollup(
     cumulativeData,
@@ -30,11 +32,22 @@
     (d) => d.year
   );
 
+  cumulativeData.forEach((item) => {
+    uniqueYears.add(item.year);
+  });
+
+  cumulativeData.forEach((item) => {
+    uniqueMonths.add(item.month);
+  });
+
+  let uniqueYearsCount = uniqueYears.size;
+  let uniqueMonthsCount = uniqueMonths.size;
+
   let ratioExtent = extent(cumulativeData, (d) => d.ratio);
   let ratioMax = ratioExtent[1];
 
   let yScale = yScaleNormal;
-  const margin = { top: 30, left: 30, right: 30, bottom: 30 };
+  const margin = { top: 30, left: 60, right: 30, bottom: 30 };
 
   $: height = 0.8 * screenHeight;
   $: width = 0.8 * screenWidth;
@@ -49,30 +62,30 @@
   $: yScaleNormal = scaleLinear().domain(yExtent).range([innerHeight, 0]);
   $: yScaleReverse = scaleLinear().domain(yExtent).range([0, innerHeight]);
 
-  $: rectWidth = (innerWidth / 14) * 0.9;
-  $: yScaleTranslate = innerWidth / 12 / 4;
+  $: rectWidth = innerWidth / uniqueYearsCount;
+  $: yScaleTranslate = innerWidth / uniqueMonthsCount / 4;
 
   // make ticks
   $: xTicks = xScale.ticks(5);
   $: yTicks = yScale.ticks(yTickCount);
 
   $: if (yVals == "month") {
-    rectHeightMultiplyingFactor = innerHeight / 12;
+    rectHeightMultiplyingFactor = innerHeight / uniqueMonthsCount;
     rectHeightAddition = 0;
-    rectTranslation = innerHeight / 12;
-    yTickCount = 12;
+    rectTranslation = innerHeight / uniqueMonthsCount;
+    yTickCount = uniqueMonthsCount;
     yScale = yScaleReverse;
   } else if (yVals == "relative") {
-    rectHeightMultiplyingFactor = innerHeight / 12 / ratioMax;
+    rectHeightMultiplyingFactor = innerHeight / uniqueMonthsCount / ratioMax;
     rectHeightAddition = 0;
-    rectTranslation = innerHeight / 12;
-    yTickCount = 12;
+    rectTranslation = innerHeight / uniqueMonthsCount;
+    yTickCount = uniqueMonthsCount;
     yScale = yScaleReverse;
   } else if (yVals == "ratio") {
     rectHeightMultiplyingFactor = 0;
     rectHeightAddition = 2;
     rectTranslation = 0;
-    yTickCount = 4;
+    yTickCount = 5;
     yScale = yScaleNormal;
   }
 
@@ -93,7 +106,8 @@
     <g
       height={innerHeight}
       width={innerWidth}
-      transform="translate({margin.left}, {margin.top})"
+      transform={`translate(${margin.left}, 0)`}
+      class="data-plotted"
     >
       {#each cumulativeData as d, index}
         <!-- svelte-ignore a11y-no-static-element-interactions -->
@@ -102,7 +116,7 @@
           class:grayedout={showingMeanValues}
           class="mag-chart-rect"
           x={xScale(d.year)}
-          y={yScale($tweenedY[index]) - rectTranslation}
+          y={yScale($tweenedY[index])}
           width={rectWidth}
           height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
           in:fly={{ delay: index * 5 }}
@@ -121,7 +135,7 @@
         class="mean-datapoints"
         width={innerWidth}
         height={innerHeight}
-        transform="translate({margin.left}, {margin.top})"
+        transform={`translate(${margin.left}, ${margin.top})`}
         transition:fade
       >
         {#each yearlyMean as d}

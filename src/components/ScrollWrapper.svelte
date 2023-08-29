@@ -59,12 +59,16 @@
 
   $: screenRatio = screenWidth / screenHeight;
 
+  let test = "";
+
   $: if (screenRatio <= whRatio) {
-    mag_height = findMagHeight(whRatio, mag_width);
     mag_width = 0.9 * screenWidth;
+    mag_height = findMagHeight(whRatio, mag_width);
+    test = "screenRatio <= whRatio";
   } else {
     mag_height = 0.7 * screenHeight;
     mag_width = findMagWidth(whRatio, mag_height);
+    test = "screenRatio > whRatio";
   }
 
   $: tweenedY = tweened(cumulativeData.map((d) => d.month));
@@ -176,7 +180,7 @@
   <div class="mag-gallery">
     <div class="mag-wrapper">
       {#if nowShowing == "ratios"}
-        <div class="methods-demo" width={mag_width} height={mag_height}>
+        <div class="methods-demo">
           {#if showingImage}
             <div class="all-original-covers all-covers" transition:fade>
               <Image
@@ -279,6 +283,9 @@
     top: 0vh;
     height: 100vh;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .mag-wrapper {
@@ -297,8 +304,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
-    height: 100vh;
   }
 
   .annotations-wrapper {

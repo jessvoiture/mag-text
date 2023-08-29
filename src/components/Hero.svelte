@@ -20,8 +20,8 @@
 
   .title {
     width: 70%;
-    font-family: "magazine";
-    font-size: 64pt;
+    /* font-family: "magazine"; */
+    font-size: 24pt;
     text-align: center;
     margin-top: 20vh;
   }
