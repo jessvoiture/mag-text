@@ -2,7 +2,6 @@
   import { browser } from "$app/environment";
 
   import Hero from "../components/Hero.svelte";
-  import ScrollWrapper from "../components/ScrollWrapper.svelte";
   import Colophon from "../components/Colophon.svelte";
   import DataPrep from "../components/DataPrep.svelte";
 
@@ -61,6 +60,7 @@
         </div>
     </div>-->
 </div>
+
 <DataPrep {data} {screenHeight} {screenWidth} />
 <Colophon />
 
