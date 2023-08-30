@@ -10,6 +10,22 @@
   const mags = data.magazines;
   const contours = data.contours;
 
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  // mags (for the scatterplot)
   const groupedMags = group(mags, (d) => d.year);
   const cumulativeData = [];
 
@@ -18,9 +34,11 @@
     0
   );
 
+  let magDemoDate = 20110901;
+
   let sortedMagazines = [...mags]
     .sort((a, b) => a.Date - b.Date)
-    .filter((d) => d.Date == 20110901);
+    .filter((d) => d.Date == magDemoDate);
 
   let guineaPigMag = sortedMagazines[0];
   let whRatio = guineaPigMag.wh_ratio;
@@ -38,6 +56,12 @@
 
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
+  cumulativeData.forEach((d) => {
+    const monthNumber = d.month; // Assuming your data has a "month" property
+    d.monthName = months[monthNumber - 1]; // Adjust for 0-based array index
+  });
+
+  // contours (for the methods demo)
   contours.sort((a, b) => a.y - b.y);
 
   contours.forEach((item) => {

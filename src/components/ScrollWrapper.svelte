@@ -23,15 +23,18 @@
 
   // scroll
   const steps = [
-    "<p>In [year], [person] graced the cover of Vogue’s [Month] issue.</p>",
+    `<p>In ${guineaPigMag.Date}, [person] graced the cover of Vogue’s [Month] issue.</p>`,
     "<p>Next, we can identify all of the text areas on the cover excluding the title</p>",
     "<p>When we remove the background image, we can start to see the skeleton of the cover and the relative proportions of text to cover.</p>",
-    "<p>The ratio of the text areas to the whole cover is [ratio]. In other words, [percent] of the cover is covered by text.</p>",
+    `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
+      guineaPigMag.ratio * 100,
+      0
+    )}% of the cover is covered by text.</p>`,
     "<p>Let’s now look at this ratio for all the covers analysed. </p>",
-    "<p>this is the data by month</p>",
-    "<p>this is the data by month but the heights are better</p>",
-    "<p>this is the data as a scatterplot</p>",
-    "<p>here are the averages</p>",
+    "<p>Here we can see the text-area to cover ratio for all the magazines analysed</p>",
+    "<p>Let's remove the background image so we can focus just on the relative sizes of the text areas</p>",
+    "<p>When we plot the text-area ratios by year the trend towards minimalism is perhaps most clear.</p>",
+    "<p>Let's also plot the yearly mean text-area to cover ratio</p>",
   ];
 
   let nowShowing;

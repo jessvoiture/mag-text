@@ -47,10 +47,11 @@
   let ratioMax = ratioExtent[1];
 
   let yScale = yScaleNormal;
-  const margin = { top: 30, left: 60, right: 30, bottom: 30 };
+  const margin = { top: 50, left: 80, right: 30, bottom: 30 };
+  let left = (margin.left * 1) / 2;
 
-  $: height = 0.8 * screenHeight;
-  $: width = 0.8 * screenWidth;
+  $: height = 0.9 * screenHeight;
+  $: width = 0.9 * screenWidth;
 
   $: innerWidth = width - margin.left - margin.right;
   $: innerHeight = height - margin.top - margin.bottom;
@@ -62,7 +63,7 @@
   $: yScaleNormal = scaleLinear().domain(yExtent).range([innerHeight, 0]);
   $: yScaleReverse = scaleLinear().domain(yExtent).range([0, innerHeight]);
 
-  $: rectWidth = innerWidth / uniqueYearsCount;
+  $: rectWidth = (innerWidth / uniqueYearsCount) * 0.9;
   $: yScaleTranslate = innerWidth / uniqueMonthsCount / 4;
 
   // make ticks
@@ -90,6 +91,8 @@
   }
 
   const handleMouseover = function (event, d) {
+    console.log("hovered");
+    console.log(d);
     hoveredDatapoint.set(d);
 
     mouse_x.set(event.clientX);
@@ -99,14 +102,41 @@
   const handleMouseout = function () {
     hoveredDatapoint.set(undefined);
   };
+
+  $: console.log($hoveredDatapoint);
 </script>
 
 <div class="chart" {width} {height}>
   <svg {width} {height}>
+    {#if yVals == "month"}
+      <g
+        height={innerHeight}
+        width={innerWidth}
+        transform={`translate(${left}, 0)`}
+        class="data-plotted"
+        in:fade
+        out:fade={{ duration: 500 }}
+      >
+        {#each cumulativeData as d, index}
+          <!-- svelte-ignore a11y-no-static-element-interactions -->
+          <!-- svelte-ignore a11y-mouse-events-have-key-events -->
+          <rect
+            class="mag-chart-rect"
+            x={xScale(d.year)}
+            y={yScale($tweenedY[index])}
+            width={rectWidth}
+            height={rectHeightMultiplyingFactor + rectHeightAddition}
+            fill="white"
+            opacity="0.6"
+          />
+        {/each}
+      </g>
+    {/if}
+
     <g
       height={innerHeight}
       width={innerWidth}
-      transform={`translate(${margin.left}, 0)`}
+      transform={`translate(${left}, 0)`}
       class="data-plotted"
     >
       {#each cumulativeData as d, index}
@@ -120,7 +150,7 @@
           width={rectWidth}
           height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
           in:fly={{ delay: index * 5 }}
-          on:mouseover={function (event, d) {
+          on:mouseover={function (event) {
             handleMouseover(event, d);
           }}
           on:mouseout={function () {
@@ -135,7 +165,7 @@
         class="mean-datapoints"
         width={innerWidth}
         height={innerHeight}
-        transform={`translate(${margin.left}, ${margin.top})`}
+        transform={`translate(${left}, 0)`}
         transition:fade
       >
         {#each yearlyMean as d}
@@ -144,20 +174,20 @@
             x={xScale(d[0])}
             y={yScale(d[1])}
             width={rectWidth}
-            height={rectHeightAddition}
+            height={rectHeightAddition * 1.5}
             fill="red"
           />
         {/each}
       </g>
     {/if}
 
-    <AxisX left={margin.left} {xTicks} {xScale} {height} />
-    <AxisY top={margin.top} {yTicks} {yScale} {yScaleTranslate} />
+    <AxisX {left} {xTicks} {xScale} {height} />
+    <AxisY {yTicks} {yScale} {yScaleTranslate} {yVals} />
   </svg>
 </div>
 
 {#if $hoveredDatapoint != undefined}
-  <Tooltip />
+  <Tooltip {screenWidth} {screenHeight} />
 {/if}
 
 <style>
@@ -170,7 +200,7 @@
   }
 
   .mag-chart-rect {
-    transition: height 0.3s ease, fill-opacity 0.5s ease;
+    transition: height 0.5s ease, fill-opacity 0.5s ease;
     fill-opacity: 1;
   }
 
