@@ -29,7 +29,7 @@
     `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
       guineaPigMag.ratio * 100,
       0
-    )}% of the cover is covered by text.</p>`,
+    )}% is covered by text.</p>`,
     "<p>Let’s now look at this ratio for all the covers analysed. </p>",
     "<p>Here we can see the text-area to cover ratio for all the magazines analysed</p>",
     "<p>Let's remove the background image so we can focus just on the relative sizes of the text areas</p>",
@@ -62,16 +62,14 @@
 
   $: screenRatio = screenWidth / screenHeight;
 
-  let test = "";
-
   $: if (screenRatio <= whRatio) {
+    console.log("screenRatio is less than image");
     mag_width = 0.9 * screenWidth;
     mag_height = findMagHeight(whRatio, mag_width);
-    test = "screenRatio <= whRatio";
   } else {
+    console.log("screenRatio is more than image");
     mag_height = 0.7 * screenHeight;
     mag_width = findMagWidth(whRatio, mag_height);
-    test = "screenRatio > whRatio";
   }
 
   $: tweenedY = tweened(cumulativeData.map((d) => d.month));
@@ -245,6 +243,8 @@
     place-items: center;
     justify-content: center;
     z-index: 999;
+    font-size: 14px;
+    line-height: 18px;
   }
 
   .step-content {

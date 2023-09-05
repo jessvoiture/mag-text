@@ -29,7 +29,6 @@
       y="0"
       width={mag_width}
       height={mag_height}
-      fill="white"
     />
   </g>
 
@@ -42,7 +41,6 @@
         y={contourYScale($contourTweenedY[index])}
         width={contourXScale($contourTweenedW[index])}
         height={contourYScale($contourTweenedH[index])}
-        fill="black"
       />
     {/each}
   </g>

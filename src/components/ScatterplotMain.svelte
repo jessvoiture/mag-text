@@ -50,8 +50,15 @@
   const margin = { top: 50, left: 80, right: 30, bottom: 30 };
   let left = (margin.left * 1) / 2;
 
-  $: height = 0.9 * screenHeight;
-  $: width = 0.9 * screenWidth;
+  $: if (screenWidth <= 860) {
+    height = 0.9 * screenHeight;
+    width = 0.9 * screenWidth;
+    console.log("small");
+  } else {
+    height = 0.7 * screenHeight;
+    width = 0.8 * screenWidth;
+    console.log("large");
+  }
 
   $: innerWidth = width - margin.left - margin.right;
   $: innerHeight = height - margin.top - margin.bottom;
@@ -108,31 +115,6 @@
 
 <div class="chart" {width} {height}>
   <svg {width} {height}>
-    {#if yVals == "month"}
-      <g
-        height={innerHeight}
-        width={innerWidth}
-        transform={`translate(${left}, 0)`}
-        class="data-plotted"
-        in:fade
-        out:fade={{ duration: 500 }}
-      >
-        {#each cumulativeData as d, index}
-          <!-- svelte-ignore a11y-no-static-element-interactions -->
-          <!-- svelte-ignore a11y-mouse-events-have-key-events -->
-          <rect
-            class="mag-chart-rect"
-            x={xScale(d.year)}
-            y={yScale($tweenedY[index])}
-            width={rectWidth}
-            height={rectHeightMultiplyingFactor + rectHeightAddition}
-            fill="white"
-            opacity="0.6"
-          />
-        {/each}
-      </g>
-    {/if}
-
     <g
       height={innerHeight}
       width={innerWidth}
@@ -175,7 +157,6 @@
             y={yScale(d[1])}
             width={rectWidth}
             height={rectHeightAddition * 1.5}
-            fill="red"
           />
         {/each}
       </g>
@@ -200,7 +181,7 @@
   }
 
   .mag-chart-rect {
-    transition: height 0.5s ease, fill-opacity 0.5s ease;
+    transition: height 0.3s ease, fill-opacity 0.5s ease;
     fill-opacity: 1;
   }
 

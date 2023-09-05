@@ -1,0 +1,69 @@
+@font-face {
+  font-family: "didot";
+  src: url("/fonts/Didot.ttc");
+}
+
+@font-face {
+  font-family: "encode";
+  src: url("/fonts/EncodeSans-VariableFont_wdth\,wght.ttf");
+}
+
+$font-sans-serif: "encode";
+$font-serif: "didot";
+$color-background: #180e0d;
+$color-light_grey: #8a8a8a;
+$color-dark_grey: #6b5b6a;
+$color-white: #fcfdfd;
+$color-accent: #f7a4f6;
+$type-size-small: 13pt;
+$type-line_height-small: 20pt;
+
+.type-accent {
+  color: $color-accent;
+  font-family: "didot";
+}
+
+.white-text {
+  color: $color-white;
+}
+
+.type-font-didot-light {
+  font-family: "didot";
+  font-weight: lighter;
+}
+
+.body-text,
+text {
+  font-family: $font-sans-serif;
+  color: $color-light_grey;
+  font-size: $type-size-small;
+  line-height: $type-line_height-small;
+}
+
+.step-content {
+  font-family: $font-sans-serif;
+  color: $color-background;
+  font-size: $type-size-small;
+  line-height: $type-line_height-small;
+}
+
+body {
+  background-color: $color-background;
+}
+
+.annotation-cover-contour,
+.mag-chart-rect {
+  fill: $color-white;
+}
+
+.annotation-cover-background {
+  fill: $color-dark_grey;
+}
+
+.mean-datapoints {
+  fill: $color-accent;
+}
+
+.axis {
+  fill: $color-light_grey;
+}

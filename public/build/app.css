@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "didot";
+  src: url("/fonts/Didot.ttc");
+}
+@font-face {
+  font-family: "encode";
+  src: url("/fonts/EncodeSans-VariableFont_wdth,wght.ttf");
+}
+.type-accent {
+  color: #f7a4f6;
+  font-family: "didot";
+}
+
+.white-text {
+  color: #fcfdfd;
+}
+
+.type-font-didot-light {
+  font-family: "didot";
+  font-weight: lighter;
+}
+
+.body-text,
+text {
+  font-family: "encode";
+  color: #8a8a8a;
+}
+
+.step-content {
+  font-family: "encode";
+  color: #180e0d;
+}
+
+body {
+  background-color: #180e0d;
+}
+
+.annotation-cover-contour,
+.mag-chart-rect {
+  fill: #fcfdfd;
+}
+
+.annotation-cover-background {
+  fill: #6b5b6a;
+}
+
+.mean-datapoints {
+  fill: #f7a4f6;
+}
+
+.axis {
+  fill: #8a8a8a;
+}
+
+/*# sourceMappingURL=app.css.map */

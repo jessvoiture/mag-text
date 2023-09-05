@@ -29,7 +29,7 @@
   };
 </script>
 
-<g transform="translate(0, {yScaleTranslate})">
+<g transform="translate(0, {yScaleTranslate})" class="axis yaxis">
   {#each yTicks as tick}
     <g class="tick" transform="translate(0, {yScale(tick)})">
       <text>{formatTick(tick, yVals)}</text>
