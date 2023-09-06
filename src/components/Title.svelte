@@ -30,7 +30,7 @@
   }
 
   .title-cookies {
-    font-family: "encode";
+    font-family: "encode", sans-serif;
     font-weight: lighter;
     text-transform: capitalize;
   }

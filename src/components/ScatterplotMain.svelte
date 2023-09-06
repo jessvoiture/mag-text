@@ -53,11 +53,9 @@
   $: if (screenWidth <= 860) {
     height = 0.9 * screenHeight;
     width = 0.9 * screenWidth;
-    console.log("small");
   } else {
     height = 0.7 * screenHeight;
     width = 0.8 * screenWidth;
-    console.log("large");
   }
 
   $: innerWidth = width - margin.left - margin.right;

@@ -245,6 +245,7 @@
     z-index: 999;
     font-size: 14px;
     line-height: 18px;
+    position: relative;
   }
 
   .step-content {

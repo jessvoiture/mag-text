@@ -20,7 +20,7 @@ $type-line_height-small: 20pt;
 
 .type-accent {
   color: $color-accent;
-  font-family: "didot";
+  font-family: $font-serif, serif;
 }
 
 .white-text {
@@ -28,7 +28,7 @@ $type-line_height-small: 20pt;
 }
 
 .type-font-didot-light {
-  font-family: "didot";
+  font-family: $font-serif, serif;
   font-weight: lighter;
 }
 
@@ -38,6 +38,16 @@ text {
   color: $color-light_grey;
   font-size: $type-size-small;
   line-height: $type-line_height-small;
+}
+
+.hook::first-letter {
+  color: $color-accent;
+  font-family: $font-serif;
+  font-weight: bold;
+  font-size: 250%;
+  padding: 16px 8px 8px 8px;
+  margin-right: 6px;
+  float: left;
 }
 
 .step-content {

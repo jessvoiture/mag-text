@@ -19,7 +19,7 @@
 <style>
   .hero {
     min-height: 100vh; /* Use min-height instead of height */
-    height: 100%;
+    /* height: 100%; */
     width: 100vw;
     position: relative;
     display: flex;

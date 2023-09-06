@@ -27,8 +27,8 @@
 
 <div class="body-section">
   <div class="section">
-    <div class="section-heading type-accent">Love Confessions!</div>
-    <div class="body-text">
+    <!-- <div class="section-heading type-accent">Love Confessions!</div> -->
+    <div class="body-text hook">
       As a child in the 2000s, I sourced my social capital from my J-14 magazine
       subscription. The covers were chalk full of celebrity cutouts and text, in
       a seemingly silent protest against negative space. They were an exercise
@@ -42,7 +42,7 @@
   </div>
 
   <div class="section">
-    <div class="section-heading type-accent">Tell All</div>
+    <!-- <div class="section-heading type-accent">Tell All</div> -->
     <div class="body-text">
       In this tell-all I looked at 13 years of Vogue magazine covers. Caroline
       Weber for the New York Times described it as, "the world's most
