@@ -8,7 +8,7 @@
   import Image from "./Image.svelte";
   import Scroll from "./Scrolly.svelte";
   import Annotations from "./Annotations.svelte";
-  import ScatterplotMain from "./ScatterplotMain.svelte";
+  import ScatterplotWrapper from "./ScatterplotWrapper.svelte";
 
   export let cumulativeData;
   export let contours;
@@ -213,7 +213,7 @@
       {/if}
 
       {#if nowShowing == "chart"}
-        <ScatterplotMain
+        <ScatterplotWrapper
           {screenHeight}
           {screenWidth}
           {cumulativeData}
@@ -245,7 +245,7 @@
     z-index: 999;
     font-size: 14px;
     line-height: 18px;
-    position: relative;
+    /* position: relative; */
   }
 
   .step-content {
@@ -267,17 +267,16 @@
     .step-content {
       max-width: 85vw;
     }
+
+    .step {
+      position: relative;
+    }
   }
 
   @media (min-width: 800px) {
     .step-content {
       max-width: 30vw;
     }
-  }
-
-  .step.active .step-content {
-    background: white;
-    color: black;
   }
 
   .mag-gallery {

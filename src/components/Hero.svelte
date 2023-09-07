@@ -1,5 +1,5 @@
 <script>
-  import Title from "./Title.svelte";
+  import HeroTitle from "./HeroTitle.svelte";
 </script>
 
 <div class="hero">
@@ -12,7 +12,7 @@
   </div>
 
   <div class="superman-logo">
-    <Title />
+    <HeroTitle />
   </div>
 </div>
 
@@ -32,20 +32,17 @@
     );
     margin-bottom: 20vh;
   }
-
   .heros-wear-capes {
     max-height: 100vh;
     bottom: 0;
     position: absolute;
   }
-
   .superman-logo {
     height: 100%;
     display: flex;
     place-items: center;
     position: relative;
   }
-
   @media (max-width: 800px) {
     .superman-logo {
       display: flex;
@@ -53,12 +50,10 @@
       align-items: center; /* Center vertically */
       margin-top: 10vh;
     }
-
     .heros-wear-capes {
       right: -33vw;
       min-width: 133vw;
     }
-
     .the-devil-herself {
       max-width: 150vw;
       min-height: 60vh;
@@ -66,7 +61,6 @@
       position: relative;
     }
   }
-
   @media (min-width: 800px) {
     .superman-logo {
       right: 0;
@@ -74,11 +68,9 @@
       margin-left: auto;
       margin-top: 20vh;
     }
-
     .heros-wear-capes {
       left: 0;
     }
-
     .the-devil-herself {
       max-width: 67vw;
       max-height: 90vh;

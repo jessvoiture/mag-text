@@ -50,6 +50,11 @@ text {
   float: left;
 }
 
+.step.active .step-content {
+  background: $color-white;
+  color: $color-background;
+}
+
 .step-content {
   font-family: $font-sans-serif;
   color: $color-background;
@@ -66,7 +71,8 @@ body {
   fill: $color-white;
 }
 
-.annotation-cover-background {
+.annotation-cover-background,
+.background-rect {
   fill: $color-dark_grey;
 }
 
