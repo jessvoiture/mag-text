@@ -6,6 +6,7 @@
 
   let width;
 
+  let showingAnnotations = false;
   let displayingCount = 3;
 
   let mags = data.magazines;
@@ -14,7 +15,7 @@
   $: if (screenWidth <= 860) {
     width = 0.9 * screenWidth;
   } else {
-    width = 0.7 * screenWidth;
+    width = 0.6 * screenWidth;
   }
 
   const getImagePath = (path, image_type, ending) =>
@@ -22,26 +23,22 @@
 </script>
 
 <div class="magazine-list" style="width: {width}px;">
-  {#each sortedMagazinesRatio.slice(0, displayingCount) as d, i}
-    <div class="row" class:last={i == displayingCount - 1}>
-      <div class="list-element">
-        <div class="list-img">
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-          <img
-            class="original-image"
-            src={getImagePath(d.Date, "original", ".jpg")}
-            alt="Vogue cover"
-          />
-        </div>
+  {#each sortedMagazinesRatio.slice(0, displayingCount) as d}
+    <div class="list-element">
+      <div class="list-img">
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <img
+          class="original-image"
+          src={getImagePath(d.Date, "original", ".jpg")}
+          alt="Vogue cover"
+        />
+      </div>
+      <div class="meta-info">
         <div class="body-text">{$months[d.month - 1]}, {d.year}</div>
         <div class="body-text">{Math.round(d.ratio * 100)}%</div>
       </div>
     </div>
-
-    {#if i !== displayingCount - 1}
-      <hr />
-    {/if}
   {/each}
 
   {#if displayingCount < mags.length}
@@ -49,7 +46,7 @@
       on:click={() => (displayingCount = displayingCount + 3)}
       id="loadmore"
       type="button"
-      class="see-more-btn"
+      class="btn btn-secondary"
     >
       Show more
     </button>
@@ -57,42 +54,18 @@
 </div>
 
 <style>
-  .row {
-    padding: 10px 20px;
-  }
-
   .magazine-list {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(200px, 1fr)
+    ); /* Adjust the minmax values to control the column width */
+    gap: 10px; /* Adjust the gap between items */
     margin: auto;
-    display: flex;
-    flex-direction: column;
   }
 
   .list-element {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .row.last {
-    position: relative;
-  }
-
-  .row.last::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      rgba(0, 0, 0, 0),
-      #180e0d
-    ); /* Gradient from transparent to opaque #180e0d */
-
-    pointer-events: none;
+    padding: 10px; /* Add padding to the elements for some spacing */
   }
 
   .body-text {
@@ -100,19 +73,16 @@
   }
 
   img {
-    max-width: 100px;
+    width: 100%;
     height: auto;
+  }
+
+  .meta-info {
+    display: flex;
+    justify-content: space-between;
   }
 
   .original-image {
     position: relative;
-  }
-
-  .see-more-btn {
-    margin: auto;
-  }
-
-  hr {
-    width: 100%;
   }
 </style>
