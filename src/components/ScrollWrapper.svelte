@@ -63,11 +63,9 @@
   $: screenRatio = screenWidth / screenHeight;
 
   $: if (screenRatio <= whRatio) {
-    console.log("screenRatio is less than image");
     mag_width = 0.9 * screenWidth;
     mag_height = findMagHeight(whRatio, mag_width);
   } else {
-    console.log("screenRatio is more than image");
     mag_height = 0.7 * screenHeight;
     mag_width = findMagWidth(whRatio, mag_height);
   }
@@ -246,6 +244,7 @@
     font-size: 14px;
     line-height: 18px;
     /* position: relative; */
+    pointer-events: none;
   }
 
   .step-content {
@@ -261,6 +260,7 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     z-index: 999;
     height: auto;
+    pointer-events: none;
   }
 
   @media (max-width: 800px) {
@@ -300,6 +300,7 @@
 
   .scroller {
     z-index: 1;
+    pointer-events: none;
   }
 
   .methods-demo {

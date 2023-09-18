@@ -19,7 +19,6 @@
 <style>
   .hero {
     min-height: 100vh; /* Use min-height instead of height */
-    /* height: 100%; */
     width: 100vw;
     position: relative;
     display: flex;
@@ -33,7 +32,6 @@
     margin-bottom: 20vh;
   }
   .heros-wear-capes {
-    max-height: 100vh;
     bottom: 0;
     position: absolute;
   }
@@ -52,7 +50,8 @@
     }
     .heros-wear-capes {
       right: -33vw;
-      min-width: 133vw;
+      min-width: 140vw;
+      max-height: 80vh;
     }
     .the-devil-herself {
       max-width: 150vw;
@@ -70,6 +69,7 @@
     }
     .heros-wear-capes {
       left: 0;
+      max-height: 100vh;
     }
     .the-devil-herself {
       max-width: 67vw;

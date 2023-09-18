@@ -29,9 +29,20 @@
   export let xTicks;
   export let yTicks;
   export let yScaleTranslate;
+
+  let chartDivHeight = width + 50;
+  let chartTitle = "";
+
+  $: if ((yVals == "month") | (yVals == "relative")) {
+    chartTitle = "% covered by text by month and year";
+  } else {
+    chartTitle = "% covered by text by year";
+  }
 </script>
 
-<div class="chart" {width} {height} transition:fade>
+<div class="chart" {width} height={chartDivHeight} transition:fade>
+  <div class="chart-title">{chartTitle}</div>
+
   <svg {width} {height}>
     {#if yVals == "month"}
       <ScatterplotBackgroundCovers

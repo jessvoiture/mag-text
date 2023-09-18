@@ -41,7 +41,7 @@
       y={yScale($tweenedY[index])}
       width={rectWidth}
       height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
-      in:fly={{ delay: index * 5 }}
+      in:fly={{ delay: index * 7 }}
       on:mouseover={function (event) {
         handleMouseover(event, d);
       }}
@@ -54,11 +54,11 @@
 
 <style>
   .mag-chart-rect {
-    transition: height 0.3s ease, fill-opacity 0.5s ease;
+    transition: height 0.3s ease, fill-opacity 0.8s ease;
     fill-opacity: 1;
   }
 
   .mag-chart-rect.grayedout {
-    fill-opacity: 0.1;
+    fill-opacity: 0.2;
   }
 </style>

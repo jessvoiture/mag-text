@@ -1,6 +1,7 @@
 <script>
-  import { fade } from "svelte/transition";
+  import { format } from "d3-format";
 
+  import { fade } from "svelte/transition";
   import { months } from "../stores";
 
   export let yTicks;
@@ -12,8 +13,9 @@
     if ((yVal == "month") | (yVal == "relative")) {
       const monthName = $months[tick - 1];
       return monthName;
-    } else {
-      return tick;
+    } else if (yVal == "ratio") {
+      const percentFormat = format("~%");
+      return percentFormat(tick);
     }
   };
 </script>
