@@ -244,7 +244,6 @@
     font-size: 14px;
     line-height: 18px;
     /* position: relative; */
-    pointer-events: none;
   }
 
   .step-content {
@@ -260,7 +259,6 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     z-index: 999;
     height: auto;
-    pointer-events: none;
   }
 
   @media (max-width: 800px) {
@@ -300,7 +298,6 @@
 
   .scroller {
     z-index: 1;
-    pointer-events: none;
   }
 
   .methods-demo {

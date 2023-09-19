@@ -15,7 +15,7 @@ $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
 $color-white: #fcfdfd;
 $color-accent: #f7a4f6;
-$type-size-small: 13pt;
+$type-size-small: 16pt;
 $type-size-very_small: 10pt;
 $type-line_height-small: 20pt;
 
@@ -78,6 +78,7 @@ body {
 .annotation-cover-contour,
 .mag-chart-rect {
   fill: $color-white;
+  cursor: pointer;
 }
 
 .annotation-cover-background,
@@ -95,7 +96,7 @@ body {
 
 .chart-title {
   font-family: $font-sans-serif;
-  font-size: 10pt;
+  font-size: 14pt;
   text-transform: uppercase;
   color: $color-white;
   margin-bottom: 32px;
@@ -103,4 +104,9 @@ body {
 
 hr {
   color: $color-dark_grey;
+}
+
+button {
+  font-size: $type-size-small;
+  all: unset;
 }

@@ -1,14 +1,24 @@
 <script>
+  import { onMount } from "svelte";
   import { months } from "../stores";
 
   export let data;
   export let screenWidth;
 
+  onMount(() => {
+    sort("year"); // Assuming you want to initially sort by year
+  });
+
+  const additionalDisplayed = 12;
+
   let width;
   let sortBy;
 
   let ascending = true;
-  let magWidth = 100;
+  let magWidth = 200;
+  let displayingCount = 12;
+  let seeMoreWord = "See More";
+  let numClickSeeMore = 0;
 
   let mags = data.magazines;
   let sortedMagazinesRatio = [...mags].sort((a, b) => b.ratio - a.ratio);
@@ -19,18 +29,10 @@
     width = 0.7 * screenWidth;
   }
 
-  $: displayingCount = 9;
-
   const getImagePath = (path, image_type, ending) =>
     `/${image_type}/${path}${ending}`;
 
   function sort(by) {
-    if (by === sortBy) {
-      ascending = !ascending;
-    } else {
-      ascending = true;
-    }
-
     sortedMagazinesRatio = [...mags].sort((a, b) => {
       if (by === "year") {
         return ascending ? a.year - b.year : b.year - a.year;
@@ -41,14 +43,47 @@
 
     sortBy = by;
   }
+
+  function toggleSort() {
+    ascending = !ascending;
+    if (sortBy) {
+      sort(sortBy);
+    }
+  }
 </script>
 
-<div class="sort-buttons">
-  <button on:click={() => sort("year")}>Sort by Year</button>
-  <button on:click={() => sort("ratio")}>Sort by Ratio</button>
-</div>
-
 <div class="list-wrapper" style="width: {width}px;">
+  <div class="list-header">
+    <div class="h2 type-accent">Explore the magazines</div>
+    <div class="list-controls">
+      <div class="sort-buttons">
+        <div class="body-text">Sort by:</div>
+        <button
+          class="sort-option"
+          class:active={sortBy == "year"}
+          on:click={() => sort("year")}>Year</button
+        >
+        <button
+          class="sort-option"
+          class:active={sortBy == "ratio"}
+          on:click={() => sort("ratio")}>Ratio</button
+        >
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+        <img
+          src="/arrows/Arrow_w.svg"
+          alt="Sort Arrow"
+          class="arrow-icon"
+          class:rotate={ascending}
+          on:click={toggleSort}
+          width="24"
+        />
+      </div>
+    </div>
+
+    <div class="filters" />
+  </div>
+
   <div class="magazine-list">
     {#each sortedMagazinesRatio.slice(0, displayingCount) as d}
       <div class="list-element" style="width: {magWidth}px;">
@@ -62,24 +97,48 @@
             alt="Vogue cover"
           />
         </div>
-        <div class="meta-info">
-          <div class="body-text">{d.year} — {$months[d.month - 1]}</div>
-          <div class="body-text">{Math.round(d.ratio * 100)}%</div>
+        <div class="caption">
+          <div class="img-captions body-text">
+            {d.year} — {$months[d.month - 1]}
+          </div>
+          <div class="img-captions body-text">{Math.round(d.ratio * 100)}%</div>
         </div>
       </div>
     {/each}
   </div>
 
-  {#if displayingCount < mags.length}
-    <button
-      on:click={() => (displayingCount = displayingCount + 3)}
-      id="loadmore"
-      type="button"
-      class="see-more-btn"
-    >
-      Show more
-    </button>
-  {/if}
+  <div class="pagination">
+    {#if numClickSeeMore > 0}
+      <div class="see-more-wrapper">
+        <button
+          on:click={() => {
+            displayingCount = additionalDisplayed;
+            numClickSeeMore = 0;
+          }}
+          id="loadmore"
+          type="button"
+          class="see-more-btn body-text"
+        >
+          Show less ↑
+        </button>
+      </div>
+    {/if}
+    {#if displayingCount < mags.length}
+      <div class="see-more-wrapper">
+        <button
+          on:click={() => {
+            displayingCount = displayingCount + additionalDisplayed;
+            numClickSeeMore += 1;
+          }}
+          id="loadmore"
+          type="button"
+          class="see-more-btn body-text"
+        >
+          {seeMoreWord} ↓
+        </button>
+      </div>
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -87,36 +146,115 @@
     margin: auto;
   }
   .magazine-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    grid-gap: 1rem;
     justify-content: space-between;
-    width: 100%;
-    margin: auto;
   }
 
-  .list-element {
-    padding: 10px;
-  }
-
-  .body-text {
-    margin-bottom: 5px; /* Add margin to separate the text elements */
+  .magazine-list::after {
+    content: "";
+    flex: auto;
   }
 
   .original-image {
     position: relative;
   }
 
+  .h2 {
+    margin-bottom: 16px;
+    font-weight: bold;
+    font-size: 250%;
+  }
+
   .sort-buttons {
-    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+  }
+
+  .list-header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: center;
   }
 
   .sort-buttons button {
     margin-right: 10px;
   }
 
+  .arrow-icon {
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .rotate {
+    transform: rotate(180deg);
+  }
+
   .see-more-btn {
+    color: #8a8a8a;
     margin: auto;
+    cursor: pointer;
+  }
+
+  .see-more-btn:hover {
+    color: #fcfdfd;
+  }
+
+  .see-more-wrapper {
+    display: flex;
+  }
+
+  .img-captions {
+    font-size: 12pt;
+    line-height: 20pt;
+  }
+
+  .list-img {
+    height: 290px;
+  }
+
+  .list-element {
+    padding-bottom: 20px;
+  }
+
+  .sort-option {
+    font-family: "encode";
+    font-size: 16pt;
+    border-radius: 8pt;
+    color: #fcfdfd;
+    background-color: #180e0d;
+    /* border: 1px solid #fcfdfd; */
+    padding: 4px 12px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px #fcfdfd; /* Add an inset box shadow */
+  }
+
+  .sort-option.active,
+  .sort-option:hover {
+    font-family: "encode";
+    color: #180e0d;
+    background-color: #fcfdfd;
+    border: 0px;
+  }
+
+  .sort-buttons button {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 </style>
