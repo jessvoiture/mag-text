@@ -41,7 +41,7 @@
   let left = margin.left / 2;
 
   $: if (screenWidth <= 860) {
-    height = 0.9 * screenHeight;
+    height = 0.8 * screenHeight;
     width = 0.9 * screenWidth;
   } else {
     height = 0.8 * screenHeight;
@@ -59,11 +59,13 @@
   $: yScaleReverse = scaleLinear().domain(yExtent).range([0, innerHeight]);
 
   $: rectWidth = (innerWidth / uniqueYearsCount) * 0.9;
-  $: yScaleTranslate = innerWidth / uniqueMonthsCount / 4;
+  $: yScaleTranslate = innerWidth / uniqueMonthsCount / 10;
 
   // make ticks
-  $: xTicks = xScale.ticks(5);
+  $: xTicks = xScale.ticks(xTickCount);
   $: yTicks = yScale.ticks(yTickCount);
+
+  $: xTickCount = Math.floor(innerWidth / 100);
 
   $: if (yVals == "month") {
     rectHeightMultiplyingFactor = innerHeight / uniqueMonthsCount;

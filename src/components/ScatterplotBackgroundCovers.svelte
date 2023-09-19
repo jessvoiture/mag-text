@@ -1,5 +1,5 @@
 <script>
-  import { fade } from "svelte/transition";
+  import { fade, fly } from "svelte/transition";
 
   export let innerHeight;
   export let innerWidth;
@@ -29,7 +29,13 @@
       y={yScale($tweenedY[index])}
       width={rectWidth}
       height={rectHeightMultiplyingFactor + rectHeightAddition}
-      opacity="0.6"
     />
   {/each}
 </g>
+
+<style>
+  .background-rect {
+    fill-opacity: 1;
+    transition: fill-opacity 1s ease;
+  }
+</style>

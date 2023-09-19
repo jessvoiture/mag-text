@@ -63,11 +63,9 @@
   $: screenRatio = screenWidth / screenHeight;
 
   $: if (screenRatio <= whRatio) {
-    console.log("screenRatio is less than image");
     mag_width = 0.9 * screenWidth;
     mag_height = findMagHeight(whRatio, mag_width);
   } else {
-    console.log("screenRatio is more than image");
     mag_height = 0.7 * screenHeight;
     mag_width = findMagWidth(whRatio, mag_height);
   }

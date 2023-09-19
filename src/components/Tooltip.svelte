@@ -7,16 +7,16 @@
   let adjustedMouseX;
   let adjustedMouseY;
 
-  let tooltipWidth = 300;
-  let tooltipHeight = 400;
+  let tooltipWidth = 200;
+  let tooltipHeight = 350;
 
-  if ($mouse_x + 310 < screenWidth) {
+  if ($mouse_x + tooltipWidth + 50 < screenWidth) {
     adjustedMouseX = $mouse_x + 10;
   } else {
-    adjustedMouseX = $mouse_x - tooltipWidth;
+    adjustedMouseX = $mouse_x - tooltipWidth - 50;
   }
 
-  if ($mouse_y + 310 < screenHeight) {
+  if ($mouse_y + tooltipHeight + 50 < screenHeight) {
     adjustedMouseY = $mouse_y + 10;
   } else {
     adjustedMouseY = $mouse_y - tooltipHeight;
@@ -26,11 +26,16 @@
     `/${image_type}/${path}${ending}`;
 </script>
 
-<div class="tooltip" style="left: {adjustedMouseX}px; top: {adjustedMouseY}px">
+<div
+  class="tooltip"
+  style="left: {adjustedMouseX}px; 
+        top: {adjustedMouseY}px;
+        width: {tooltipWidth}px;"
+>
   <div class="tooltip-content body-text">
     <p>{$months[$hoveredDatapoint.month - 1]}, {$hoveredDatapoint.year}</p>
     <p>
-      {Math.round($hoveredDatapoint.ratio * 100)}% of cover has text
+      {Math.round($hoveredDatapoint.ratio * 100)}% covered by text
     </p>
   </div>
 
@@ -59,7 +64,6 @@
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: 240px;
     padding: 16px;
   }
 

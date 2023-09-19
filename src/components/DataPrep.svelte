@@ -8,7 +8,7 @@
   export let screenWidth;
 
   const mags = data.magazines;
-  const contours = data.contours;
+  // const contours = data.contours;
 
   const months = [
     "Jan",
@@ -25,16 +25,9 @@
     "Dec",
   ];
 
-  // mags (for the scatterplot)
-  const groupedMags = group(mags, (d) => d.year);
-  const cumulativeData = [];
-
-  const totalContourArea = contours.reduce(
-    (acc, curr) => acc + curr.w * curr.h,
-    0
-  );
-
-  let magDemoDate = 20110901;
+  // SJP 20100501
+  // SJP 20211201
+  let magDemoDate = 20100501;
 
   let sortedMagazines = [...mags]
     .sort((a, b) => a.Date - b.Date)
@@ -43,6 +36,16 @@
   let guineaPigMag = sortedMagazines[0];
   let whRatio = guineaPigMag.wh_ratio;
   let cumulativeAreaProportion = 0;
+  let contours = guineaPigMag.contours;
+
+  // mags (for the scatterplot)
+  const groupedMags = group(mags, (d) => d.year);
+  const cumulativeData = [];
+
+  const totalContourArea = contours.reduce(
+    (acc, curr) => acc + curr.w * curr.h,
+    0
+  );
 
   mags.sort((a, b) => a.Date - b.Date);
 

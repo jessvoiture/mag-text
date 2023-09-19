@@ -4,7 +4,7 @@
   import Hero from "../components/Hero.svelte";
   import Colophon from "../components/Colophon.svelte";
   import DataPrep from "../components/DataPrep.svelte";
-  import RightArrow from "../components/RightArrow.svelte";
+  import MagazineList from "../components/MagazineList.svelte";
 
   export let data;
 
@@ -19,6 +19,8 @@
   if (browser) {
     resize();
   }
+
+  console.log("icuqt3.14 😘");
 </script>
 
 <svelte:window on:resize={resize} />
@@ -51,6 +53,7 @@
 </div>
 
 <DataPrep {data} {screenHeight} {screenWidth} />
+<MagazineList {data} {screenWidth} />
 <Colophon />
 
 <style>
@@ -68,7 +71,6 @@
     justify-content: center;
     flex-direction: column;
   }
-
   .section {
     margin: 0 auto; /* Horizontally center the sections */
     margin-bottom: 20px;
