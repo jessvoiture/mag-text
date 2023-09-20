@@ -27,7 +27,7 @@
 
   // SJP 20100501
   // SJP 20211201
-  let magDemoDate = 20100501;
+  let magDemoDate = 20220501;
 
   let sortedMagazines = [...mags]
     .sort((a, b) => a.Date - b.Date)
