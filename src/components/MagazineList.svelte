@@ -6,7 +6,7 @@
   export let screenWidth;
 
   onMount(() => {
-    sort("year"); // Assuming you want to initially sort by year
+    sort("ratio");
   });
 
   const additionalDisplayed = 12;
@@ -15,7 +15,7 @@
   let sortBy;
 
   let ascending = true;
-  let magWidth = 200;
+  let magWidth = 150;
   let displayingCount = 12;
   let seeMoreWord = "See More";
   let numClickSeeMore = 0;
@@ -57,7 +57,7 @@
     <div class="h2 type-accent">Explore the magazines</div>
     <div class="list-controls">
       <div class="sort-buttons">
-        <div class="body-text">Sort by:</div>
+        <div class="helper-text body-text">Sort by:</div>
         <button
           class="sort-option"
           class:active={sortBy == "year"}
@@ -66,7 +66,7 @@
         <button
           class="sort-option"
           class:active={sortBy == "ratio"}
-          on:click={() => sort("ratio")}>Ratio</button
+          on:click={() => sort("ratio")}>Text %</button
         >
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
@@ -117,9 +117,9 @@
           }}
           id="loadmore"
           type="button"
-          class="see-more-btn body-text"
+          class="see-more-btn helper-text"
         >
-          Show less ↑
+          See less ↑
         </button>
       </div>
     {/if}
@@ -132,7 +132,7 @@
           }}
           id="loadmore"
           type="button"
-          class="see-more-btn body-text"
+          class="see-more-btn helper-text"
         >
           {seeMoreWord} ↓
         </button>
@@ -147,7 +147,7 @@
   }
   .magazine-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 150px);
     grid-gap: 1rem;
     justify-content: space-between;
   }
@@ -165,6 +165,7 @@
     margin-bottom: 16px;
     font-weight: bold;
     font-size: 250%;
+    text-align: center;
   }
 
   .sort-buttons {
@@ -220,7 +221,7 @@
   }
 
   .list-img {
-    height: 290px;
+    height: 220px;
   }
 
   .list-element {
@@ -229,8 +230,8 @@
 
   .sort-option {
     font-family: "encode";
-    font-size: 16pt;
-    border-radius: 8pt;
+    font-size: 14pt;
+    border-radius: 4pt;
     color: #fcfdfd;
     background-color: #180e0d;
     /* border: 1px solid #fcfdfd; */
@@ -256,5 +257,10 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+  }
+
+  .helper-text {
+    font-family: "encode";
+    font-size: 14pt;
   }
 </style>

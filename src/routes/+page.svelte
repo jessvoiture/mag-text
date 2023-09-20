@@ -30,24 +30,37 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text hook">
-      As a child in the 2000s, I sourced my social capital from my J-14 magazine
-      subscription. The covers were chalk full of celebrity cutouts and text, in
-      a seemingly silent protest against negative space. They were an exercise
-      in graphic design maximalism and not a far cry from my creations in
-      MyPaint. Like crypto, however, this capital quickly became a liability,
-      and I had to graduate to more cool forms of literature. I have since
-      revisited my love of fashion magazines. But the magazine covers seem more
-      naked—the cover stars aren’t framed by clickbait titles in various sized
-      type. Where did all the text go?
+      Do you remember where you were when Rihanna’s May 2022 US Vogue cover
+      story dropped? I do. I first saw the visuals on instagram and then again
+      on reddit. The photographs, lensed by Annie Leibovitz, and the fashion,
+      styled by Alex Harrington And Jahleel Weaver, were nothing short of
+      magnificent. I was gagged.
     </div>
   </div>
 
   <div class="section">
     <div class="body-text">
-      In this tell-all I looked at 13 years of Vogue magazine covers. Caroline
-      Weber for the New York Times described it as, "the world's most
-      influential fashion magazine"—or as contemporary philosopher Carrie
-      Bradshaw so eloquently puts it, Mecca. To begin, let’s look at a cover…
+      I saw the magazine cover in print a few weeks later. It was like many
+      Vogue covers, complete with the signature masthead at the top and one main
+      image. The text on the front read, “Oh, Baby! Rihanna’s Plus One.”
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="body-text">
+      I was once again stunned. You see, as a child of the 2000s, I am no
+      stranger to the symphony of clickbait titles—aka cover lines—that used to
+      adorn fashion magazines. But, this cover had merely 5 words. 29
+      characters. Where had all the coverlines gone?
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="body-text">
+      I was set in motion to unearth the lost art of textual exuberance. In this
+      extremely important, time sensitive, and highly requested endeavour, I
+      analysed 22 years of US Vogue covers to ascertain if the amount of text on
+      covers had indeed dwindled. Please, enjoy.
     </div>
   </div>
 </div>
@@ -73,7 +86,7 @@
   }
   .section {
     margin: 0 auto; /* Horizontally center the sections */
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-bottom: 24px;
   }
 

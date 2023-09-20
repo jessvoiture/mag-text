@@ -1,5 +1,5 @@
 <script>
-  import { group } from "d3-array";
+  import { group, extent } from "d3-array";
 
   import ScrollWrapper from "./ScrollWrapper.svelte";
 
@@ -27,7 +27,7 @@
 
   // SJP 20100501
   // SJP 20211201
-  let magDemoDate = 20100501;
+  let magDemoDate = 20220501;
 
   let sortedMagazines = [...mags]
     .sort((a, b) => a.Date - b.Date)
@@ -64,6 +64,8 @@
     d.monthName = months[monthNumber - 1]; // Adjust for 0-based array index
   });
 
+  $: dateExtent = extent(cumulativeData, (d) => d.year);
+
   // contours (for the methods demo)
   contours.sort((a, b) => a.y - b.y);
 
@@ -82,4 +84,5 @@
   {whRatio}
   {screenHeight}
   {screenWidth}
+  {dateExtent}
 />

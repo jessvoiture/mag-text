@@ -9,6 +9,7 @@
   import Scroll from "./Scrolly.svelte";
   import Annotations from "./Annotations.svelte";
   import ScatterplotWrapper from "./ScatterplotWrapper.svelte";
+  import { months } from "../stores";
 
   export let cumulativeData;
   export let contours;
@@ -16,6 +17,7 @@
   export let screenHeight;
   export let screenWidth;
   export let guineaPigMag;
+  export let dateExtent;
 
   onMount(() => {
     cumulativeData.sort((a, b) => a.Date - b.Date);
@@ -23,18 +25,37 @@
 
   // scroll
   const steps = [
-    `<p>In ${guineaPigMag.Date}, [person] graced the cover of Vogue’s [Month] issue.</p>`,
-    "<p>Next, we can identify all of the text areas on the cover excluding the title</p>",
-    "<p>When we remove the background image, we can start to see the skeleton of the cover and the relative proportions of text to cover.</p>",
+    // 0
+    `<p>Let's start with a magazine cover. In ${
+      guineaPigMag.year
+    }, Sarah Jessica Parker graced the cover of Vogue’s ${
+      $months[guineaPigMag.month - 1]
+    } issue.</p>`,
+    // 1
+    "<p>Next, we can identify all of the text areas on the cover excluding the large Vogue title</p>",
+    // 2
+    "<p>When we remove the background image, we can start to see the skeletal framework of the cover and the relative proportions of text to cover.</p>",
+    // 3
     `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
       guineaPigMag.ratio * 100,
       0
     )}% is covered by text.</p>`,
+    // 4
     "<p>Let’s now look at this ratio for all the covers analysed. </p>",
-    "<p>Here we can see the text-area to cover ratio for all the magazines analysed</p>",
-    "<p>Let's remove the background image so we can focus just on the relative sizes of the text areas</p>",
-    "<p>When we plot the text-area ratios by year the trend towards minimalism is perhaps most clear.</p>",
-    "<p>Let's also plot the yearly mean text-area to cover ratio</p>",
+    // 5 -> w bg, by month
+    `<p>Here we have the text to cover ratio for all the magazines from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
+    // 6 -> remove bg, by month
+    "<p>Let's remove the background and rescale the text area height. This will help us focus just on the relative sizes of the text areas.</p>",
+    // 7 -> remove bg, by month
+    "<p>We can start to see a trend! More recent covers seem to have a smaller text area than older covers.</p>",
+    // 8 -> plot ratios
+    "<p>Now, let's remove month information and just plot the text-area ratios by year</p>",
+    // 9
+    "<p>We can see the downward trend of the amount of text on covers in the time frame analysed.</p>",
+    // 10
+    `<p>Let's also plot the yearly average of the text area to cover ratio.</p>`,
+    // 11
+    `<p>The area covered by text has decreased from an average of ~30% in ${dateExtent[0]} to ~10% in ${dateExtent[1]}.</p>`,
   ];
 
   let nowShowing;
@@ -121,19 +142,22 @@
     showingMeanValues = false;
     showingAnnotations = false;
     setMonthValues();
-  } else if ($currentStep == 6) {
+  } else if (($currentStep == 6) | ($currentStep == 7)) {
     nowShowing = "chart";
     showingMeanValues = false;
     setRelativeHeightValues();
-  } else if ($currentStep == 7) {
+  } else if (($currentStep == 8) | ($currentStep == 9)) {
     nowShowing = "chart";
     showingMeanValues = false;
     setRatioValues();
-  } else if ($currentStep == 8) {
+  } else if (($currentStep == 10) | ($currentStep == 11)) {
     nowShowing = "chart";
     showingMeanValues = true;
     setRatioValues();
   }
+
+  $: console.log($currentStep);
+  $: console.log(steps[$currentStep]);
 
   const setRatioValues = function () {
     yVals = "ratio";
