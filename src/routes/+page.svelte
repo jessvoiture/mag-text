@@ -27,7 +27,7 @@
 
 <Hero />
 
-<div class="body-section">
+<!-- <div class="body-section">
   <div class="section">
     <div class="body-text hook">
       As a child in the 2000s, I sourced my social capital from my J-14 magazine
@@ -50,7 +50,7 @@
       Bradshaw so eloquently puts it, Mecca. To begin, let’s look at a cover…
     </div>
   </div>
-</div>
+</div> -->
 
 <DataPrep {data} {screenHeight} {screenWidth} />
 <MagazineList {data} {screenWidth} />

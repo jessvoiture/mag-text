@@ -54,7 +54,7 @@
   }
 
   .annotation-cover-background.translucent {
-    fill-opacity: 0.4;
+    fill-opacity: 0.5;
     transition: fill-opacity 0.3s ease;
   }
 
