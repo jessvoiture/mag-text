@@ -2,11 +2,11 @@
   import { browser } from "$app/environment";
 
   import Hero from "../components/Hero.svelte";
-  import Colophon from "../components/Colophon.svelte";
   import DataPrep from "../components/DataPrep.svelte";
   import MagazineList from "../components/MagazineList.svelte";
   import Introduction from "../components/Introduction.svelte";
   import AnalysisSection from "../components/AnalysisSection.svelte";
+  import Footer from "../components/Footer.svelte";
 
   export let data;
 
@@ -32,4 +32,4 @@
 <DataPrep {data} {screenHeight} {screenWidth} />
 <AnalysisSection />
 <MagazineList {data} {screenWidth} />
-<Colophon />
+<!-- <Footer /> -->
