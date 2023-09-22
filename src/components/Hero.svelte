@@ -29,7 +29,6 @@
       #8a8a8a 0%,
       #180e0d 98.79%
     );
-    margin-bottom: 20vh;
   }
   .heros-wear-capes {
     bottom: 0;
