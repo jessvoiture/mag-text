@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { months } from "../stores";
+  import MagCaption from "./MagCaption.svelte";
 
   export let data;
   export let screenWidth;
@@ -87,22 +88,7 @@
   <div class="magazine-list">
     {#each sortedMagazinesRatio.slice(0, displayingCount) as d}
       <div class="list-element" style="width: {magWidth}px;">
-        <div class="list-img">
-          <!-- svelte-ignore a11y-click-events-have-key-events -->
-          <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-          <img
-            class="original-image"
-            style="width: {magWidth}px; height: auto;"
-            src={getImagePath(d.Date, "original", ".jpg")}
-            alt="Vogue cover"
-          />
-        </div>
-        <div class="caption">
-          <div class="img-captions body-text">
-            {d.year} — {$months[d.month - 1]}
-          </div>
-          <div class="img-captions body-text">{Math.round(d.ratio * 100)}%</div>
-        </div>
+        <MagCaption {d} {magWidth} showingRatio={true} imageType={"original"} />
       </div>
     {/each}
   </div>
@@ -155,10 +141,6 @@
   .magazine-list::after {
     content: "";
     flex: auto;
-  }
-
-  .original-image {
-    position: relative;
   }
 
   .h2 {
@@ -215,15 +197,6 @@
     display: flex;
   }
 
-  .img-captions {
-    font-size: 12pt;
-    line-height: 20pt;
-  }
-
-  .list-img {
-    height: 220px;
-  }
-
   .list-element {
     padding-bottom: 20px;
   }
@@ -252,7 +225,6 @@
     margin-right: 0;
     margin-left: 10px;
   }
-
   .pagination {
     display: flex;
     flex-direction: row;

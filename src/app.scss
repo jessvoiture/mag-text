@@ -54,7 +54,7 @@ text {
   font-family: $font-serif;
   font-weight: bold;
   font-size: 250%;
-  padding: 16px 8px 8px 8px;
+  padding: 16px 0px 8px 8px;
   margin-right: 6px;
   float: left;
 }
@@ -109,4 +109,46 @@ hr {
 button {
   font-size: $type-size-small;
   all: unset;
+}
+
+a {
+  color: $color-white;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.body-section {
+  font-size: 14pt;
+  line-height: 18pt;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
+}
+.section {
+  margin: 0 auto; /* Horizontally center the sections */
+  margin-bottom: 10px;
+  padding-bottom: 24px;
+}
+
+@media (max-width: 800px) {
+  .section {
+    max-width: 85vw;
+  }
+}
+
+@media (min-width: 800px) {
+  .section {
+    max-width: 50vw;
+  }
 }

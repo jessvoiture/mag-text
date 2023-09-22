@@ -26,32 +26,32 @@
   // scroll
   const steps = [
     // 0
-    `<p>Let's start with a magazine cover. In ${
+    `<p>Let's start with the magazine cover. In ${
       guineaPigMag.year
-    }, Sarah Jessica Parker graced the cover of Vogue’s ${
+    }, Rihanna graced the cover of US Vogue’s ${
       $months[guineaPigMag.month - 1]
     } issue.</p>`,
     // 1
-    "<p>Next, we can identify all of the text areas on the cover excluding the large Vogue title</p>",
+    "<p>Next, let's identify all of the text on the cover excluding the masthead</p>",
     // 2
     "<p>When we remove the background image, we can start to see the skeletal framework of the cover and the relative proportions of text to cover.</p>",
     // 3
-    `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
+    `<p>When we consider the sum of all the text areas compared to the total area of the cover, only around ${Math.round(
       guineaPigMag.ratio * 100,
       0
     )}% is covered by text.</p>`,
     // 4
     "<p>Let’s now look at this ratio for all the covers analysed. </p>",
     // 5 -> w bg, by month
-    `<p>Here we have the text to cover ratio for all the magazines from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
+    `<p>Here we have the text-to-cover ratio for all the magazines from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
     // 6 -> remove bg, by month
-    "<p>Let's remove the background and rescale the text area height. This will help us focus just on the relative sizes of the text areas.</p>",
+    "<p>Let's remove the background. This will help us focus just on the relative sizes of the text areas.</p>",
     // 7 -> remove bg, by month
-    "<p>We can start to see a trend! More recent covers seem to have a smaller text area than older covers.</p>",
+    "<p>We can start to see a trend! More recent covers seem to have less area with text than older covers.</p>",
     // 8 -> plot ratios
-    "<p>Now, let's remove month information and just plot the text-area ratios by year</p>",
+    "<p>Now, let's remove month information and look at the plot of text-area ratios by year</p>",
     // 9
-    "<p>We can see the downward trend of the amount of text on covers in the time frame analysed.</p>",
+    "<p>We can see the downward trend of the amount of text on covers.</p>",
     // 10
     `<p>Let's also plot the yearly average of the text area to cover ratio.</p>`,
     // 11
@@ -155,9 +155,6 @@
     showingMeanValues = true;
     setRatioValues();
   }
-
-  $: console.log($currentStep);
-  $: console.log(steps[$currentStep]);
 
   const setRatioValues = function () {
     yVals = "ratio";
