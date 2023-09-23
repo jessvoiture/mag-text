@@ -132,8 +132,8 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: 20vh;
-  margin-bottom: 20vh;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 .section {
   margin: 0 auto; /* Horizontally center the sections */
@@ -153,9 +153,17 @@ body {
   }
 }
 
-.colophon {
+.footer {
   color: $color-light_grey;
   font-family: $font-sans-serif;
   font-size: $type-size-very_small;
   line-height: 16pt;
+}
+
+.footer a {
+  color: $color-light_grey;
+}
+
+.last-section {
+  padding-bottom: 0;
 }

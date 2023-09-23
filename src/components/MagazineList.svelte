@@ -130,7 +130,7 @@
 <style>
   .list-wrapper {
     margin: auto;
-    margin-bottom: 20vh;
+    margin-bottom: 10vh;
   }
   .magazine-list {
     display: grid;

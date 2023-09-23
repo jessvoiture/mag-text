@@ -20,12 +20,9 @@
     justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    margin: 5vh 0vh;
-  }
-
-  .example {
-    margin: 0px 20px;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin: 5vh 2vw;
+    gap: 30px;
   }
 </style>

@@ -2,31 +2,14 @@
   import { group, extent } from "d3-array";
 
   import ScrollWrapper from "./ScrollWrapper.svelte";
+  import { months } from "../stores";
 
   export let data;
   export let screenHeight;
   export let screenWidth;
 
   const mags = data.magazines;
-  // const contours = data.contours;
 
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  // SJP 20100501
-  // SJP 20211201
   let magDemoDate = 20220501;
 
   let sortedMagazines = [...mags]
@@ -61,7 +44,7 @@
 
   cumulativeData.forEach((d) => {
     const monthNumber = d.month; // Assuming your data has a "month" property
-    d.monthName = months[monthNumber - 1]; // Adjust for 0-based array index
+    d.monthName = $months[monthNumber - 1]; // Adjust for 0-based array index
   });
 
   $: dateExtent = extent(cumulativeData, (d) => d.year);

@@ -30,16 +30,8 @@
 </div>
 
 <style>
-  .original-image {
-    position: relative;
-  }
-
   .img-captions {
     font-size: 12pt;
     line-height: 20pt;
-  }
-
-  .list-img {
-    height: "auto";
   }
 </style>

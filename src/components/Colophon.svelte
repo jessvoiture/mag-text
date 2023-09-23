@@ -1,5 +1,4 @@
 <div class="colophon">
-  <div>Colophon</div>
   <div>
     Serif type: <a
       target="_blank"
@@ -15,9 +14,3 @@
   <div>Photograph of Anna Wintour: Charles Sykes/Invision/AP</div>
   <div>Vogue Magazine Covers: Vogue</div>
 </div>
-
-<style scoped>
-  a {
-    color: #8a8a8a;
-  }
-</style>

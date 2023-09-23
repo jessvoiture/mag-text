@@ -32,4 +32,4 @@
 <DataPrep {data} {screenHeight} {screenWidth} />
 <AnalysisSection />
 <MagazineList {data} {screenWidth} />
-<!-- <Footer /> -->
+<Footer />

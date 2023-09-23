@@ -9,8 +9,8 @@
 
   let examples1960s = [
     { Date: "19660601", month: 6, year: 1966 },
-    { Date: "19690601", month: 6, year: 1969 },
-    { Date: "19750401", month: 4, year: 1975 },
+    { Date: "19740801", month: 8, year: 1974 },
+    { Date: "19840801", month: 8, year: 1984 },
   ];
 
   let examples1990s = [
@@ -22,7 +22,7 @@
   let examples2010s = [
     { Date: "20140401", month: 4, year: 2014 },
     { Date: "20201201", month: 12, year: 2020 },
-    { Date: "20230501", month: 5, year: 2023 },
+    { Date: "20210201", month: 2, year: 2021 },
   ];
 </script>
 
@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       In the early 20th century, magazine covers featured illustrations. The
       intention was to create covers so beautiful that one might consider
@@ -58,7 +58,7 @@
 
   <MagazineExamples magList={examples1900s} />
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       Yet, the economic underpinnings of many magazines were shifting from
       <a
@@ -91,7 +91,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       This trend continued to persist and mature throughout the 20th century and
       into the 21st. The rapid improvement of graphic design software and
@@ -155,7 +155,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       The clickbaity cover lines were not as impactful as <a
         target="_blank"
@@ -191,8 +191,10 @@
 
   <div class="section">
     <div class="body-text">
-      The cultural imprint of Vogue magazine is profound, yet it, too, has
-      gracefully evolved in tandem with the shifting tides of time.
+      Vogue's text journey is undoubted a reaction to societal change and a
+      (successful) bid to stay relevant. The cultural imprint of Vogue magazine
+      has been and is profound, yet it, too, has gracefully evolved in tandem
+      with the shifting tides of time.
     </div>
   </div>
 </div>

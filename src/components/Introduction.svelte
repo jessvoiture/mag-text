@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       I was set in motion to unearth the lost art of textual exuberance. In this
       extremely important, time sensitive, and highly requested endeavour, I
