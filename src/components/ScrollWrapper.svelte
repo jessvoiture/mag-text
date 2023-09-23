@@ -244,24 +244,29 @@
     </div>
   </div>
 
-  <Scroll bind:value={$currentStep}>
-    {#each steps as text, i}
-      <div class="step" class:active={$currentStep === i}>
-        <div class="step-content" width={stepWidth}>
-          {@html text}
+  <div class="steps-wrapper">
+    <Scroll bind:value={$currentStep}>
+      {#each steps as text, i}
+        <div class="step" class:active={$currentStep === i}>
+          <div class="step-content" width={stepWidth}>
+            {@html text}
+          </div>
         </div>
-      </div>
-    {/each}
-  </Scroll>
+      {/each}
+    </Scroll>
+  </div>
 </div>
 
 <style>
+  .steps-wrapper {
+    z-index: 100000;
+    position: relative;
+  }
   .step {
     height: 110vh;
     display: flex;
     place-items: center;
     justify-content: center;
-    z-index: 999;
     font-size: 14px;
     line-height: 18px;
     /* position: relative; */
@@ -278,7 +283,6 @@
     text-align: center;
     transition: background 500ms ease;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-    z-index: 999;
     height: auto;
   }
 
@@ -315,10 +319,6 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-  }
-
-  .scroller {
-    z-index: 1;
   }
 
   .methods-demo {

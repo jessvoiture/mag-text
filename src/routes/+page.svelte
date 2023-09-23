@@ -21,8 +21,6 @@
   if (browser) {
     resize();
   }
-
-  console.log("icuqt3.14 😘");
 </script>
 
 <svelte:window on:resize={resize} />
