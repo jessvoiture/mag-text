@@ -1,25 +1,29 @@
 <script>
-  import { magDemoDate, months } from "../stores";
+  import { magDemoDate, months, cumulativeAreaProportion } from "../stores";
 
   export let options;
-  export let mags;
-  $: console.log($magDemoDate);
 
+  // format the options as Month, Year
+  function formatOption(month, year) {
+    const monthNames = $months;
+    const date = new Date(year, month - 1);
+    const monthName = monthNames[date.getMonth()];
+
+    return `${monthName}, ${year}`;
+  }
+
+  // reset the contours cumulative area when magazine changes
   function handleDropdown() {
-    let selectedMag = [...mags]
-      .sort((a, b) => a.Date - b.Date)
-      .filter((d) => d.Date == $magDemoDate);
-
-    // guineaPigMag.set(sortedMagazines[0]);
-    // whRatio.set(guineaPigMag.wh_ratio);
-    // contours.set(guineaPigMag.contours);
+    cumulativeAreaProportion.set(0);
   }
 </script>
 
 <form on:change|preventDefault={handleDropdown}>
   <select bind:value={$magDemoDate}>
     {#each options as option (option)}
-      <option value={option.Date}>{option.Date}</option>
+      <option value={option.Date}
+        >{formatOption(option.month, option.year)}</option
+      >
     {/each}
   </select>
 </form>

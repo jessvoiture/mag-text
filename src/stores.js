@@ -21,30 +21,4 @@ export const months = readable([
   "Dec",
 ]);
 export const magDemoDate = writable(20220501);
-
-// export const guineaPigMagArray = derived(
-//   [allMags, magDemoDate], // Array of stores to derive from
-//   ([$allMags, $magDemoDate]) =>
-//     [...$allMags]
-//       .sort((a, b) => a.Date - b.Date)
-//       .filter((d) => d.Date == $magDemoDate) // Computation function
-// );
-
-// export const guineaPigMag = derived(
-//   guineaPigMagArray,
-//   ($guineaPigMagArray) => $guineaPigMagArray[0]
-// );
-
-// export const whRatio = derived(
-//   guineaPigMag,
-//   ($guineaPigMag) => $guineaPigMag.whRatio
-// );
-
-// export const contours = derived(
-//   guineaPigMag,
-//   ($guineaPigMag) => $guineaPigMag.contours
-// );
-
-// console.log("allmags", $allMags);
-// console.log("guineaPigMag", $guineaPigMag);
-// console.log("contours", $contours);
+export const cumulativeAreaProportion = writable(0);

@@ -20,24 +20,25 @@
   export let guineaPigMag;
   export let dateExtent;
 
+  let steps = [];
+
   onMount(() => {
     cumulativeData.sort((a, b) => a.Date - b.Date);
   });
 
-  // scroll
-  const steps = [
+  // ${$months[guineaPigMag.month - 1]
+  // }, ${guineaPigMag.year} issue.
+
+  // scroll steps
+  $: steps = [
     // 0
-    `<p>Let's start with the magazine cover. In ${
-      guineaPigMag.year
-    }, Rihanna graced the cover of US Vogue’s ${
-      $months[guineaPigMag.month - 1]
-    } issue.</p>`,
+    `<p>Let's start with the a cover. Here is the US Vogue cover from `,
     // 1
     "<p>Next, let's identify all of the text on the cover excluding the masthead</p>",
     // 2
     "<p>When we remove the background image, we can start to see the skeletal framework of the cover and the relative proportions of text to cover.</p>",
     // 3
-    `<p>When we consider the sum of all the text areas compared to the total area of the cover, only around ${Math.round(
+    `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
       guineaPigMag.ratio * 100,
       0
     )}% is covered by text.</p>`,
@@ -84,6 +85,9 @@
 
   $: screenRatio = screenWidth / screenHeight;
 
+  //  determine which dimension to use for magazines
+  // if screen size is tall and narrow (ie W:H ratio for screen < magazine then use width as limiting dimension)
+  //  if screen size is short and wide (ie W:H ratio for screen > magazine then use height as limiting dimension)
   $: if (screenRatio <= whRatio) {
     mag_width = 0.9 * screenWidth;
     mag_height = findMagHeight(whRatio, mag_width);
@@ -92,6 +96,7 @@
     mag_width = findMagWidth(whRatio, mag_height);
   }
 
+  // initialise tween values
   $: tweenedY = tweened(cumulativeData.map((d) => d.month));
 
   $: contourTweenedY = tweened(
@@ -114,64 +119,78 @@
     tweenSettings
   );
 
+  // scrolly stuff
   $: if ($currentStep == 0) {
+    // initial frame of just the magazine
     nowShowing = "ratios";
     showingImage = true;
     showingAnnotations = false;
   } else if ($currentStep == 1) {
+    // magazine + contours
     nowShowing = "ratios";
     showingImage = true;
     showingAnnotations = true;
     setContoursOnMag();
   } else if ($currentStep == 2) {
+    // contours
     nowShowing = "ratios";
     showingImage = false;
     showingAnnotations = true;
     setContoursOnMag();
   } else if ($currentStep == 3) {
+    // contour area as percent of total mag area
     nowShowing = "ratios";
     showingImage = false;
     showingAnnotations = true;
     setContoursRatio();
   } else if ($currentStep == 4) {
+    // contour area as percent of total mag area
     nowShowing = "ratios";
     showingImage = false;
     showingAnnotations = true;
     setContoursRatio();
   } else if ($currentStep == 5) {
+    // first chart! all the magazines by month/year with mag bg + contours
     nowShowing = "chart";
     showingMeanValues = false;
     showingAnnotations = false;
     setMonthValues();
   } else if (($currentStep == 6) | ($currentStep == 7)) {
+    // all the magazines by month/year with contour area only
     nowShowing = "chart";
     showingMeanValues = false;
     setRelativeHeightValues();
   } else if (($currentStep == 8) | ($currentStep == 9)) {
+    // barcode
     nowShowing = "chart";
     showingMeanValues = false;
     setRatioValues();
   } else if (($currentStep == 10) | ($currentStep == 11)) {
+    // barcode with means
     nowShowing = "chart";
     showingMeanValues = true;
     setRatioValues();
   }
 
+  // chart: y vals for barcode
   const setRatioValues = function () {
     yVals = "ratio";
     tweenedY.set(cumulativeData.map((d) => d.ratio));
   };
 
+  // chart: y vals for all the magazines by month/year with mag bg + contours
   const setMonthValues = function () {
     yVals = "month";
     tweenedY.set(cumulativeData.map((d) => d.month));
   };
 
+  // chart: y vals for all the magazines by month/year with with contour area only
   const setRelativeHeightValues = () => {
     yVals = "relative";
     tweenedY.set(cumulativeData.map((d) => d.month));
   };
 
+  // annotations: tweened values for when contours are in og pos on mag
   const setContoursOnMag = () => {
     contourTweenedY.set(contours.map((d) => d.y_pct));
     contourTweenedX.set(contours.map((d) => d.x_pct));
@@ -179,6 +198,7 @@
     contourTweenedW.set(contours.map((d) => d.w_pct));
   };
 
+  // annotations: tweened values for when contours are lumped together in one big area
   const setContoursRatio = () => {
     contourTweenedY.set(contours.map((d) => d.cumulativeAreaProportion));
     contourTweenedX.set(contours.map(() => 0));
@@ -198,12 +218,14 @@
 </script>
 
 <div class="scroller">
+  <!-- main content -->
   <div class="mag-gallery">
     <div class="mag-wrapper">
       {#if nowShowing == "ratios"}
         <div class="methods-demo">
           {#if showingImage}
             <div class="all-original-covers all-covers" transition:fade>
+              <!-- cover image -->
               <Image
                 {guineaPigMag}
                 {mag_width}
@@ -217,6 +239,7 @@
 
           {#if showingAnnotations}
             <div class="annotations-wrapper">
+              <!-- contours -->
               <Annotations
                 {mag_height}
                 {mag_width}
@@ -233,6 +256,7 @@
       {/if}
 
       {#if nowShowing == "chart"}
+        <!-- chart -->
         <ScatterplotWrapper
           {screenHeight}
           {screenWidth}
@@ -245,6 +269,7 @@
     </div>
   </div>
 
+  <!-- scrolly steps-->
   <div class="steps-wrapper" class:first={$currentStep == 0}>
     <Scroll bind:value={$currentStep}>
       {#each steps as text, i}
@@ -252,7 +277,7 @@
           <div class="step-content" width={stepWidth}>
             {@html text}
             {#if i === 0}
-              <Dropdown options={cumulativeData} mags={cumulativeData} />
+              <Dropdown options={cumulativeData} />
             {/if}
           </div>
         </div>

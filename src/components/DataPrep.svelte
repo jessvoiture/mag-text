@@ -1,8 +1,9 @@
 <script>
   import { group, extent } from "d3-array";
+  import { onMount } from "svelte";
 
   import ScrollWrapper from "./ScrollWrapper.svelte";
-  import { months, magDemoDate } from "../stores";
+  import { months, magDemoDate, cumulativeAreaProportion } from "../stores";
 
   export let data;
   export let screenHeight;
@@ -10,26 +11,59 @@
 
   const mags = data.magazines;
 
-  let sortedMagazines = [...mags]
-    .sort((a, b) => a.Date - b.Date)
-    .filter((d) => d.Date == $magDemoDate);
+  let sortedMagazines = [];
+  let guineaPigMag = null;
+  let whRatio = null;
+  let contours = [];
 
-  let guineaPigMag = sortedMagazines[0];
-  let whRatio = guineaPigMag.wh_ratio;
-  let cumulativeAreaProportion = 0;
-  let contours = guineaPigMag.contours;
+  onMount(() => {
+    cumulativeAreaProportion.set(0); // important! for when mag changes
 
-  // mags (for the scatterplot)
+    sortedMagazines = [...mags]
+      .sort((a, b) => a.Date - b.Date)
+      .filter((d) => d.Date == $magDemoDate);
+
+    guineaPigMag = sortedMagazines[0];
+    whRatio = guineaPigMag.wh_ratio;
+
+    contours = guineaPigMag.contours;
+  });
+
+  $: {
+    sortedMagazines = [...mags]
+      .sort((a, b) => a.Date - b.Date)
+      .filter((d) => d.Date == $magDemoDate);
+
+    guineaPigMag = sortedMagazines[0]; // the demo mag
+    whRatio = guineaPigMag.wh_ratio; // width height ratio
+    contours = guineaPigMag.contours; // the contours
+
+    // contour calculations
+    // determine cumulative area of all the contours
+    let totalContourArea = contours.reduce(
+      (acc, curr) => acc + curr.w * curr.h,
+      0
+    );
+
+    // sort by y pos so the animation looks clean
+    contours.sort((a, b) => a.y - b.y);
+
+    // calc what percentage each contour is of the entire contour area CUMULATIVELY
+    contours.forEach((item) => {
+      item.areaProportion =
+        ((item.w * item.h) / totalContourArea) * guineaPigMag.ratio * 100;
+      item.cumulativeAreaProportion = $cumulativeAreaProportion;
+      $cumulativeAreaProportion += item.areaProportion;
+    });
+  }
+
   const groupedMags = group(mags, (d) => d.year);
   const cumulativeData = [];
 
-  const totalContourArea = contours.reduce(
-    (acc, curr) => acc + curr.w * curr.h,
-    0
-  );
-
   mags.sort((a, b) => a.Date - b.Date);
 
+  // calc cumulative sum of text ratio grouped by YEAR
+  // useful for y pos in chart by month/year
   groupedMags.forEach((values) => {
     let cumulativeSum = 0;
     values.forEach((d) => {
@@ -41,21 +75,11 @@
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
   cumulativeData.forEach((d) => {
-    const monthNumber = d.month; // Assuming your data has a "month" property
-    d.monthName = $months[monthNumber - 1]; // Adjust for 0-based array index
+    const monthNumber = d.month;
+    d.monthName = $months[monthNumber - 1];
   });
 
   $: dateExtent = extent(cumulativeData, (d) => d.year);
-
-  // contours (for the methods demo)
-  contours.sort((a, b) => a.y - b.y);
-
-  contours.forEach((item) => {
-    item.areaProportion =
-      ((item.w * item.h) / totalContourArea) * guineaPigMag.ratio * 100;
-    item.cumulativeAreaProportion = cumulativeAreaProportion;
-    cumulativeAreaProportion += item.areaProportion;
-  });
 </script>
 
 <ScrollWrapper

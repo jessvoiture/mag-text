@@ -1,6 +1,5 @@
 <script>
   import { nowShowing } from "../stores";
-  import { fade } from "svelte/transition";
 
   export let guineaPigMag;
 

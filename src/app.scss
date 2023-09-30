@@ -111,7 +111,8 @@ button {
   all: unset;
 }
 
-a {
+a,
+a:visited {
   color: $color-white;
   text-decoration: underline;
 }
@@ -166,4 +167,15 @@ body {
 
 .last-section {
   padding-bottom: 0;
+}
+
+select {
+  background: none;
+  border: none;
+  border-bottom: 1px solid $color-background;
+  box-shadow: none;
+  font-family: "encode";
+  color: $color-background;
+  font-size: $type-size-small;
+  line-height: $type-line_height-small;
 }
