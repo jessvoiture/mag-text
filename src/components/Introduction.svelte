@@ -2,10 +2,9 @@
   <div class="section">
     <div class="body-text hook">
       Do you remember where you were when Rihanna’s May 2022 US Vogue cover
-      story dropped? I do. I first saw the visuals on instagram and then again
-      on reddit. The photographs, lensed by Annie Leibovitz, and the fashion,
-      styled by Alex Harrington And Jahleel Weaver, were nothing short of
-      magnificent. I was in awe.
+      story dropped? I first saw the visuals on Instagram. The photographs,
+      lensed by Annie Leibovitz, and the fashion, styled by Alex Harrington And
+      Jahleel Weaver, were nothing short of transcendental.
     </div>
   </div>
 
@@ -20,10 +19,9 @@
 
   <div class="section">
     <div class="body-text">
-      I was once again stunned. You see, as a child of the 2000s, I am no
-      stranger to the symphony of clickbait titles that used to adorn fashion
-      magazines. But, this cover had merely 5 words. 29 characters. Where had
-      all the text gone?
+      I was once again stunned. As a child of the 2000s, I am no stranger to the
+      symphony of clickbait titles that used to adorn fashion magazines. But,
+      this cover had merely 5 words. 29 characters. Where had all the text gone?
     </div>
   </div>
 
