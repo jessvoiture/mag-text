@@ -11,8 +11,8 @@
         >Vogue's online archive.</a
       > I then manually annotated the coverlines on the covers, using black boxes
       to denote text areas and white to denote the background. Only covers from 2000
-      to 2022 as the manual annotations took quite a bit of time and during this
-      years there was a consistent number of magazines published. The annotations
+      to 2022 were annotated as the manual process took quite a bit of time and Vogue
+      published a consistent number of issues per year in this time period. The annotations
       were processed in Python using OpenCV to calculate the percentage of black
       pixels (text area) to the total image size.
     </div>

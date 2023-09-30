@@ -37,8 +37,8 @@
   let ratioMax = ratioExtent[1];
 
   let yScale = yScaleNormal;
-  const margin = { top: 50, left: 80, right: 30, bottom: 30 };
-  let left = margin.left / 2;
+  const margin = { top: 40, left: 40, right: 40, bottom: 40 };
+  let marginUnit = 40;
 
   $: if (screenWidth <= 860) {
     height = 0.8 * screenHeight;
@@ -59,7 +59,7 @@
   $: yScaleReverse = scaleLinear().domain(yExtent).range([0, innerHeight]);
 
   $: rectWidth = (innerWidth / uniqueYearsCount) * 0.9;
-  $: yScaleTranslate = innerWidth / uniqueMonthsCount / 10;
+  $: yScaleTranslate = marginUnit;
 
   // make ticks
   $: xTicks = xScale.ticks(xTickCount);
@@ -95,7 +95,7 @@
   {innerWidth}
   {height}
   {width}
-  {left}
+  {marginUnit}
   {cumulativeData}
   {showingMeanValues}
   {xScale}

@@ -6,7 +6,7 @@
 
   export let yTicks;
   export let yScale;
-  export let yScaleTranslate;
+  export let marginUnit;
   export let yVals;
 
   const formatTick = function (tick, yVal) {
@@ -20,11 +20,7 @@
   };
 </script>
 
-<g
-  transform="translate(0, {yScaleTranslate})"
-  class="axis yaxis"
-  transition:fade
->
+<g transform="translate(0, 10)" class="axis yaxis" transition:fade>
   {#each yTicks as tick}
     <g class="tick" transform="translate(0, {yScale(tick)})">
       <text>{formatTick(tick, yVals)}</text>

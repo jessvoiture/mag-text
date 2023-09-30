@@ -10,6 +10,7 @@
   import Annotations from "./Annotations.svelte";
   import ScatterplotWrapper from "./ScatterplotWrapper.svelte";
   import { months } from "../stores";
+  import Dropdown from "./Dropdown.svelte";
 
   export let cumulativeData;
   export let contours;
@@ -244,12 +245,15 @@
     </div>
   </div>
 
-  <div class="steps-wrapper">
+  <div class="steps-wrapper" class:first={$currentStep == 0}>
     <Scroll bind:value={$currentStep}>
       {#each steps as text, i}
         <div class="step" class:active={$currentStep === i}>
           <div class="step-content" width={stepWidth}>
             {@html text}
+            {#if i === 0}
+              <Dropdown options={cumulativeData} mags={cumulativeData} />
+            {/if}
           </div>
         </div>
       {/each}
@@ -261,6 +265,7 @@
   .steps-wrapper {
     z-index: 100000;
     position: relative;
+    pointer-events: none;
   }
   .step {
     height: 110vh;
@@ -270,6 +275,10 @@
     font-size: 14px;
     line-height: 18px;
     /* position: relative; */
+  }
+
+  .first {
+    pointer-events: all;
   }
 
   .step-content {

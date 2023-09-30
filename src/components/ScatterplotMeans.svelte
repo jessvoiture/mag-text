@@ -4,7 +4,7 @@
 
   export let innerHeight;
   export let innerWidth;
-  export let left;
+  export let marginUnit;
   export let cumulativeData;
   export let xScale;
   export let yScale;
@@ -18,13 +18,7 @@
   );
 </script>
 
-<g
-  class="mean-datapoints"
-  width={innerWidth}
-  height={innerHeight}
-  transform={`translate(${left}, 0)`}
-  transition:fade
->
+<g class="mean-datapoints scatterplot" transition:fade>
   {#each yearlyMean as d}
     <rect
       class="mean-datapoint"

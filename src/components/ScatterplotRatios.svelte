@@ -2,9 +2,6 @@
   import { fly } from "svelte/transition";
   import { hoveredDatapoint, mouse_x, mouse_y } from "../stores";
 
-  export let innerHeight;
-  export let innerWidth;
-  export let left;
   export let cumulativeData;
   export let showingMeanValues;
   export let xScale;
@@ -25,18 +22,13 @@
   };
 </script>
 
-<g
-  height={innerHeight}
-  width={innerWidth}
-  transform={`translate(${left}, 0)`}
-  class="data-plotted"
->
+<g class="data-plotted">
   {#each cumulativeData as d, index}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->
     <rect
       class:grayedout={showingMeanValues}
-      class="mag-chart-rect"
+      class="mag-chart-rect scatterplot"
       x={xScale(d.year)}
       y={yScale($tweenedY[index])}
       width={rectWidth}

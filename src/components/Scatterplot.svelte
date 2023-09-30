@@ -16,7 +16,7 @@
   export let height;
   export let innerHeight;
   export let innerWidth;
-  export let left;
+  export let marginUnit;
   export let cumulativeData;
   export let showingMeanValues;
   export let xScale;
@@ -28,7 +28,6 @@
   export let yVals;
   export let xTicks;
   export let yTicks;
-  export let yScaleTranslate;
 
   let chartDivHeight = width + 50;
   let chartTitle = "";
@@ -43,13 +42,28 @@
 <div class="chart" {width} height={chartDivHeight} transition:fade>
   <div class="chart-title">{chartTitle}</div>
 
-  <svg {width} {height}>
-    {#if yVals == "month"}
-      <ScatterplotBackgroundCovers
-        {innerHeight}
-        {innerWidth}
-        {left}
+  <svg {width} {height} class="scatterplot-svg">
+    <g
+      width={innerWidth}
+      height={innerHeight}
+      transform={`translate(${marginUnit}, 0)`}
+      class="scatterplot-g"
+    >
+      {#if yVals == "month"}
+        <ScatterplotBackgroundCovers
+          {cumulativeData}
+          {xScale}
+          {yScale}
+          {tweenedY}
+          {rectWidth}
+          {rectHeightMultiplyingFactor}
+          {rectHeightAddition}
+        />
+      {/if}
+
+      <ScatterplotRatios
         {cumulativeData}
+        {showingMeanValues}
         {xScale}
         {yScale}
         {tweenedY}
@@ -57,37 +71,21 @@
         {rectHeightMultiplyingFactor}
         {rectHeightAddition}
       />
-    {/if}
 
-    <ScatterplotRatios
-      {innerHeight}
-      {innerWidth}
-      {left}
-      {cumulativeData}
-      {showingMeanValues}
-      {xScale}
-      {yScale}
-      {tweenedY}
-      {rectWidth}
-      {rectHeightMultiplyingFactor}
-      {rectHeightAddition}
-    />
+      {#if showingMeanValues}
+        <ScatterplotMeans
+          {cumulativeData}
+          {xScale}
+          {yScale}
+          {rectWidth}
+          {rectHeightAddition}
+        />
+      {/if}
+    </g>
 
-    {#if showingMeanValues}
-      <ScatterplotMeans
-        {innerHeight}
-        {innerWidth}
-        {left}
-        {cumulativeData}
-        {xScale}
-        {yScale}
-        {rectWidth}
-        {rectHeightAddition}
-      />
-    {/if}
+    <AxisX {marginUnit} {xTicks} {xScale} {height} />
 
-    <AxisX {left} {xTicks} {xScale} {height} />
-    <AxisY {yTicks} {yScale} {yScaleTranslate} {yVals} />
+    <AxisY {yTicks} {yScale} {marginUnit} {yVals} />
   </svg>
 </div>
 

@@ -1,9 +1,6 @@
 <script>
   import { fade, fly } from "svelte/transition";
 
-  export let innerHeight;
-  export let innerWidth;
-  export let left;
   export let cumulativeData;
   export let xScale;
   export let yScale;
@@ -13,13 +10,7 @@
   export let rectHeightAddition;
 </script>
 
-<g
-  height={innerHeight}
-  width={innerWidth}
-  transform={`translate(${left}, 0)`}
-  class="data-plotted"
-  transition:fade
->
+<g class="data-plotted scatterplot" transition:fade>
   {#each cumulativeData as d, index}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->

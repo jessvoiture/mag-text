@@ -2,7 +2,7 @@
   import { group, extent } from "d3-array";
 
   import ScrollWrapper from "./ScrollWrapper.svelte";
-  import { months } from "../stores";
+  import { months, magDemoDate } from "../stores";
 
   export let data;
   export let screenHeight;
@@ -10,11 +10,9 @@
 
   const mags = data.magazines;
 
-  let magDemoDate = 20220501;
-
   let sortedMagazines = [...mags]
     .sort((a, b) => a.Date - b.Date)
-    .filter((d) => d.Date == magDemoDate);
+    .filter((d) => d.Date == $magDemoDate);
 
   let guineaPigMag = sortedMagazines[0];
   let whRatio = guineaPigMag.wh_ratio;
