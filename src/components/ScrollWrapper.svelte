@@ -24,14 +24,6 @@
 
   onMount(() => {
     cumulativeData.sort((a, b) => a.Date - b.Date);
-
-    setTimeout(() => {
-      // Adjust z-index after a short delay
-      const stepsWrapper = document.querySelector(".steps-wrapper");
-      if (stepsWrapper) {
-        stepsWrapper.style.zIndex = 100000;
-      }
-    }, 100);
   });
 
   // ${$months[guineaPigMag.month - 1]
@@ -301,18 +293,18 @@
 
 <style>
   .steps-wrapper {
-    z-index: 100000;
+    z-index: 100000 !important;
     position: relative;
     pointer-events: none;
   }
   .step {
+    z-index: 100000 !important;
     height: 110vh;
     display: flex;
     place-items: center;
     justify-content: center;
     font-size: 14px;
     line-height: 18px;
-    /* position: relative; */
   }
 
   .first {
@@ -331,6 +323,7 @@
     transition: background 500ms ease;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     height: auto;
+    z-index: 100001 !important;
   }
 
   @media (max-width: 800px) {
@@ -355,7 +348,7 @@
     flex: 1 1 60%;
     top: 0vh;
     height: 100vh;
-    z-index: 1;
+    z-index: 0 !important;
     display: flex;
     justify-content: center;
     align-items: center;
