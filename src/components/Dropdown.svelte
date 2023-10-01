@@ -18,8 +18,11 @@
   }
 </script>
 
+<!-- <span>Let's start with the a cover. Here is the US Vogue cover from</span> -->
+<!--  Let's start with the a cover. Here is the US Vogue cover from -->
 <form on:change|preventDefault={handleDropdown}>
-  <select bind:value={$magDemoDate}>
+  <span>Let's start with the a cover. Here is the US Vogue cover from</span>
+  <select id="magDemoDate" bind:value={$magDemoDate}>
     {#each options as option (option)}
       <option value={option.Date}
         >{formatOption(option.month, option.year)}</option
@@ -27,3 +30,6 @@
     {/each}
   </select>
 </form>
+
+<style>
+</style>

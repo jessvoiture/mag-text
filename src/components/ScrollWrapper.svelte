@@ -275,9 +275,14 @@
       {#each steps as text, i}
         <div class="step" class:active={$currentStep === i}>
           <div class="step-content" width={stepWidth}>
-            {@html text}
             {#if i === 0}
-              <Dropdown options={cumulativeData} />
+              <p>
+                <span class="inline-dropdown">
+                  <Dropdown options={cumulativeData} />
+                </span>
+              </p>
+            {:else}
+              {@html text}
             {/if}
           </div>
         </div>
@@ -367,5 +372,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .inline-dropdown {
+    display: inline;
   }
 </style>
