@@ -11,12 +11,12 @@
         >Vogue's online archive.</a
       > I then manually annotated the coverlines on the covers, using black boxes
       to denote text areas and white to denote the background. I will put my hands
-      up though! This method was undoubtedly subject to human error. Only covers
-      from 2000 to 2022 were annotated as 1. the annotation process took quite a
-      bit of time and I am a one man band and 2. Vogue published a consistent number
-      of issues per year in this time period. The annotations were processed in Python
-      using OpenCV to calculate the percentage of black pixels (text area) to the
-      total image size (cover area).
+      up though! This method was undoubtedly subject to human error and inconsistencies.
+      Only covers from 2000 to 2022 were annotated as 1. the annotation process took
+      quite a bit of time and I am a one man band and 2. Vogue published a consistent
+      number of issues per year in this time period. The annotations were processed
+      in Python using OpenCV to calculate the percentage of black pixels (text area)
+      to the total image size (cover area).
     </div>
     <div class="methods-section">
       This wee site was made using sveltekit, d3, and scrollama (my first go
@@ -57,7 +57,7 @@
           <a
             target="_blank"
             href="https://www.youtube.com/watch?v=lqvY_0gJf_I&t=812s"
-            >Svelte Way Youtube series</a
+            >svelte way youtube series</a
           >
         </li>
         <li>
@@ -156,8 +156,7 @@
   </div>
 
   <div class="section">
-    <div class="footer-title">Code</div>
-    <div class="methods-section">
+    <div class="footer-title">
       <a target="_blank" href="https://github.com/jessvoiture/mag-text"
         >Github</a
       >

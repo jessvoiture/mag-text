@@ -18,8 +18,6 @@
   }
 </script>
 
-<!-- <span>Let's start with the a cover. Here is the US Vogue cover from</span> -->
-<!--  Let's start with the a cover. Here is the US Vogue cover from -->
 <form on:change|preventDefault={handleDropdown}>
   <span>Let's start with the a cover. Here is the US Vogue cover from</span>
   <select id="magDemoDate" bind:value={$magDemoDate}>

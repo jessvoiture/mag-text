@@ -24,6 +24,14 @@
 
   onMount(() => {
     cumulativeData.sort((a, b) => a.Date - b.Date);
+
+    setTimeout(() => {
+      // Adjust z-index after a short delay
+      const stepsWrapper = document.querySelector(".steps-wrapper");
+      if (stepsWrapper) {
+        stepsWrapper.style.zIndex = 100000;
+      }
+    }, 100);
   });
 
   // ${$months[guineaPigMag.month - 1]
