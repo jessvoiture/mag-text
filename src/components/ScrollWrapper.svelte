@@ -32,30 +32,30 @@
   // scroll steps
   $: steps = [
     // 0
-    `<p>Let's start with the a cover. Here is the US Vogue cover from `,
+    ``,
     // 1
-    "<p>Next, let's identify all of the text on the cover excluding the masthead</p>",
+    "<p>Next, let's identify all of the text on the cover excluding the Vogue masthead</p>",
     // 2
-    "<p>When we remove the background image, we can start to see the skeletal framework of the cover and the relative proportions of text to cover.</p>",
+    "<p>Let's remove the background image and look at a very bare-boned wireframe of the magazine. We can start to see the relative proportions of text to cover</p>",
     // 3
-    `<p>When we consider the sum of all the text areas compared to the total area of the cover, around ${Math.round(
+    `<p>The sum of all the text areas compared to the total area of the cover, around ${Math.round(
       guineaPigMag.ratio * 100,
       0
-    )}% is covered by text.</p>`,
+    )}% is covered by text. Let's call this the text-to-cover ratio</p>`,
     // 4
-    "<p>Let’s now look at this ratio for all the covers analysed. </p>",
+    "<p>Now we've got the methodology and terminology sorted, let's expand our view to a larger number magazines</p>",
     // 5 -> w bg, by month
-    `<p>Here we have the text-to-cover ratio for all the magazines from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
+    `<p>Here we have the text-to-cover ratio for all US Vogue covers from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
     // 6 -> remove bg, by month
-    "<p>Let's remove the background. This will help us focus just on the relative sizes of the text areas.</p>",
+    "<p>Let's remove the background. This will help us compare the text-to-cover ratios</p>",
     // 7 -> remove bg, by month
-    "<p>We can start to see a trend! More recent covers seem to have less area with text than older covers.</p>",
+    "<p>We can start to see a trend! More recent covers seem to have less area with text than older covers</p>",
     // 8 -> plot ratios
-    "<p>Now, let's remove month information and look at the plot of text-area ratios by year</p>",
+    "<p>Now, let's just plot the text-to-cover ratio by year</p>",
     // 9
-    "<p>We can see the downward trend of the amount of text on covers.</p>",
+    "<p>We can clearly see the downward trend of the amount of text on covers</p>",
     // 10
-    `<p>Let's also plot the yearly average of the text area to cover ratio.</p>`,
+    `<p>Let's also plot the yearly average of the text-to-cover ratio</p>`,
     // 11
     `<p>The area covered by text has decreased from an average of ~30% in ${dateExtent[0]} to ~10% in ${dateExtent[1]}.</p>`,
   ];
@@ -293,12 +293,14 @@
 
 <style>
   .steps-wrapper {
-    z-index: 100000 !important;
+    z-index: 10 !important;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     position: relative;
     pointer-events: none;
   }
   .step {
-    z-index: 100000 !important;
+    z-index: 10 !important;
     height: 110vh;
     display: flex;
     place-items: center;
@@ -323,7 +325,7 @@
     transition: background 500ms ease;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     height: auto;
-    z-index: 100001 !important;
+    z-index: 11 !important;
   }
 
   @media (max-width: 800px) {

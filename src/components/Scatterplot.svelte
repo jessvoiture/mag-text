@@ -33,9 +33,9 @@
   let chartTitle = "";
 
   $: if ((yVals == "month") | (yVals == "relative")) {
-    chartTitle = "% covered by text by month and year";
+    chartTitle = "Text-to-cover ratio (%) by month and year";
   } else {
-    chartTitle = "% covered by text by year";
+    chartTitle = "Text-to-cover ratio (%) by year";
   }
 </script>
 

@@ -9,20 +9,25 @@
       US Vogue magazine covers were sourced from
       <a target="_blank" href="https://archive.vogue.com/"
         >Vogue's online archive.</a
-      > I then manually annotated the coverlines on the covers, using black boxes
-      to denote text areas and white to denote the background. I will put my hands
-      up though! This method was undoubtedly subject to human error and inconsistencies.
-      Only covers from 2000 to 2022 were annotated as 1. the annotation process took
-      quite a bit of time and I am a one man band and 2. Vogue published a consistent
-      number of issues per year in this time period. The annotations were processed
-      in Python using OpenCV to calculate the percentage of black pixels (text area)
-      to the total image size (cover area).
+      > I manually annotated the coverlines—or text areas—on the covers, using black
+      boxes to denote text areas and white to denote the background. I did not include
+      the masthead which appeared in a similar size and position on every cover.
+      Nor did I include diagonal text that occasionally appeared on a banner on top
+      of the masthead. As this was a manual process completed over a few months,
+      it was undoubtedly subject to inconsistencies and human error. Only covers
+      from 2000 to 2022 were annotated as 1. the annotation process took quite a
+      bit of time and I am a one man band and 2. Vogue published a consistent number
+      of issues per year in this time period. The annotations were processed in Python
+      using OpenCV to find the coordinates and dimensions of the black rectangles
+      on the iamge and to calculate the percentage of black pixels to the total image
+      size. The detection of black rectangles was fairly good but sometimes presented
+      false positives (eg black rectangles that were not in the original image).
+      These were (hopefully all) culled manually.
     </div>
     <div class="methods-section">
-      This wee site was made using sveltekit, d3, and scrollama (my first go
-      with a framework!). The development—both conceptually and technically—was
-      greatly assisted by several wonderful open-source web resources. Including
-      but not limited to:
+      This wee site was made using sveltekit, d3, and scrollama. The
+      development—both conceptually and technically—was greatly assisted by
+      several wonderful resources. Including but not limited to:
       <ul>
         <li>
           <a

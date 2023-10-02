@@ -43,16 +43,16 @@
         target="_blank"
         href="https://d2cu82y6eo7f22.cloudfront.net/2022/02/07212140/JMM_5.1_Grow.pdf"
         >poster</a
-      >. Thus, they were dubbed poster covers. The 1930s saw the transition from
-      illustrations to photographs on covers, with Vogue featuring its first
+      >, thus dubbed poster covers. The 1930s saw the transition from
+      illustrated covers to photographed ones, with Vogue debuting its first
       cover with a
       <a
         target="_blank"
         href="https://www.moma.org/interactives/objectphoto/publications/788.html"
-        >colour photograph</a
+        >photograph</a
       > in 1932. Despite this shift in medium, the poster-like aesthetic retained
       its allure. While publications toyed with text placement, the focal point invariably
-      remained the central image.
+      remained the central image (they were stunning).
     </div>
   </div>
 
@@ -60,21 +60,21 @@
 
   <div class="section last-section">
     <div class="body-text">
-      Yet, the economic underpinnings of many magazines were shifting from
+      Towards the midpoint of the century, the economic underpinnings of many
+      magazines shifted from
       <a
         target="_blank"
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >subscriptions to newsstand sales.</a
       >
-      This economic shift played out on the covers—from posters to selling points.
-      In the 1950s and 60s, text advertising the magazine's contents (referred to
-      as cover lines in industry parlance) began infiltrating the
+      This economic shift manifested on the covers, as they now functioned as an
+      advertisement. Text describing the magazine's contents (referred to as cover
+      lines in industry parlance) began infiltrating the
       <a
         target="_blank"
         href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7966324/"
         >margins of magazines</a
-      >. Increased competition led to larger and bolder as well as grabbier and
-      more clickbait-y coverlines.
+      >, and increased competition led to larger and grabbier coverlines.
     </div>
   </div>
 
@@ -82,12 +82,12 @@
 
   <div class="section">
     <div class="body-text">
-      This trend was no doubt aided by the <a
+      This trend was no doubt complemented by the <a
         target="_blank"
         href="https://d2cu82y6eo7f22.cloudfront.net/2022/02/07212140/JMM_5.1_Grow.pdf"
         >innovative typography</a
-      >, by designers such as Herb Lubalin, and advances in graphic design
-      technology, including phototypesetting
+      >, by designers such as Herb Lubalin (&lt;3), and advances in graphic
+      design technology, including phototypesetting
     </div>
   </div>
 
@@ -101,8 +101,9 @@
         >maximalism</a
       >. In parallel, the icon herself, Anna Wintour, entered the scene,
       becoming the editor-in-chief of US Vogue in 1988. Aside from inspiring the
-      cinematic tour de force, The Devil Wears Prada, Wintour played an
-      instrumental role in redefining Vogue's cover aesthetics. She pushed for
+      cinematic tour de force, The Devil Wears Prada, and stealing the bob
+      limelight from Edna Mode, Wintour played an instrumental role in
+      redefining Vogue's cover aesthetics. She advocated for the apperance of
       more actors, musicians, and political figures on the cover of Vogue,
       positioning the magazine as a cultural lodestar offering access to eminent
       <a
@@ -121,7 +122,7 @@
       With the rise of digital media in the 2000s, print publications clung
       steadfastly to traditions of illustration, photography, and
       celebrity-focused portraiture, showing a reluctance to embrace the digital
-      frontier
+      frontier. The text bombardment continued.
     </div>
   </div>
 
@@ -133,25 +134,27 @@
       >, with one million registered users in two months, 10 million in a year,
       and 1 billion by June 2018. Through social media platforms, celebrities
       could communicate directly with fans and wield more control over their
-      image and narratives; Vogue no longer held a monopoly on celebrity
-      culture. Yet, despite the saturation of celebrity content and photos,
-      magazine
+      image and narratives; Vogue and similar publications no longer held a
+      monopoly on celebrity culture. Yet, despite the saturation of celebrity
+      content and photos, magazine
       <a
         target="_blank"
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >covers have remained relevant</a
-      >—a concept so ingrained in our culture. But, how people interacted with
-      magazine covers and issues shifted.
+      >. It is a concept so ingrained in our culture, that covers are readily
+      distruted online and being a coverstar still holds social capital. But,
+      digitization dramatically changed how people interacted with magazine
+      covers and issues.
     </div>
   </div>
 
   <div class="section">
     <div class="body-text">
-      Social media replaced the newsstand as the marketplace for magazines.
-      People's initial encounters with magazines transpired online, rather than
-      in physical stores. Magazines needed to leverage a digital approach to
-      create cultural resonance and virality and thus translating into augmented
-      sales.
+      Social media replaced the newsstand as the marketplace for magazines, with
+      people's initial encounters with magazines often transpiring online,
+      rather than in physical stores. Magazines needed to leverage a digital
+      approach to create cultural resonance and virality and thus translating
+      into augmented sales.
     </div>
   </div>
 
@@ -162,8 +165,8 @@
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >striking imagery</a
       >
-      in the digital landscape. The noisy, maximalist design chock-full of text didn’t
-      translate well to
+      in the digital landscape, and the noisy, maximalist design chock-full of text
+      didn’t translate well to
       <a
         target="_blank"
         href="https://www.nucreative.co.uk/post/graphic-design-trends-of-the-last-decade"
@@ -179,9 +182,9 @@
   <div class="section">
     <div class="body-text">
       In the digital age, the prominence of a magazine's cover star has far
-      greater potential for virality than cover lines. Ergo, we almost see a
+      greater potential for virality than its cover lines. Ergo, we almost see a
       rebirth of the poster covers of the early 1900s, with much more focus on
-      the cover feature and the subject themself. The dissemination of visuals,
+      the cover imagery and the subject themself. The dissemination of visuals,
       as well as accompanying media such as YouTube videos, across social media
       serves as an advertising medium thus rendering the cover lines obsolete
       and unnecesary noise. The high-production editorial shoots provokes
@@ -191,10 +194,9 @@
 
   <div class="section">
     <div class="body-text">
-      Vogue's text journey is undoubted a reaction to societal change and a
+      Vogue's text journey is undoubtedly a reaction to societal change and a
       (successful) bid to stay relevant. The cultural imprint of Vogue magazine
-      has been and is profound, yet it, too, has gracefully evolved in tandem
-      with the shifting tides of time.
+      is profound, yet it, too, has been shaped by the shifting tides of time.
     </div>
   </div>
 </div>

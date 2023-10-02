@@ -12,5 +12,15 @@
     > by Impallari Type, Andres Torresi, Jacques Le Bailly
   </div>
   <div>Photograph of Anna Wintour: Charles Sykes/Invision/AP</div>
-  <div>Vogue Magazine Covers: Vogue</div>
+  <div>
+    Vogue Magazine Covers: <a target="_blank" href="https://archive.vogue.com/"
+      >Vogue Archive</a
+    >
+  </div>
+  <div>
+    Research, data collection, design, development: <a
+      target="_blank"
+      href="https://jessvoiture.github.io/home/">Jess Carr</a
+    > :)
+  </div>
 </div>
