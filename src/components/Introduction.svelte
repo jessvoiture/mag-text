@@ -2,26 +2,29 @@
   <div class="section">
     <div class="body-text hook">
       Do you remember where you were when Rihanna’s May 2022 US Vogue cover
-      story dropped? I first saw the visuals on Instagram. The photographs,
-      lensed by Annie Leibovitz, and the fashion, styled by Alex Harrington And
-      Jahleel Weaver, were nothing short of transcendental.
+      story dropped? The photographs, lensed by Annie Leibovitz, and the
+      fashion, styled by Alex Harrington And Jahleel Weaver, were nothing short
+      of transcendental.
     </div>
   </div>
 
   <div class="section">
     <div class="body-text">
-      I saw the magazine cover in print a few weeks later. It was like many
-      Vogue covers, complete with the signature masthead at the top and a
-      dramatic photographed portrait. The text on the front read, “Oh, Baby!
-      Rihanna’s Plus One.”
+      The cover was a like many Vogue covers, complete with the signature
+      masthead at the top and a photo portrait. But the only text on the cover
+      (other than the Vogue masthead) read, “Oh, Baby! Rihanna’s Plus One.”
     </div>
   </div>
 
   <div class="section">
+    <div class="body-text">5 words. 29 characters.</div>
+  </div>
+
+  <div class="section">
     <div class="body-text">
-      I was once again stunned. As a child of the 2000s, I am no stranger to the
-      symphony of clickbait titles that used to adorn fashion magazines. But,
-      this cover had merely 5 words. 29 characters. Where had all the text gone?
+      As a child of the 2000s, I am no stranger to the symphony of clickbait
+      titles that used to adorn fashion magazines. So, where had all this text
+      gone?
     </div>
   </div>
 

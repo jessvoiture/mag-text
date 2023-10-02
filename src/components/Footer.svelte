@@ -17,10 +17,13 @@
       it was undoubtedly subject to inconsistencies and human error. Only covers
       from 2000 to 2022 were annotated as 1. the annotation process took quite a
       bit of time and I am a one man band and 2. Vogue published a consistent number
-      of issues per year in this time period. The annotations were processed in Python
-      using OpenCV to find the coordinates and dimensions of the black rectangles
-      on the iamge and to calculate the percentage of black pixels to the total image
-      size. The detection of black rectangles was fairly good but sometimes presented
+      of issues per year in this time period.
+    </div>
+    <div class="methods-section">
+      The annotations were processed in Python using OpenCV to find the
+      coordinates and dimensions of the black rectangles on the iamge and to
+      calculate the percentage of black pixels to the total image size. The
+      detection of black rectangles was fairly good but sometimes presented
       false positives (eg black rectangles that were not in the original image).
       These were (hopefully all) culled manually.
     </div>
