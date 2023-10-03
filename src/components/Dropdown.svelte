@@ -28,6 +28,3 @@
     {/each}
   </select>
 </form>
-
-<style>
-</style>

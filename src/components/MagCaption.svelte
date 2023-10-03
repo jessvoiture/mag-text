@@ -1,13 +1,11 @@
 <script>
   import { months } from "../stores";
+  import { getImagePath } from "../utils/main";
 
   export let magWidth;
   export let showingRatio;
   export let d;
   export let imageType;
-
-  const getImagePath = (path, image_type, ending) =>
-    `/${image_type}/${path}${ending}`;
 </script>
 
 <div class="list-img">

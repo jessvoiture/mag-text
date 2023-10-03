@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import { months } from "../stores";
   import MagCaption from "./MagCaption.svelte";
 
   export let data;
@@ -29,9 +28,6 @@
   } else {
     width = 0.7 * screenWidth;
   }
-
-  const getImagePath = (path, image_type, ending) =>
-    `/${image_type}/${path}${ending}`;
 
   function sort(by) {
     sortedMagazinesRatio = [...mags].sort((a, b) => {

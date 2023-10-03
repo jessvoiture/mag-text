@@ -9,7 +9,6 @@
   import Scroll from "./Scrolly.svelte";
   import Annotations from "./Annotations.svelte";
   import ScatterplotWrapper from "./ScatterplotWrapper.svelte";
-  import { months } from "../stores";
   import Dropdown from "./Dropdown.svelte";
 
   export let cumulativeData;
@@ -26,9 +25,6 @@
     cumulativeData.sort((a, b) => a.Date - b.Date);
   });
 
-  // ${$months[guineaPigMag.month - 1]
-  // }, ${guineaPigMag.year} issue.
-
   // scroll steps
   $: steps = [
     // 0
@@ -38,7 +34,7 @@
     // 2
     "<p>Let's remove the background image and look at a very bare-boned wireframe of the magazine. We can start to see the relative proportions of text to cover</p>",
     // 3
-    `<p>The sum of all the text areas compared to the total area of the cover, around ${Math.round(
+    `<p>Now, let's compare the sum of all the text areas to the total area of the cover. Around ${Math.round(
       guineaPigMag.ratio * 100,
       0
     )}% is covered by text. Let's call this the text-to-cover ratio</p>`,

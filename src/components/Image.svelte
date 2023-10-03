@@ -1,5 +1,6 @@
 <script>
   import { nowShowing } from "../stores";
+  import { getImagePath } from "../utils/main";
 
   export let guineaPigMag;
 
@@ -11,9 +12,6 @@
   export let imagePathEnding;
 
   let imgClassName = $nowShowing + "-covers";
-
-  const getImagePath = (path, image_type, ending) =>
-    `/${image_type}/${path}${ending}`;
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->

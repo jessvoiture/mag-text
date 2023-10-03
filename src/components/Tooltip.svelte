@@ -1,5 +1,6 @@
 <script>
   import { hoveredDatapoint, mouse_x, mouse_y, months } from "../stores";
+  import { getImagePath } from "../utils/main";
 
   export let screenWidth;
   export let screenHeight;
@@ -21,9 +22,6 @@
   } else {
     adjustedMouseY = $mouse_y - tooltipHeight;
   }
-
-  const getImagePath = (path, image_type, ending) =>
-    `/${image_type}/${path}${ending}`;
 </script>
 
 <div
