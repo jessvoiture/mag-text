@@ -74,7 +74,7 @@
         target="_blank"
         href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7966324/"
         >margins of magazines</a
-      >, and increased competition led to larger and grabbier coverlines.
+      >, and increased competition led to larger and grabbier cover lines.
     </div>
   </div>
 
@@ -103,7 +103,7 @@
       becoming the editor-in-chief of US Vogue in 1988. Aside from inspiring the
       cinematic tour de force, The Devil Wears Prada, and stealing the bob
       limelight from Edna Mode, Wintour played an instrumental role in
-      redefining Vogue's cover aesthetics. She advocated for the apperance of
+      redefining Vogue's cover aesthetics. She advocated for the appearance of
       more actors, musicians, and political figures on the cover of Vogue,
       positioning the magazine as a cultural lodestar offering access to eminent
       <a
@@ -141,10 +141,10 @@
         target="_blank"
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >covers have remained relevant</a
-      >. It is a concept so ingrained in our culture, that covers are readily
-      distruted online and being a coverstar still holds social capital. But,
-      digitization dramatically changed how people interacted with magazine
-      covers and issues.
+      >. The concept of a cover story is so ingrained in our culture, that they
+      are readily circulated online and being a cover star still holds social
+      capital. But, digitization dramatically changed how people interacted with
+      magazine covers and issues.
     </div>
   </div>
 
@@ -153,14 +153,14 @@
       Social media replaced the newsstand as the marketplace for magazines, with
       people's initial encounters with magazines often transpiring online,
       rather than in physical stores. Magazines needed to leverage a digital
-      approach to create cultural resonance and virality and thus translating
-      into augmented sales.
+      approach to create cultural resonance and online buzz (and to reap the
+      financial rewards).
     </div>
   </div>
 
   <div class="section last-section">
     <div class="body-text">
-      The clickbaity cover lines were not as impactful as <a
+      The clickbait-y cover lines were not as impactful as <a
         target="_blank"
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >striking imagery</a
@@ -186,9 +186,9 @@
       rebirth of the poster covers of the early 1900s, with much more focus on
       the cover imagery and the subject themself. The dissemination of visuals,
       as well as accompanying media such as YouTube videos, across social media
-      serves as an advertising medium thus rendering the cover lines obsolete
-      and unnecesary noise. The high-production editorial shoots provokes
-      greater visual impact in an infinite sea of online content.
+      serve as an advertising medium thus rendering the cover lines obsolete and
+      unnecessary noise. The high-production editorial shoots provokes greater
+      visual impact in an infinite sea of online content.
     </div>
   </div>
 

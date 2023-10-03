@@ -39,7 +39,7 @@
       0
     )}% is covered by text. Let's call this the text-to-cover ratio</p>`,
     // 4
-    "<p>Now we've got the methodology and terminology sorted, let's expand our view to a larger number magazines</p>",
+    "<p>Now we've got the methodology and terminology sorted, let's extrapolate our analysis to a larger number of magazines</p>",
     // 5 -> w bg, by month
     `<p>Here we have the text-to-cover ratio for all US Vogue covers from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
     // 6 -> remove bg, by month

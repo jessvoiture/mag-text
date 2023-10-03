@@ -85,9 +85,6 @@
             >scrollytelling with scrollama</a
           >
         </li>
-        <li>
-          my occasional, reluctant-but-willing pair programmer, miss chatGPT
-        </li>
       </ul>
     </div>
     <!-- <div class="methods-section last">
