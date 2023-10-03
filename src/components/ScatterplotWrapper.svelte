@@ -41,10 +41,10 @@
   let marginUnit = 40;
 
   $: if (screenWidth <= 860) {
-    height = 0.8 * screenHeight;
+    height = 0.7 * screenHeight;
     width = 0.9 * screenWidth;
   } else {
-    height = 0.8 * screenHeight;
+    height = 0.75 * screenHeight;
     width = 0.8 * screenWidth;
   }
 
