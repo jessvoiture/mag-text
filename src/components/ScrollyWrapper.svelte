@@ -2,8 +2,9 @@
   import { group, extent } from "d3-array";
   import { onMount } from "svelte";
 
-  import ScrollWrapper from "./ScrollWrapper.svelte";
   import { months, magDemoDate, cumulativeAreaProportion } from "../stores";
+  import ScrollyChart from "./ScrollyChart.svelte";
+  import ScrollyMethod from "./ScrollyMethod.svelte";
 
   export let data;
   export let screenHeight;
@@ -82,12 +83,23 @@
   $: dateExtent = extent(cumulativeData, (d) => d.year);
 </script>
 
-<ScrollWrapper
-  {contours}
+<ScrollyMethod
   {cumulativeData}
-  {guineaPigMag}
+  {contours}
   {whRatio}
   {screenHeight}
   {screenWidth}
-  {dateExtent}
+  {guineaPigMag}
 />
+
+<div class="body-section">
+  <div class="section">
+    <div class="body-text">
+      The text-to-cover ratio serves as a useful measurement to compare the text
+      coverage across magazines. So, let's expand our view to all {cumulativeData.length}
+      of the covers.
+    </div>
+  </div>
+</div>
+
+<ScrollyChart {cumulativeData} {screenHeight} {screenWidth} {dateExtent} />

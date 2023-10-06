@@ -1,5 +1,5 @@
 <script>
-  import { fly } from "svelte/transition";
+  import { fly, fade } from "svelte/transition";
   import { hoveredDatapoint, mouse_x, mouse_y } from "../stores";
 
   export let cumulativeData;

@@ -9,7 +9,7 @@
       US Vogue magazine covers were sourced from
       <a target="_blank" href="https://archive.vogue.com/"
         >Vogue's online archive.</a
-      > I manually annotated the coverlines—or text areas—on the covers, using black
+      > I manually annotated the cover lines—or text areas—on the covers, using black
       boxes to denote text areas and white to denote the background. I did not include
       the masthead which appeared in a similar size and position on every cover.
       Nor did I include diagonal text that occasionally appeared on a banner on top
@@ -21,7 +21,7 @@
     </div>
     <div class="methods-section">
       The annotations were processed in Python using OpenCV to find the
-      coordinates and dimensions of the black rectangles on the iamge and to
+      coordinates and dimensions of the black rectangles on the image and to
       calculate the percentage of black pixels to the total image size. The
       detection of black rectangles was fairly good but sometimes presented
       false positives (eg black rectangles that were not in the original image).
@@ -76,7 +76,7 @@
         </li>
         <li>
           <a target="_blank" href="https://www.connorrothschild.com/"
-            >Conor Rothschild's</a
+            >Connor Rothschild's</a
           >
           blog posts, specifically this one on
           <a

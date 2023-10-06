@@ -28,3 +28,9 @@
     {/each}
   </select>
 </form>
+
+<style>
+  select {
+    cursor: pointer;
+  }
+</style>

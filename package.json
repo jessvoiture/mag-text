@@ -13,6 +13,7 @@
     "@sveltejs/kit": "^1.20.4",
     "sass": "^1.66.1",
     "svelte": "^4.0.0",
+    "svelte-intersection-observer": "^0.10.1",
     "vite": "^4.3.6"
   },
   "type": "module",
@@ -22,6 +23,7 @@
     "d3-scale": "^4.0.2",
     "d3-scale-chromatic": "^3.0.0",
     "d3-time-format": "^4.1.0",
-    "layercake": "^7.6.1"
+    "layercake": "^7.6.1",
+    "svelte-inview": "^4.0.1"
   }
 }

@@ -23,7 +23,9 @@
     {d.year} — {$months[d.month - 1]}
   </div>
   {#if showingRatio}
-    <div class="img-captions body-text">{Math.round(d.ratio * 100)}%</div>
+    <div class="img-captions body-text">
+      {Math.round(d.ratio * 100)}% text
+    </div>
   {/if}
 </div>
 
