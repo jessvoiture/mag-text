@@ -16,14 +16,17 @@
   let steps = [];
   let currentStep = 0;
   let showingMeanValues = false;
+  let showingMonthRatios = false;
   let yVals;
 
   onMount(() => {
     showingMeanValues = false;
+    showingMonthRatios = false;
   });
 
   // scroll steps
   $: steps = [
+    `<p>beep bop boo</p>`,
     `<p>Here we have the text coverage for all US Vogue covers from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
     // 6 -> remove bg, by month
     "<p>Let's remove the background, so we can focus on the text coverages</p>",
@@ -46,8 +49,14 @@
   $: if (currentStep == 0) {
     // first chart! all the magazines by month/year with mag bg + contours
     showingMeanValues = false;
+    showingMonthRatios = false;
     setMonthValues();
-  } else if ((currentStep == 1) | (currentStep == 2)) {
+  } else if (currentStep == 1) {
+    // first chart! all the magazines by month/year with mag bg + contours
+    setMonthValues();
+    showingMeanValues = false;
+    showingMonthRatios = true;
+  } else if ((currentStep == 2) | (currentStep == 2)) {
     // all the magazines by month/year with contour area only
     showingMeanValues = false;
     setRelativeHeightValues();
@@ -55,7 +64,7 @@
     // barcode
     showingMeanValues = false;
     setRatioValues();
-  } else if ((currentStep == 5) | (currentStep == 6)) {
+  } else if ((currentStep == 4) | (currentStep == 6)) {
     // barcode with means
     showingMeanValues = true;
     setRatioValues();
@@ -65,7 +74,6 @@
   const setMonthValues = function () {
     yVals = "month";
     tweenedY.set(cumulativeData.map((d) => d.month));
-    hasStarted = "true";
   };
 
   // chart: y vals for all the magazines by month/year with with contour area only
@@ -91,6 +99,7 @@
         {screenWidth}
         {cumulativeData}
         {showingMeanValues}
+        {showingMonthRatios}
         {yVals}
         {tweenedY}
       />

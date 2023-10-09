@@ -95,9 +95,9 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      The text-to-cover ratio serves as a useful measurement to compare the text
-      coverage across magazines. So, let's expand our view to all {cumulativeData.length}
-      of the covers.
+      The text-to-cover ratio serves as a useful measurement to quantify and
+      compare the amount of text that appears on the covers. I've repeated this
+      process for {cumulativeData.length} ranging across 22 years. Let's take a peek...
     </div>
   </div>
 </div>

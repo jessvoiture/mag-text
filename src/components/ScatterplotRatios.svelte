@@ -20,6 +20,8 @@
   const handleMouseout = function () {
     hoveredDatapoint.set(undefined);
   };
+
+  let justAdded = true;
 </script>
 
 <g class="data-plotted">
@@ -27,13 +29,13 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->
     <rect
+      in:fly={{ delay: justAdded ? index * 7 : 0 }}
       class:grayedout={showingMeanValues}
       class="mag-chart-rect scatterplot"
       x={xScale(d.year)}
       y={yScale($tweenedY[index])}
       width={rectWidth}
       height={rectHeightMultiplyingFactor * d.ratio + rectHeightAddition}
-      in:fly={{ delay: index * 7 }}
       on:mouseover={function (event) {
         handleMouseover(event, d);
       }}

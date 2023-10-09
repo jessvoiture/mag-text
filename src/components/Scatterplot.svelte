@@ -20,6 +20,7 @@
   export let tweenedY;
   export let screenWidth;
   export let screenHeight;
+  export let showingMonthRatios;
 
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
@@ -127,25 +128,27 @@
         />
       {/if}
 
-      <ScatterplotRatios
-        {cumulativeData}
-        {showingMeanValues}
-        {xScale}
-        {yScale}
-        {tweenedY}
-        {rectWidth}
-        {rectHeightMultiplyingFactor}
-        {rectHeightAddition}
-      />
-
-      {#if showingMeanValues}
-        <ScatterplotMeans
+      {#if showingMonthRatios}
+        <ScatterplotRatios
           {cumulativeData}
+          {showingMeanValues}
           {xScale}
           {yScale}
+          {tweenedY}
           {rectWidth}
+          {rectHeightMultiplyingFactor}
           {rectHeightAddition}
         />
+
+        {#if showingMeanValues}
+          <ScatterplotMeans
+            {cumulativeData}
+            {xScale}
+            {yScale}
+            {rectWidth}
+            {rectHeightAddition}
+          />
+        {/if}
       {/if}
     </g>
 
