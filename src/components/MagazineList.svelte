@@ -212,6 +212,7 @@
 
   .list-element {
     padding-bottom: 20px;
+    max-width: 200px;
   }
 
   .sort-option {

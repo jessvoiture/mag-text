@@ -15,9 +15,8 @@
       Nor did I include diagonal text that occasionally appeared on a banner on top
       of the masthead. As this was a manual process completed over a few months,
       it was undoubtedly subject to inconsistencies and human error. Only covers
-      from 2000 to 2022 were annotated as 1. the annotation process took quite a
-      bit of time and I am a one man band and 2. Vogue published a consistent number
-      of issues per year in this time period.
+      from 2000 to 2022 were annotated as this I am a one man band, but this time
+      period was long enough to illustrate a trend.
     </div>
     <div class="methods-section">
       The annotations were processed in Python using OpenCV to find the

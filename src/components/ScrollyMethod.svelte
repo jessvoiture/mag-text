@@ -50,7 +50,7 @@
     `<p>When we compare the sum of all the text areas compared to the total area of the cover, around ${Math.round(
       guineaPigMag.ratio * 100,
       0
-    )}% is covered by text. Let's call this the text coverage of magazine</p>`,
+    )}% is covered by text. Let's call this number a magazine's text coverage</p>`,
   ];
 
   $: screenRatio = screenWidth / screenHeight;

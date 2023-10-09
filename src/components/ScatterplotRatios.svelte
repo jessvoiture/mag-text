@@ -24,7 +24,7 @@
   let justAdded = true;
 </script>
 
-<g class="data-plotted">
+<g class="data-plotted" transition:fade>
   {#each cumulativeData as d, index}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->
