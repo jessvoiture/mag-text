@@ -2,7 +2,6 @@
   import { cubicOut } from "svelte/easing";
   import { tweened } from "svelte/motion";
   import { fade } from "svelte/transition";
-  import { onMount } from "svelte";
 
   import Image from "./Image.svelte";
   import Scroll from "./Scrolly.svelte";

@@ -26,8 +26,8 @@
 
   // scroll steps
   $: steps = [
-    `<p>We will start with a rectangle for each magazine cover from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
-    `<p>Now let's add the text coverage (%)</p>`,
+    `<p>We will start with a rectangle to represent the area of each magazine cover from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
+    `<p>Just as before, we will plot the area of the text on top of the area of the cover.</p>`,
     // 6 -> remove bg, by month
     "<p>We can remove the background, so we can focus on the text coverages</p>",
     // 7 -> remove bg, by month
@@ -59,6 +59,7 @@
   } else if ((currentStep == 2) | (currentStep == 3)) {
     // rescale
     showingMeanValues = false;
+    showingMonthRatios = true;
     setRelativeHeightValues();
   } else if ((currentStep == 4) | (currentStep == 5)) {
     // barcode
