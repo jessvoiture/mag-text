@@ -6,25 +6,54 @@
   import Image from "./Image.svelte";
   import Scroll from "./Scrolly.svelte";
   import Annotations from "./Annotations.svelte";
-  import Dropdown from "./Dropdown.svelte";
+  import Caption from "./Caption.svelte";
 
   export let cumulativeData;
-  export let contours;
-  export let whRatio;
   export let screenHeight;
   export let screenWidth;
-  export let guineaPigMag;
+
+  let sortedMagazines = [...cumulativeData].sort((a, b) => a.Date - b.Date);
 
   let nowShowing;
 
   let stepWidth;
   let mag_height;
   let mag_width;
+  let guineaPigMagList;
 
-  let contourTweenedY;
-  let contourTweenedX;
-  let contourTweenedH;
-  let contourTweenedW;
+  const guineaPigMag_1 = sortedMagazines.find((d) => d.Date == 20110401);
+  const guineaPigMag_2 = sortedMagazines.find((d) => d.Date == 20220501);
+
+  let contours_1 = guineaPigMag_1.contours;
+  let contours_2 = guineaPigMag_2.contours;
+
+  let totalContourArea_1 = calculateTotalContourArea(contours_1);
+  let totalContourArea_2 = calculateTotalContourArea(contours_2);
+
+  contours_1 = sortContoursByY(contours_1);
+  contours_2 = sortContoursByY(contours_2);
+
+  contours_1 = calculateContourProportions(
+    contours_1,
+    totalContourArea_1,
+    guineaPigMag_1.ratio
+  );
+  contours_2 = calculateContourProportions(
+    contours_2,
+    totalContourArea_2,
+    guineaPigMag_2.ratio
+  );
+
+  const whRatio = guineaPigMag_1.wh_ratio;
+
+  let contourTweenedY_1;
+  let contourTweenedX_1;
+  let contourTweenedH_1;
+  let contourTweenedW_1;
+  let contourTweenedY_2;
+  let contourTweenedX_2;
+  let contourTweenedH_2;
+  let contourTweenedW_2;
 
   let currentStep = 0;
   let steps = [];
@@ -40,48 +69,69 @@
   // scroll steps
   $: steps = [
     // 0
-    ``,
+    `<p>Let's compare Rihanna's May 2022 cover with her first US Vogue cover in April 2011</p>`,
     // 1
-    "<p>Next, let's identify all of the text on the cover excluding the Vogue masthead</p>",
+    "<p>We'll start by identifying all of the text on the covers excluding the Vogue masthead</p>",
     // 2
-    "<p>Removing the background image reveals a very bare-boned wire-frame of the magazine. We can start to see the relative proportions of text to cover</p>",
+    "<p>Next, we can remove the background image and look at the wireframe for each cover. We can start to see the relative proportions of text to cover</p>",
     // 3
-    `<p>When we compare the sum of all the text areas compared to the total area of the cover, around ${Math.round(
-      guineaPigMag.ratio * 100,
+    `<p>Now, let's consider the total area covered by text compared to the total area of the cover. Around ${Math.round(
+      guineaPigMag_1.ratio * 100,
       0
-    )}% is covered by text. Let's call this number a magazine's text coverage</p>`,
+    )}% of the 2011 cover was covered by text. In 2022, that percentage dipped to ${Math.round(
+      guineaPigMag_2.ratio * 100,
+      0
+    )}%</p>`,
   ];
-
-  $: screenRatio = screenWidth / screenHeight;
 
   //  determine which dimension to use for magazines
   // if screen size is tall and narrow (ie W:H ratio for screen < magazine then use width as limiting dimension)
   //  if screen size is short and wide (ie W:H ratio for screen > magazine then use height as limiting dimension)
-  $: if (screenRatio <= whRatio) {
-    mag_width = 0.9 * screenWidth;
-    mag_height = findMagHeight(whRatio, mag_width);
-  } else {
-    mag_height = 0.7 * screenHeight;
+  $: if (screenWidth <= 860) {
+    mag_height = 0.4 * (screenHeight - 104);
     mag_width = findMagWidth(whRatio, mag_height);
+  } else {
+    mag_width = 0.25 * (screenWidth - 104);
+    mag_height = findMagHeight(whRatio, mag_width);
   }
 
-  $: contourTweenedY = tweened(
-    contours.map((d) => d.y_pct),
+  $: contourTweenedY_1 = tweened(
+    contours_1.map((d) => d.y_pct),
     tweenSettings
   );
 
-  $: contourTweenedX = tweened(
-    contours.map((d) => d.x_pct),
+  $: contourTweenedX_1 = tweened(
+    contours_1.map((d) => d.x_pct),
     tweenSettings
   );
 
-  $: contourTweenedH = tweened(
-    contours.map((d) => d.h_pct),
+  $: contourTweenedH_1 = tweened(
+    contours_1.map((d) => d.h_pct),
     tweenSettings
   );
 
-  $: contourTweenedW = tweened(
-    contours.map((d) => d.w_pct),
+  $: contourTweenedW_1 = tweened(
+    contours_1.map((d) => d.w_pct),
+    tweenSettings
+  );
+
+  $: contourTweenedY_2 = tweened(
+    contours_2.map((d) => d.y_pct),
+    tweenSettings
+  );
+
+  $: contourTweenedX_2 = tweened(
+    contours_2.map((d) => d.x_pct),
+    tweenSettings
+  );
+
+  $: contourTweenedH_2 = tweened(
+    contours_2.map((d) => d.h_pct),
+    tweenSettings
+  );
+
+  $: contourTweenedW_2 = tweened(
+    contours_2.map((d) => d.w_pct),
     tweenSettings
   );
 
@@ -117,20 +167,55 @@
     setContoursRatio();
   }
 
+  $: guineaPigMagList = [
+    {
+      Date: guineaPigMag_1.Date,
+      year: guineaPigMag_1.year,
+      month: guineaPigMag_1.month,
+      ratio: guineaPigMag_1.ratio,
+      contours: contours_1,
+      contourTweenedX: contourTweenedX_1,
+      contourTweenedY: contourTweenedY_1,
+      contourTweenedW: contourTweenedW_1,
+      contourTweenedH: contourTweenedH_1,
+    },
+    {
+      Date: guineaPigMag_2.Date,
+      year: guineaPigMag_2.year,
+      month: guineaPigMag_2.month,
+      ratio: guineaPigMag_2.ratio,
+      contours: contours_2,
+      contourTweenedX: contourTweenedX_2,
+      contourTweenedY: contourTweenedY_2,
+      contourTweenedW: contourTweenedW_2,
+      contourTweenedH: contourTweenedH_2,
+    },
+  ];
+
   // annotations: tweened values for when contours are in og pos on mag
   const setContoursOnMag = () => {
-    contourTweenedY.set(contours.map((d) => d.y_pct));
-    contourTweenedX.set(contours.map((d) => d.x_pct));
-    contourTweenedH.set(contours.map((d) => d.h_pct));
-    contourTweenedW.set(contours.map((d) => d.w_pct));
+    contourTweenedY_1.set(contours_1.map((d) => d.y_pct));
+    contourTweenedX_1.set(contours_1.map((d) => d.x_pct));
+    contourTweenedH_1.set(contours_1.map((d) => d.h_pct));
+    contourTweenedW_1.set(contours_1.map((d) => d.w_pct));
+
+    contourTweenedY_2.set(contours_2.map((d) => d.y_pct));
+    contourTweenedX_2.set(contours_2.map((d) => d.x_pct));
+    contourTweenedH_2.set(contours_2.map((d) => d.h_pct));
+    contourTweenedW_2.set(contours_2.map((d) => d.w_pct));
   };
 
   // annotations: tweened values for when contours are lumped together in one big area
   const setContoursRatio = () => {
-    contourTweenedY.set(contours.map((d) => d.cumulativeAreaProportion));
-    contourTweenedX.set(contours.map(() => 0));
-    contourTweenedH.set(contours.map((d) => d.areaProportion + 1));
-    contourTweenedW.set(contours.map(() => 100));
+    contourTweenedY_1.set(contours_1.map((d) => d.cumulativeAreaProportion));
+    contourTweenedX_1.set(contours_1.map(() => 0));
+    contourTweenedH_1.set(contours_1.map((d) => d.areaProportion + 1));
+    contourTweenedW_1.set(contours_1.map(() => 100));
+
+    contourTweenedY_2.set(contours_2.map((d) => d.cumulativeAreaProportion));
+    contourTweenedX_2.set(contours_2.map(() => 0));
+    contourTweenedH_2.set(contours_2.map((d) => d.areaProportion + 1));
+    contourTweenedW_2.set(contours_2.map(() => 100));
   };
 
   function findMagHeight(ratio, mag_width) {
@@ -142,45 +227,71 @@
     const w = mag_height * ratio;
     return w;
   }
+
+  function calculateTotalContourArea(contours) {
+    return contours.reduce((acc, curr) => acc + curr.w * curr.h, 0);
+  }
+
+  function sortContoursByY(contours) {
+    return contours.slice().sort((a, b) => a.y - b.y);
+  }
+
+  function calculateContourProportions(contours, totalContourArea, ratio) {
+    let cumulativeAreaProportion = 0;
+
+    return contours.map((item) => {
+      const areaProportion =
+        ((item.w * item.h) / totalContourArea) * ratio * 100;
+      item.areaProportion = areaProportion;
+      item.cumulativeAreaProportion = cumulativeAreaProportion;
+      cumulativeAreaProportion += areaProportion;
+      return item;
+    });
+  }
 </script>
 
 <div class="scroller">
   <!-- main content -->
   <div class="mag-gallery">
     <div class="mag-wrapper">
-      {#if nowShowing == "ratios"}
-        <div class="methods-demo">
-          {#if showingImage}
-            <div class="all-original-covers all-covers" transition:fade>
-              <!-- cover image -->
-              <Image
-                {guineaPigMag}
-                {mag_width}
-                {mag_height}
-                type={"original"}
-                imagePathEnding={".jpg"}
-                alt={"Vogue magazine cover"}
-              />
-            </div>
-          {/if}
+      {#each guineaPigMagList as d, i}
+        {#if nowShowing == "ratios"}
+          <div class="methods-demo">
+            <div class="image-wrapper">
+              <div class="image">
+                <div class="all-original-covers all-covers" transition:fade>
+                  <!-- cover image -->
+                  <Image
+                    guineaPigMag={d}
+                    {mag_width}
+                    {mag_height}
+                    type={"original"}
+                    imagePathEnding={".jpg"}
+                    alt={"Vogue magazine cover"}
+                  />
+                </div>
 
-          {#if showingAnnotations}
-            <div class="annotations-wrapper">
-              <!-- contours -->
-              <Annotations
-                {mag_height}
-                {mag_width}
-                {showingImage}
-                {contours}
-                {contourTweenedH}
-                {contourTweenedY}
-                {contourTweenedX}
-                {contourTweenedW}
-              />
+                {#if showingAnnotations}
+                  <div class="annotations-wrapper">
+                    <!-- contours -->
+                    <Annotations
+                      {mag_height}
+                      {mag_width}
+                      {showingImage}
+                      contours={d.contours}
+                      contourTweenedH={d.contourTweenedH}
+                      contourTweenedY={d.contourTweenedY}
+                      contourTweenedX={d.contourTweenedX}
+                      contourTweenedW={d.contourTweenedW}
+                    />
+                  </div>
+                {/if}
+              </div>
+              <Caption {d} />
             </div>
-          {/if}
-        </div>
-      {/if}
+          </div>
+        {/if}
+      {/each}
     </div>
   </div>
 
@@ -190,15 +301,7 @@
       {#each steps as text, i}
         <div class="step" class:active={currentStep === i}>
           <div class="step-content" width={stepWidth}>
-            {#if i === 0}
-              <p>
-                <span class="inline-dropdown">
-                  <Dropdown options={cumulativeData} />
-                </span>
-              </p>
-            {:else}
-              {@html text}
-            {/if}
+            {@html text}
           </div>
         </div>
       {/each}
@@ -221,11 +324,22 @@
     transform: translate(-50%, -50%);
   }
 
-  .inline-dropdown {
-    display: inline;
+  .mag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    gap: 80px;
   }
 
-  .first {
-    pointer-events: all;
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .image {
+    position: relative;
   }
 </style>

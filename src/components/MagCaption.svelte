@@ -1,6 +1,6 @@
 <script>
-  import { months } from "../stores";
   import { getImagePath } from "../utils/main";
+  import Caption from "./Caption.svelte";
 
   export let magWidth;
   export let showingRatio;
@@ -18,20 +18,11 @@
     alt="Vogue cover"
   />
 </div>
-<div class="caption">
-  <div class="img-captions body-text">
-    {d.year} — {$months[d.month - 1]}
-  </div>
-  {#if showingRatio}
+
+<Caption {d}
+  >{#if showingRatio}
     <div class="img-captions body-text">
       {Math.round(d.ratio * 100)}% text
     </div>
-  {/if}
-</div>
-
-<style>
-  .img-captions {
-    font-size: 12pt;
-    line-height: 20pt;
-  }
-</style>
+  {/if}</Caption
+>

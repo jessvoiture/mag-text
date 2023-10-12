@@ -33,7 +33,7 @@
       I was set in motion to unearth the lost art of textual exuberance. In this
       extremely important, time sensitive, and highly requested endeavour, I
       analysed 22 years of US Vogue covers to ascertain if the amount of text on
-      covers had indeed dwindled. Please, enjoy.
+      covers had indeed dwindled.
     </div>
   </div>
 </div>

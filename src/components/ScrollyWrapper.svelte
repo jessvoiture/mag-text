@@ -1,8 +1,7 @@
 <script>
   import { group, extent } from "d3-array";
-  import { onMount } from "svelte";
 
-  import { months, magDemoDate, cumulativeAreaProportion } from "../stores";
+  import { months } from "../stores";
   import ScrollyChart from "./ScrollyChart.svelte";
   import ScrollyMethod from "./ScrollyMethod.svelte";
 
@@ -11,52 +10,6 @@
   export let screenWidth;
 
   const mags = data.magazines;
-
-  let sortedMagazines = [];
-  let guineaPigMag = null;
-  let whRatio = null;
-  let contours = [];
-
-  onMount(() => {
-    cumulativeAreaProportion.set(0); // important! for when mag changes
-
-    sortedMagazines = [...mags]
-      .sort((a, b) => a.Date - b.Date)
-      .filter((d) => d.Date == $magDemoDate);
-
-    guineaPigMag = sortedMagazines[0];
-    whRatio = guineaPigMag.wh_ratio;
-
-    contours = guineaPigMag.contours;
-  });
-
-  $: {
-    sortedMagazines = [...mags]
-      .sort((a, b) => a.Date - b.Date)
-      .filter((d) => d.Date == $magDemoDate);
-
-    guineaPigMag = sortedMagazines[0]; // the demo mag
-    whRatio = guineaPigMag.wh_ratio; // width height ratio
-    contours = guineaPigMag.contours; // the contours
-
-    // contour calculations
-    // determine cumulative area of all the contours
-    let totalContourArea = contours.reduce(
-      (acc, curr) => acc + curr.w * curr.h,
-      0
-    );
-
-    // sort by y pos so the animation looks clean
-    contours.sort((a, b) => a.y - b.y);
-
-    // calc what percentage each contour is of the entire contour area CUMULATIVELY
-    contours.forEach((item) => {
-      item.areaProportion =
-        ((item.w * item.h) / totalContourArea) * guineaPigMag.ratio * 100;
-      item.cumulativeAreaProportion = $cumulativeAreaProportion;
-      $cumulativeAreaProportion += item.areaProportion;
-    });
-  }
 
   const groupedMags = group(mags, (d) => d.year);
   const cumulativeData = [];
@@ -83,21 +36,22 @@
   $: dateExtent = extent(cumulativeData, (d) => d.year);
 </script>
 
-<ScrollyMethod
-  {cumulativeData}
-  {contours}
-  {whRatio}
-  {screenHeight}
-  {screenWidth}
-  {guineaPigMag}
-/>
+<ScrollyMethod {cumulativeData} {screenHeight} {screenWidth} />
 
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      The text-to-cover ratio serves as a useful measurement to quantify and
-      compare the amount of text that appears on the covers. I've repeated this
-      process for {cumulativeData.length} ranging across 22 years. Let's take a peek...
+      Is this merely an anomaly— did Rihanna's 2022 serve simply leave no room
+      for textual fare? Or is this indicative of a larger trend?
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="body-text">
+      Let's expand our search to all magazine covers from 2000 to 2022—{cumulativeData.length}
+      covers in total. As before, we will be looking at the area occupied by the
+      text compared to the total area of the magazine cover. For simplicity, I'll
+      refer to this percentage as the text coverage.
     </div>
   </div>
 </div>

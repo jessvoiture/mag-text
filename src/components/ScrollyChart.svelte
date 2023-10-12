@@ -26,16 +26,16 @@
 
   // scroll steps
   $: steps = [
-    `<p>We will start with a rectangle to represent the area of each magazine cover from ${dateExtent[0]} to ${dateExtent[1]}</p>`,
-    `<p>Just as before, we will plot the area of the text on top of the area of the cover.</p>`,
+    `<p>Here we have all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]} organised by month and year</p>`,
+    `<p>Just as before, we've plotted a magazine's text coverage in proportion to the magazine's cover area.</p>`,
     // 6 -> remove bg, by month
-    "<p>We can remove the background, so we can focus on the text coverages</p>",
+    "<p>But, let's remove the background, so we can focus on the text coverages</p>",
     // 7 -> remove bg, by month
     "<p>We can start to see a trend! More recent covers seem to have less area with text than older covers</p>",
     // 8 -> plot ratios
-    "<p>Now, let's just plot the text coverage by year</p>",
+    "<p>Just to be sure, let's just plot the text coverages by year</p>",
     // 9
-    "<p>We can clearly see the downward trend of the amount of text on covers</p>",
+    "<p>We can clearly see the downward trend of the amount of text on covers over time</p>",
     // 10
     `<p>Let's also plot the yearly average of the text coverage</p>`,
     // 11
@@ -49,7 +49,7 @@
   $: if (currentStep == 0) {
     // first chart! just the background
     showingMeanValues = false;
-    showingMonthRatios = false;
+    showingMonthRatios = true;
     setMonthValues();
   } else if (currentStep == 1) {
     // add on the ratios with fly transition
@@ -64,10 +64,12 @@
   } else if ((currentStep == 4) | (currentStep == 5)) {
     // barcode
     showingMeanValues = false;
+    showingMonthRatios = true;
     setRatioValues();
   } else if ((currentStep == 6) | (currentStep == 7)) {
     // barcode with means
     showingMeanValues = true;
+    showingMonthRatios = true;
     setRatioValues();
   }
 
