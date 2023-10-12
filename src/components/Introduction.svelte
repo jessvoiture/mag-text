@@ -3,16 +3,16 @@
     <div class="body-text hook">
       Do you remember where you were when Rihanna’s May 2022 US Vogue cover
       story dropped? The photographs, lensed by Annie Leibovitz, and the
-      fashion, styled by Alex Harrington And Jahleel Weaver, were nothing short
+      fashion, styled by Alex Harrington and Jahleel Weaver, were nothing short
       of transcendental.
     </div>
   </div>
 
   <div class="section">
     <div class="body-text">
-      The cover was a like many Vogue covers, complete with the signature
-      masthead at the top and a photo portrait. But the only text on the cover
-      (other than the Vogue masthead) read, “Oh, Baby! Rihanna’s Plus One.”
+      The cover was like many Vogue covers, complete with the signature masthead
+      at the top and a photo portrait. But the only text on the cover (other
+      than the Vogue masthead) read, “Oh, Baby! Rihanna’s Plus One.”
     </div>
   </div>
 
@@ -33,7 +33,7 @@
       I was set in motion to unearth the lost art of textual exuberance. In this
       extremely important, time sensitive, and highly requested endeavour, I
       analysed 22 years of US Vogue covers to ascertain if the amount of text on
-      covers had indeed dwindled. Please, enjoy.
+      covers had indeed dwindled.
     </div>
   </div>
 </div>

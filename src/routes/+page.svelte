@@ -2,7 +2,7 @@
   import { browser } from "$app/environment";
 
   import Hero from "../components/Hero.svelte";
-  import DataPrep from "../components/DataPrep.svelte";
+  import ScrollyWrapper from "../components/ScrollyWrapper.svelte";
   import MagazineList from "../components/MagazineList.svelte";
   import Introduction from "../components/Introduction.svelte";
   import AnalysisSection from "../components/AnalysisSection.svelte";
@@ -27,7 +27,7 @@
 
 <Hero />
 <Introduction />
-<DataPrep {data} {screenHeight} {screenWidth} />
+<ScrollyWrapper {data} {screenHeight} {screenWidth} />
 <AnalysisSection />
 <MagazineList {data} {screenWidth} />
 <Footer />

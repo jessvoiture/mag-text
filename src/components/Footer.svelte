@@ -9,19 +9,18 @@
       US Vogue magazine covers were sourced from
       <a target="_blank" href="https://archive.vogue.com/"
         >Vogue's online archive.</a
-      > I manually annotated the coverlines—or text areas—on the covers, using black
+      > I manually annotated the cover lines—or text areas—on the covers, using black
       boxes to denote text areas and white to denote the background. I did not include
       the masthead which appeared in a similar size and position on every cover.
       Nor did I include diagonal text that occasionally appeared on a banner on top
       of the masthead. As this was a manual process completed over a few months,
       it was undoubtedly subject to inconsistencies and human error. Only covers
-      from 2000 to 2022 were annotated as 1. the annotation process took quite a
-      bit of time and I am a one man band and 2. Vogue published a consistent number
-      of issues per year in this time period.
+      from 2000 to 2022 were annotated as this I am a one man band, but this time
+      period was long enough to illustrate a trend.
     </div>
     <div class="methods-section">
       The annotations were processed in Python using OpenCV to find the
-      coordinates and dimensions of the black rectangles on the iamge and to
+      coordinates and dimensions of the black rectangles on the image and to
       calculate the percentage of black pixels to the total image size. The
       detection of black rectangles was fairly good but sometimes presented
       false positives (eg black rectangles that were not in the original image).
@@ -76,7 +75,7 @@
         </li>
         <li>
           <a target="_blank" href="https://www.connorrothschild.com/"
-            >Conor Rothschild's</a
+            >Connor Rothschild's</a
           >
           blog posts, specifically this one on
           <a
@@ -84,9 +83,6 @@
             href="https://www.connorrothschild.com/post/svelte-scrollytelling"
             >scrollytelling with scrollama</a
           >
-        </li>
-        <li>
-          my occasional, reluctant-but-willing pair programmer, miss chatGPT
         </li>
       </ul>
     </div>

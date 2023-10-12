@@ -13,11 +13,11 @@ $font-serif: "didot";
 $color-background: #180e0d;
 $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
-$color-white: #ececec;
+$color-white: #e0e0e0;
 $color-accent: #f7a4f6;
 $type-size-small: 14pt;
 $type-size-very_small: 10pt;
-$type-line_height-small: 20pt;
+$type-line_height-small: 2rem;
 
 .type-accent {
   color: $color-accent;
@@ -119,6 +119,7 @@ a:visited {
 
 a:hover {
   text-decoration: none;
+  color: $color-accent;
 }
 
 body {
@@ -178,4 +179,64 @@ select {
   color: $color-background;
   font-size: $type-size-small;
   line-height: $type-line_height-small;
+}
+
+.steps-wrapper {
+  z-index: 10 !important;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  position: relative;
+  pointer-events: none;
+}
+.step {
+  z-index: 10 !important;
+  height: 110vh;
+  display: flex;
+  place-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.step-content {
+  background: whitesmoke;
+  color: #ccc;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: background 500ms ease;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  height: auto;
+  z-index: 11 !important;
+}
+
+@media (max-width: 800px) {
+  .step-content {
+    max-width: 85vw;
+  }
+
+  .step {
+    position: relative;
+  }
+}
+
+@media (min-width: 800px) {
+  .step-content {
+    max-width: 30vw;
+  }
+}
+
+.mag-gallery {
+  position: sticky;
+  margin: auto;
+  flex: 1 1 60%;
+  top: 0vh;
+  height: 100vh;
+  z-index: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

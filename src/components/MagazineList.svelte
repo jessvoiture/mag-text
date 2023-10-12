@@ -13,9 +13,10 @@
 
   let width;
   let sortBy;
+  let magWidth;
 
   let ascending = true;
-  let magWidth = 150;
+  // let magWidth = 150;
   let displayingCount = 12;
   let seeMoreWord = "See More";
   let numClickSeeMore = 0;
@@ -25,8 +26,20 @@
 
   $: if (screenWidth <= 860) {
     width = 0.9 * screenWidth;
+    magWidth = (width - 20) / 2;
   } else {
     width = 0.7 * screenWidth;
+    magWidth = (width - 5 * 20) / 6;
+  }
+
+  $: if (screenWidth <= 500) {
+    magWidth = (width - 20) / 2;
+  } else if ((screenWidth > 500) & (screenWidth <= 700)) {
+    magWidth = (width - 2 * 20) / 3;
+  } else if ((screenWidth > 700) & (screenWidth <= 1200)) {
+    magWidth = (width - 3 * 20) / 4;
+  } else if (screenWidth > 1200) {
+    magWidth = (width - 5 * 20) / 6;
   }
 
   function sort(by) {
@@ -81,7 +94,10 @@
     <div class="filters" />
   </div>
 
-  <div class="magazine-list">
+  <div
+    class="magazine-list"
+    style="grid-template-columns: repeat(auto-fill, {magWidth}px);"
+  >
     {#each sortedMagazinesRatio.slice(0, displayingCount) as d}
       <div class="list-element" style="width: {magWidth}px;">
         <MagCaption {d} {magWidth} showingRatio={true} imageType={"original"} />
@@ -130,8 +146,8 @@
   }
   .magazine-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
-    grid-gap: 1rem;
+    /* grid-template-columns: repeat(auto-fill, 150px); */
+    grid-gap: 20px;
     justify-content: space-between;
   }
 
@@ -196,6 +212,7 @@
 
   .list-element {
     padding-bottom: 20px;
+    max-width: 200px;
   }
 
   .sort-option {
