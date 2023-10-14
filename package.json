@@ -18,6 +18,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@vercel/analytics": "^1.1.1",
     "d3-array": "^3.2.4",
     "d3-format": "^3.1.0",
     "d3-scale": "^4.0.2",

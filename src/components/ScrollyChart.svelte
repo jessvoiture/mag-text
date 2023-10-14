@@ -26,19 +26,21 @@
 
   // scroll steps
   $: steps = [
+    // 0 -> all mags with bg
     `<p>Here we have all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]} organised by month and year</p>`,
+    // 1 -> all mags with bg
     `<p>Just as before, we've plotted a magazine's text coverage in proportion to the magazine's cover area.</p>`,
-    // 6 -> remove bg, by month
+    // 2 -> remove bg, by month
     "<p>But, let's remove the background, so we can focus on the text coverages</p>",
-    // 7 -> remove bg, by month
-    "<p>We can start to see a trend! More recent covers seem to have less area with text than older covers</p>",
-    // 8 -> plot ratios
-    "<p>Just to be sure, let's just plot the text coverages by year</p>",
-    // 9
+    // 3 -> remove bg, by month
+    "<p>We can start to see a trend! More recent covers seem to have a lower text coverage than older covers</p>",
+    // 4 -> barcode
+    "<p>To see trends more clearly, let's just plot the text coverages by year</p>",
+    // 5 -> barcode
     "<p>We can clearly see the downward trend of the amount of text on covers over time</p>",
-    // 10
+    // 6 ->  means
     `<p>Let's also plot the yearly average of the text coverage</p>`,
-    // 11
+    // 7 ->  means
     `<p>The area covered by text has decreased from an average of ~30% in ${dateExtent[0]} to ~10% in ${dateExtent[1]}.</p>`,
   ];
 

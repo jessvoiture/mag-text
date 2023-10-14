@@ -21,6 +21,15 @@
   let mag_width;
   let guineaPigMagList;
 
+  let contourTweenedY_1;
+  let contourTweenedX_1;
+  let contourTweenedH_1;
+  let contourTweenedW_1;
+  let contourTweenedY_2;
+  let contourTweenedX_2;
+  let contourTweenedH_2;
+  let contourTweenedW_2;
+
   const guineaPigMag_1 = sortedMagazines.find((d) => d.Date == 20110401);
   const guineaPigMag_2 = sortedMagazines.find((d) => d.Date == 20220501);
 
@@ -46,15 +55,6 @@
 
   const whRatio = guineaPigMag_1.wh_ratio;
 
-  let contourTweenedY_1;
-  let contourTweenedX_1;
-  let contourTweenedH_1;
-  let contourTweenedW_1;
-  let contourTweenedY_2;
-  let contourTweenedX_2;
-  let contourTweenedH_2;
-  let contourTweenedW_2;
-
   let currentStep = 0;
   let steps = [];
 
@@ -78,7 +78,7 @@
     `<p>Now, let's consider the total area covered by text compared to the total area of the cover. Around ${Math.round(
       guineaPigMag_1.ratio * 100,
       0
-    )}% of the 2011 cover was covered by text. In 2022, that percentage dipped to ${Math.round(
+    )}% of the 2011 cover was covered by text. In 2022, that percentage dipped to just ${Math.round(
       guineaPigMag_2.ratio * 100,
       0
     )}%</p>`,
@@ -88,10 +88,10 @@
   // if screen size is tall and narrow (ie W:H ratio for screen < magazine then use width as limiting dimension)
   //  if screen size is short and wide (ie W:H ratio for screen > magazine then use height as limiting dimension)
   $: if (screenWidth <= 860) {
-    mag_height = 0.4 * (screenHeight - 104);
+    mag_height = 0.4 * (screenHeight - 24);
     mag_width = findMagWidth(whRatio, mag_height);
   } else {
-    mag_width = 0.25 * (screenWidth - 104);
+    mag_width = 0.25 * (screenWidth - 96);
     mag_height = findMagHeight(whRatio, mag_width);
   }
 
@@ -268,6 +268,7 @@
                     type={"original"}
                     imagePathEnding={".jpg"}
                     alt={"Vogue magazine cover"}
+                    {showingImage}
                   />
                 </div>
 
@@ -330,7 +331,18 @@
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    gap: 80px;
+  }
+
+  @media (max-width: 860px) {
+    .mag-wrapper {
+      gap: 16px;
+    }
+  }
+
+  @media (min-width: 860px) {
+    .mag-wrapper {
+      gap: 80px;
+    }
   }
 
   .image-wrapper {

@@ -53,6 +53,6 @@
   }
 
   .mag-chart-rect.grayedout {
-    fill-opacity: 0.2;
+    fill-opacity: 0.33;
   }
 </style>
