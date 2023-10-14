@@ -29,9 +29,9 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      The decline in text on covers mirrors broader changes in media consumption
-      habits and an evolving preference for minimalist graphic design. To
-      understand, let's get into a bit of history.
+      The change in text on covers mirrors broader transformations in media
+      consumption habits and an evolving preference for minimalist graphic
+      design. To understand, let's get into a bit of history.
     </div>
   </div>
 

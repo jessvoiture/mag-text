@@ -37,9 +37,9 @@
     // 4 -> barcode
     "<p>To see trends more clearly, let's just plot the text coverages by year</p>",
     // 5 -> barcode
-    "<p>We can clearly see the downward trend of the amount of text on covers over time</p>",
+    "<p>We can see a sort of inverted U shape, with text coverage increasing slightly in the early aughts, peaking in the mid 2000s and then steadily declining</p>",
     // 6 ->  means
-    `<p>Let's also plot the yearly average of the text coverage</p>`,
+    `<p>Let's plot the average text coverage by year to take a closer look at these trends</p>`,
     // 7 ->  means
     `<p>The area covered by text has decreased from an average of ~30% in ${dateExtent[0]} to ~10% in ${dateExtent[1]}.</p>`,
   ];

@@ -1,10 +1,12 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text hook">
-      Do you remember where you were when Rihanna’s May 2022 US Vogue cover
-      story dropped? The photographs, lensed by Annie Leibovitz, and the
-      fashion, styled by Alex Harrington and Jahleel Weaver, were nothing short
-      of transcendental.
+      Do you remember where you were when <a
+        href="https://www.vogue.com/article/rihanna-cover-may-2022"
+        target="_blank">Rihanna’s May 2022 US Vogue cover</a
+      >
+      story dropped? The photographs, lensed by Annie Leibovitz, and the fashion,
+      styled by Alex Harrington and Jahleel Weaver, were nothing short of transcendental.
     </div>
   </div>
 
@@ -33,7 +35,7 @@
       I was set in motion to unearth the lost art of textual exuberance. In this
       extremely important, time sensitive, and highly requested endeavour, I
       analysed 22 years of US Vogue covers to ascertain if the amount of text on
-      covers had indeed dwindled.
+      covers has indeed dwindled.
     </div>
   </div>
 </div>
