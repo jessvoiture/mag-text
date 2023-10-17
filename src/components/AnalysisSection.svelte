@@ -28,10 +28,15 @@
 
 <div class="body-section">
   <div class="section">
-    <div class="body-text">
+    <!-- <div class="body-text">
       The change in text on covers mirrors broader transformations in media
       consumption habits and an evolving preference for minimalist graphic
       design. To understand, let's get into a bit of history.
+    </div> -->
+
+    <div class="body-text">
+      But, before we dive into Vogue's recent relationship with text, let's go
+      back a bit further.
     </div>
   </div>
 
@@ -115,9 +120,9 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1990s} />
+  <!-- <MagazineExamples magList={examples1990s} /> -->
 
-  <div class="section">
+  <!-- <div class="section">
     <div class="body-text">
       With the rise of digital media in the 2000s, print publications clung
       steadfastly to traditions of illustration, photography, and
@@ -135,14 +140,14 @@
       and 1 billion by June 2018. Through social media platforms, celebrities
       could communicate directly with fans and wield more control over their
       image and narratives; Vogue and similar publications no longer held a
-      monopoly on celebrity culture. Yet, despite the saturation of celebrity
+      monopoly on the sale of celebrity parasocial relationships. Yet, despite the saturation of celebrity
       content and photos, magazine
       <a
         target="_blank"
         href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
         >covers have remained relevant</a
       >. The concept of a cover story is so ingrained in our culture, that they
-      are readily circulated online and being a cover star still holds social
+      are readily circulated online and the act of being a cover star still holds social
       capital. But, digitization dramatically changed how people interacted with
       magazine covers and issues.
     </div>
@@ -198,5 +203,5 @@
       (successful) bid to stay relevant. The cultural imprint of Vogue magazine
       is profound, yet it, too, has been shaped by the shifting tides of time.
     </div>
-  </div>
+  </div>-->
 </div>
