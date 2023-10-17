@@ -2,9 +2,6 @@
   import { fade } from "svelte/transition";
   import { mean, rollup } from "d3-array";
 
-  export let innerHeight;
-  export let innerWidth;
-  export let marginUnit;
   export let cumulativeData;
   export let xScale;
   export let yScale;

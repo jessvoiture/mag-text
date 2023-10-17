@@ -11,6 +11,7 @@
   import AxisX from "./AxisX.svelte";
   import AxisY from "./AxisY.svelte";
   import Tooltip from "./Tooltip.svelte";
+  import ScatterplotRectangle from "./ScatterplotRectangle.svelte";
 
   export let width;
   export let height;
@@ -21,6 +22,9 @@
   export let screenWidth;
   export let screenHeight;
   export let showingMonthRatios;
+  export let justAdded;
+  export let rectangle;
+  export let showingRectangle;
 
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
@@ -29,18 +33,13 @@
   let rectTranslation;
   let yTickCount;
   let uniqueYears = new Set();
-  let uniqueMonths = new Set();
 
   cumulativeData.forEach((item) => {
     uniqueYears.add(item.year);
   });
 
-  cumulativeData.forEach((item) => {
-    uniqueMonths.add(item.month);
-  });
-
   let uniqueYearsCount = uniqueYears.size;
-  let uniqueMonthsCount = uniqueMonths.size;
+  let uniqueMonthsCount = 12;
 
   let ratioExtent = extent(cumulativeData, (d) => d.ratio);
   let ratioMax = ratioExtent[1];
@@ -51,10 +50,10 @@
   const margin = { top: 40, left: 40, right: 40, bottom: 40 };
 
   $: if (screenWidth <= 860) {
-    height = 0.7 * screenHeight;
+    height = 0.8 * screenHeight;
     width = 0.9 * screenWidth;
   } else {
-    height = 0.75 * screenHeight;
+    height = 0.8 * screenHeight;
     width = 0.8 * screenWidth;
   }
 
@@ -62,10 +61,11 @@
   $: innerHeight = height - margin.top - margin.bottom;
 
   $: yExtent = extent($tweenedY);
+  $: yMax = yExtent[1] + 0.05;
   $: xExtent = extent(cumulativeData, (d) => d.year);
 
   $: xScale = scaleLinear().domain(xExtent).range([0, innerWidth]);
-  $: yScaleNormal = scaleLinear().domain(yExtent).range([innerHeight, 0]);
+  $: yScaleNormal = scaleLinear().domain([0, yMax]).range([innerHeight, 0]);
   $: yScaleReverse = scaleLinear().domain(yExtent).range([0, innerHeight]);
 
   $: rectWidth = (innerWidth / uniqueYearsCount) * 0.9;
@@ -96,7 +96,7 @@
     yScale = yScaleNormal;
   }
 
-  let chartDivHeight = width + 50;
+  let chartDivHeight = width + 25;
   let chartTitle = "";
 
   $: if ((yVals == "month") | (yVals == "relative")) {
@@ -113,7 +113,7 @@
     <g
       width={innerWidth}
       height={innerHeight}
-      transform={`translate(${marginUnit}, 0)`}
+      transform={`translate(${marginUnit}, 30)`}
       class="scatterplot-g"
     >
       {#if yVals == "month"}
@@ -128,6 +128,10 @@
         />
       {/if}
 
+      {#if showingRectangle}
+        <ScatterplotRectangle {rectangle} {innerHeight} {xScale} />
+      {/if}
+
       {#if showingMonthRatios}
         <ScatterplotRatios
           {cumulativeData}
@@ -138,6 +142,7 @@
           {rectWidth}
           {rectHeightMultiplyingFactor}
           {rectHeightAddition}
+          {justAdded}
         />
 
         {#if showingMeanValues}

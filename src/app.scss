@@ -15,9 +15,9 @@ $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
 $color-white: #e0e0e0;
 $color-accent: #f7a4f6;
-$type-size-small: 14pt;
+$type-size-small: 12pt;
 $type-size-very_small: 10pt;
-$type-line_height-small: 2rem;
+$type-line_height-small: 20pt;
 
 .type-accent {
   color: $color-accent;
@@ -99,7 +99,7 @@ body {
   font-size: 14pt;
   text-transform: uppercase;
   color: $color-white;
-  margin-bottom: 32px;
+  margin-bottom: 8px;
 }
 
 hr {

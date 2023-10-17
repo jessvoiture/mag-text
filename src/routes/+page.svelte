@@ -28,6 +28,6 @@
 <Hero />
 <Introduction />
 <ScrollyWrapper {data} {screenHeight} {screenWidth} />
-<AnalysisSection />
+<!-- <AnalysisSection /> -->
 <MagazineList {data} {screenWidth} />
 <Footer />
