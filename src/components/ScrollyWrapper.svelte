@@ -68,9 +68,8 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      Social media and mobile devices have undoubtedly transformed the landscape
-      of Vogue magazines, forcing its evolution towards a more minimalist
-      design.
+      Social media and mobile devices have transformed the landscape of Vogue
+      magazines, forcing its evolution towards a more minimalist design.
     </div>
   </div>
 

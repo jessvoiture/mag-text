@@ -20,7 +20,7 @@
   };
 </script>
 
-<g transform="translate(0, {marginUnit})" class="axis yaxis" transition:fade>
+<g transform="translate(0, 30)" class="axis yaxis" transition:fade>
   {#each yTicks as tick}
     <g class="tick" transform="translate(0, {yScale(tick)})">
       <text>{formatTick(tick, yVals)}</text>

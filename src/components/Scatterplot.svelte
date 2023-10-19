@@ -113,7 +113,7 @@
     <g
       width={innerWidth}
       height={innerHeight}
-      transform={`translate(${marginUnit}, 30)`}
+      transform={`translate(${marginUnit}, 20)`}
       class="scatterplot-g"
     >
       {#if yVals == "month"}
