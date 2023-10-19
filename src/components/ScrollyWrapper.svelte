@@ -43,8 +43,7 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      Is this merely an anomaly— did Rihanna simply slay so hard in 2022 that
-      there was no room for textual fare? Or is this indicative of a larger
+      Is this discrepancy merely an anomaly? Or is this indicative of a larger
       trend?
     </div>
   </div>
