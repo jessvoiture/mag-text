@@ -53,7 +53,7 @@
     // 5 -> barcode
     "<p>We can see a sort of inverted U shape, with text coverage increasing slightly in the early aughts, peaking in the mid 2000s and then steadily declining</p>",
     // 6 ->  means
-    `<p>First, let's plot the average text coverage by year to take a closer look at the recent trends</p>`,
+    `<p>Let's plot the average text coverage by year to take a closer look</p>`,
     // 7 -> 2000 - 2004
     `<p>In the early 2000s print publications were slow to embrace the digital frontier, clinging to traditional cover designs and advertising methods</p>`,
     // 8 -> 2000 - 2004
@@ -95,7 +95,6 @@
     showingRectangle = false;
     setMonthValues();
   } else if (currentStep == 1) {
-    // add on the ratios with fly transition
     setMonthValues();
     showingMeanValues = false;
     showingMonthRatios = true;

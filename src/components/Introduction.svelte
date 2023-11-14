@@ -36,9 +36,11 @@
 
   <div class="section">
     <div class="body-text">
-      Appalling. Where had all the flashy text in mismatched type, size, and
-      colour gone? I was immediately set in motion to unearth the lost art of
-      textual exuberance.
+      Appalling. Where had all the flashy text in mismatched type, size, weight,
+      and colour gone? I was immediately set in motion to unearth the lost art
+      of textual exuberance. In this extremely important, time sensitive, and
+      highly requested endeavour, I analysed 22 years of US Vogue covers to
+      ascertain if the amount of text on covers has indeed dwindled.
     </div>
   </div>
 
