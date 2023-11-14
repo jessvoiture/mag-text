@@ -40,29 +40,11 @@
 
 <ScrollyMethod {cumulativeData} {screenHeight} {screenWidth} />
 
-<div class="body-section">
-  <div class="section">
-    <div class="body-text">
-      Is this discrepancy merely an anomaly? Or is this indicative of a larger
-      trend?
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      Let's expand our search to all magazine covers from 2000 to 2022—{cumulativeData.length}
-      covers in total. As before, we will be looking at the area occupied by the
-      text compared to the total area of the magazine cover. For simplicity, I'll
-      refer to this percentage as the text coverage.
-    </div>
-  </div>
-</div>
+<AnalysisSection />
 
 <ScrollyChart {cumulativeData} {screenHeight} {screenWidth} {dateExtent} />
 
-<AnalysisSection />
-
-<AnalysisScrolly {cumulativeData} {screenHeight} {screenWidth} />
+<!-- <AnalysisScrolly {cumulativeData} {screenHeight} {screenWidth} /> -->
 
 <div class="body-section">
   <div class="section">

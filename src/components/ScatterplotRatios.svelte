@@ -23,11 +23,12 @@
   };
 </script>
 
-<g class="data-plotted" transition:fade>
+<g class="data-plotted">
   {#each cumulativeData as d, index}
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-mouse-events-have-key-events -->
     <rect
+      in:fly={{ delay: justAdded ? index * 7 : 0 }}
       class:grayedout={showingMeanValues}
       class="mag-chart-rect scatterplot"
       x={xScale(d.year)}

@@ -28,27 +28,23 @@
 
 <div class="body-section">
   <div class="section">
-    <!-- <div class="body-text">
-      The change in text on covers mirrors broader transformations in media
-      consumption habits and an evolving preference for minimalist graphic
-      design. To understand, let's get into a bit of history.
-    </div> -->
-
     <div class="body-text">
-      But, before we dive into Vogue's recent relationship with text, let's go
-      back a bit further.
+      The numbers are damning. But is this discrepancy merely an anomaly? Did
+      the bump simply speak for itself? I’m afraid the answer is no. But, before
+      we dive into data on Vogue's recent relationship with text, let's go back
+      a bit further.
     </div>
   </div>
 
   <div class="section last-section">
     <div class="body-text">
-      In the early 20th century, magazine covers featured illustrations. The
+      In the early 20th century, Vogue covers featured illustrations. The
       intention was to create covers so beautiful that one might consider
       hanging them as a <a
         target="_blank"
         href="https://d2cu82y6eo7f22.cloudfront.net/2022/02/07212140/JMM_5.1_Grow.pdf"
         >poster</a
-      >, thus dubbed poster covers. The 1930s saw the transition from
+      >, thus creatively dubbed poster covers. The 1930s saw the transition from
       illustrated covers to photographed ones, with Vogue debuting its first
       cover with a
       <a
@@ -57,7 +53,7 @@
         >photograph</a
       > in 1932. Despite this shift in medium, the poster-like aesthetic retained
       its allure. While publications toyed with text placement, the focal point invariably
-      remained the central image (they were stunning).
+      remained the central image (hands up, they were stunning).
     </div>
   </div>
 
@@ -96,7 +92,7 @@
     </div>
   </div>
 
-  <div class="section last-section">
+  <div class="section">
     <div class="body-text">
       This trend continued to persist and mature throughout the 20th century and
       into the 21st. The rapid improvement of graphic design software and
@@ -120,88 +116,9 @@
     </div>
   </div>
 
-  <!-- <MagazineExamples magList={examples1990s} /> -->
-
-  <!-- <div class="section">
-    <div class="body-text">
-      With the rise of digital media in the 2000s, print publications clung
-      steadfastly to traditions of illustration, photography, and
-      celebrity-focused portraiture, showing a reluctance to embrace the digital
-      frontier. The text bombardment continued.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      In 2010, Instagram was launched and quickly <a
-        target="_blank"
-        href="https://en.wikipedia.org/wiki/Instagram">found success</a
-      >, with one million registered users in two months, 10 million in a year,
-      and 1 billion by June 2018. Through social media platforms, celebrities
-      could communicate directly with fans and wield more control over their
-      image and narratives; Vogue and similar publications no longer held a
-      monopoly on the sale of celebrity parasocial relationships. Yet, despite the saturation of celebrity
-      content and photos, magazine
-      <a
-        target="_blank"
-        href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
-        >covers have remained relevant</a
-      >. The concept of a cover story is so ingrained in our culture, that they
-      are readily circulated online and the act of being a cover star still holds social
-      capital. But, digitization dramatically changed how people interacted with
-      magazine covers and issues.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      Social media replaced the newsstand as the marketplace for magazines, with
-      people's initial encounters with magazines often transpiring online,
-      rather than in physical stores. Magazines needed to leverage a digital
-      approach to create cultural resonance and online buzz (and to reap the
-      financial rewards).
-    </div>
-  </div>
-
   <div class="section last-section">
     <div class="body-text">
-      The clickbait-y cover lines were not as impactful as <a
-        target="_blank"
-        href="https://www.theringer.com/2018/9/4/17816298/magazine-cover-industry-2018"
-        >striking imagery</a
-      >
-      in the digital landscape, and the noisy, maximalist design chock-full of text
-      didn’t translate well to
-      <a
-        target="_blank"
-        href="https://www.nucreative.co.uk/post/graphic-design-trends-of-the-last-decade"
-        >small screens</a
-      >. Thus, magazine covers trended toward minimalism, offering visual
-      efficacy both on large screens, mobile devices, and print while also
-      imbuing a sense of modernity.
+      This brings up to the 2000s. Let's get into the data!
     </div>
   </div>
-
-  <MagazineExamples magList={examples2010s} />
-
-  <div class="section">
-    <div class="body-text">
-      In the digital age, the prominence of a magazine's cover star has far
-      greater potential for virality than its cover lines. Ergo, we almost see a
-      rebirth of the poster covers of the early 1900s, with much more focus on
-      the cover imagery and the subject themself. The dissemination of visuals,
-      as well as accompanying media such as YouTube videos, across social media
-      serve as an advertising medium thus rendering the cover lines obsolete and
-      unnecessary noise. The high-production editorial shoots provokes greater
-      visual impact in an infinite sea of online content.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      Vogue's text journey is undoubtedly a reaction to societal change and a
-      (successful) bid to stay relevant. The cultural imprint of Vogue magazine
-      is profound, yet it, too, has been shaped by the shifting tides of time.
-    </div>
-  </div>-->
 </div>
