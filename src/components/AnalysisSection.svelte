@@ -105,20 +105,36 @@
       cinematic tour de force, The Devil Wears Prada, and stealing the bob
       limelight from Edna Mode, Wintour played an instrumental role in
       redefining Vogue's cover aesthetics. She advocated for the appearance of
-      more actors, musicians, and political figures on the cover of Vogue,
-      positioning the magazine as a cultural lodestar offering access to eminent
+      more actors, musicians, and political figures on the cover of Vogue
+      instead of just models.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="body-text">
+      This stategy, perhaps unintentially, sensationalised the role of the cover
+      star. The role of cover star became one of honor, for it signified a
+      celebration and acknoweledgement of not only a person's
+      <a
+        target="_blank"
+        href="https://www.washingtonpost.com/news/arts-and-entertainment/wp/2014/03/25/why-we-are-still-talking-about-kanye-west-and-kim-kardashians-vogue-cover/"
+        >contribution to fashion but to larger culture.</a
+      >
+      Furthermore, this approach positioned the magazine as a cultural lodestar offering
+      access to eminent
       <a
         target="_blank"
         href="https://web.archive.org/web/20230409202208/nytimes.com/1999/01/30/business/trading-on-hollywood-magic-celebrities-push-models-off-women-s-magazine-covers.html"
         >celebrities</a
       >. In an era predating the ubiquity of social media, magazine profiles
-      served as a conduit linking celebrities with society.
+      served as a conduit between celebrities and society.
     </div>
   </div>
 
   <div class="section last-section">
     <div class="body-text">
-      This brings up to the 2000s. Let's get into the data!
+      This brings us up to the 2000s, where the effects of the tech boom and
+      Anna Wintout truly precipitate. Let's get into the data!
     </div>
   </div>
 </div>

@@ -9,7 +9,13 @@
 <div class="example-wrapper">
   {#each magList as d}
     <div class="example">
-      <MagCaption {d} {magWidth} showingRatio={false} imageType={"special"} />
+      <MagCaption
+        {d}
+        {magWidth}
+        showingRatio={false}
+        imageType={"special"}
+        colour={"white"}
+      />
     </div>
   {/each}
 </div>
