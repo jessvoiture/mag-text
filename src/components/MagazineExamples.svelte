@@ -2,6 +2,7 @@
   import MagCaption from "./MagCaption.svelte";
 
   export let magList;
+  export let showingRatio;
 
   let magWidth = "200";
 </script>
@@ -12,7 +13,7 @@
       <MagCaption
         {d}
         {magWidth}
-        showingRatio={false}
+        {showingRatio}
         imageType={"special"}
         colour={"white"}
       />

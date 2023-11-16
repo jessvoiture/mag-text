@@ -23,8 +23,6 @@
   export let screenHeight;
   export let showingMonthRatios;
   export let justAdded;
-  export let rectangle;
-  export let showingRectangle;
 
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
@@ -126,10 +124,6 @@
           {rectHeightMultiplyingFactor}
           {rectHeightAddition}
         />
-      {/if}
-
-      {#if showingRectangle}
-        <ScatterplotRectangle {rectangle} {innerHeight} {xScale} />
       {/if}
 
       {#if showingMonthRatios}

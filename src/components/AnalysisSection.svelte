@@ -24,15 +24,20 @@
     { Date: "20201201", month: 12, year: 2020 },
     { Date: "20210201", month: 2, year: 2021 },
   ];
+
+  let showingRatio = false;
 </script>
 
 <div class="body-section">
   <div class="section">
     <div class="body-text">
       The numbers are damning. But is this discrepancy merely an anomaly? Did
-      the bump simply speak for itself? I’m afraid the answer is no. But, before
-      we dive into data on Vogue's recent relationship with text, let's go back
-      a bit further.
+      the bump simply speak for itself? There was simply only one path forward.
+      In this extremely important, time sensitive, and highly requested
+      endeavour, I analysed 22 years of US Vogue covers to ascertain if the
+      amount of text on covers has indeed dwindled. But, before we dive into
+      data on Vogue's recent relationship with text, we must fist appreciate
+      Vogue covers' origin story.
     </div>
   </div>
 
@@ -57,7 +62,7 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1900s} />
+  <MagazineExamples magList={examples1900s} {showingRatio} />
 
   <div class="section last-section">
     <div class="body-text">
@@ -79,7 +84,7 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1960s} />
+  <MagazineExamples magList={examples1960s} {showingRatio} />
 
   <div class="section">
     <div class="body-text">

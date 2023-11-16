@@ -5,7 +5,7 @@
   import ScrollyChart from "./ScrollyChart.svelte";
   import ScrollyMethod from "./ScrollyMethod.svelte";
   import AnalysisSection from "../components/AnalysisSection.svelte";
-  import AnalysisScrolly from "./AnalysisScrolly.svelte";
+  import Caboose from "./Caboose.svelte";
 
   export let data;
   export let screenHeight;
@@ -44,34 +44,4 @@
 
 <ScrollyChart {cumulativeData} {screenHeight} {screenWidth} {dateExtent} />
 
-<!-- <AnalysisScrolly {cumulativeData} {screenHeight} {screenWidth} /> -->
-
-<div class="body-section">
-  <div class="section">
-    <div class="body-text">
-      Social media and mobile devices have transformed the landscape of Vogue
-      magazines, forcing its evolution towards a more minimalist design.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      We almost see a rebirth of the simpler poster covers of the early 1900s,
-      with much more focus on the cover imagery and the cover star themself. The
-      dissemination of visuals, as well as accompanying media such as YouTube
-      videos, across social media serves as an advertising medium thus rendering
-      the cover lines obsolete and unnecessary noise. The high-production
-      editorial shoots provokes greater visual impact and efficacy on large
-      screens, mobile devices, and print while also imbuing a sense of modernity
-      and artistry.
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="body-text">
-      Vogue's text journey is undoubtedly a reaction to societal change and a
-      (successful) bid to stay relevant. The cultural imprint of Vogue magazine
-      is profound, yet it, too, has been shaped by the shifting tides of time.
-    </div>
-  </div>
-</div>
+<Caboose {cumulativeData} {screenHeight} {screenWidth} />
