@@ -1,9 +1,14 @@
 <script>
+  import AreaChart from "./AreaChart.svelte";
   import MagazineExamples from "./MagazineExamples.svelte";
 
   export let cumulativeData;
+  export let yt;
+  export let google;
   export let screenHeight;
   export let screenWidth;
+
+  console.log(google[0]);
 
   let examplesEarly2000sYears = [20011101, 20030701, 20060901];
   let examplesEarly2010sYears = [20120901, 20140401, 20170801];
@@ -34,7 +39,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       Vogue launched its flagship website in 1998 <a
         target="_blank"
@@ -78,13 +83,15 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       In the 2010s, we start to see the affects of these changes manifesting on
       the cover, through a gradual decline in text coverage. Put simply, the
       coverlines were simply caught in the crossfire of the tech explosion
     </div>
   </div>
+
+  <MagazineExamples magList={examplesEarly2010s} {showingRatio} />
 
   <div class="section">
     <div class="body-text">
@@ -94,8 +101,6 @@
       imbuing a sense of modernity (9).
     </div>
   </div>
-
-  <MagazineExamples magList={examplesEarly2010s} {showingRatio} />
 
   <div class="section">
     <div class="body-text">
@@ -110,12 +115,34 @@
   </div>
 
   <div class="section">
+    <div class="chart-title">
+      Google Search Interest in 'vogue magazine cover'
+    </div>
+    <div class="chart-subtitle text">
+      Note: Vogue Cover designs are often revealed online the month before the
+      issue is released. Therefore, interest in a certain month's issue might
+      occur in the previous month. <a
+        href="https://trends.google.com/trends/explore?q=vogue%20magazine%20cover&date=all&geo=US"
+        target="_blank">Source</a
+      >
+    </div>
+
+    <AreaChart
+      {screenHeight}
+      {screenWidth}
+      points={google}
+      xKey="Date"
+      yKey="Search"
+    />
+  </div>
+
+  <div class="section">
     <div class="body-text">
       Between 2006 and 2016, average annual text coverage decreased by 15%.
     </div>
   </div>
 
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       Since 2018, there has been a consistent yearly dip in text coverage,
       marking an intensified progression of the pattern seen in the early 2010s.
@@ -156,3 +183,21 @@
     </div>
   </div>
 </div>
+
+<style>
+  .chart-subtitle {
+    color: #8a8a8a;
+    font-size: 10pt;
+    font-family: "encode";
+  }
+
+  a {
+    color: #8a8a8a;
+    text-decoration: underline;
+  }
+
+  a:hover {
+    color: #8a8a8a;
+    text-decoration: none;
+  }
+</style>

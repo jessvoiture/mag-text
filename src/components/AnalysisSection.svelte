@@ -8,9 +8,9 @@
   ];
 
   let examples1960s = [
-    { Date: "19660601", month: 6, year: 1966 },
+    { Date: "19590115", month: 1, year: 1959 },
     { Date: "19740801", month: 8, year: 1974 },
-    { Date: "19840801", month: 8, year: 1984 },
+    { Date: "19881101", month: 11, year: 1988 },
   ];
 
   let examples1990s = [
@@ -64,7 +64,7 @@
 
   <MagazineExamples magList={examples1900s} {showingRatio} />
 
-  <div class="section last-section">
+  <div class="section">
     <div class="body-text">
       Towards the midpoint of the century, the economic underpinnings of many
       magazines shifted from
@@ -84,9 +84,7 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1960s} {showingRatio} />
-
-  <div class="section">
+  <div class="section last-section">
     <div class="body-text">
       This trend was no doubt complemented by the <a
         target="_blank"
@@ -96,6 +94,8 @@
       design technology, including phototypesetting
     </div>
   </div>
+
+  <MagazineExamples magList={examples1960s} {showingRatio} />
 
   <div class="section">
     <div class="body-text">

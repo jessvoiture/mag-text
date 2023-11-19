@@ -12,6 +12,8 @@
   export let screenWidth;
 
   const mags = data.magazines;
+  const yt = data.yt;
+  const google = data.google;
 
   const groupedMags = group(mags, (d) => d.year);
   const cumulativeData = [];
@@ -44,4 +46,4 @@
 
 <ScrollyChart {cumulativeData} {screenHeight} {screenWidth} {dateExtent} />
 
-<Caboose {cumulativeData} {screenHeight} {screenWidth} />
+<Caboose {cumulativeData} {yt} {google} {screenHeight} {screenWidth} />
