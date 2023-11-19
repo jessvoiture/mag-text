@@ -2,7 +2,6 @@
   import { extent } from "d3-array";
   import { scaleLinear, scaleTime } from "d3-scale";
   import { timeParse, timeFormat } from "d3-time-format";
-  import { onMount } from "svelte";
   import { annotationDates } from "../utils/annotations.js";
   import AxisX from "./AxisX.svelte";
 
@@ -12,9 +11,10 @@
   export let screenWidth;
 
   let width;
-  let curveHeight = 30;
   let curveWidth = 20;
+  let textXTranslate;
 
+  const annotationWidth = 180;
   const circleRadius = 7;
 
   const annotationDatesJoined = annotationDates.map((annotation) => {
@@ -72,8 +72,13 @@
   let selectedAnnotation = parsedAnnotationDates[1];
   $: startX = xScale(selectedAnnotation.Date);
   $: startY = yScale(selectedAnnotation.Search);
-  $: endX = startX + curveWidth;
-  $: endY = startY - curveHeight;
+  $: endX = startX + curveWidth * selectedAnnotation.CurveDirection; // use opposite of curve width to change direction
+  $: endY = startY - innerHeight * selectedAnnotation.CurveHeightFactor; // change this for longer curve
+  $: if (selectedAnnotation.CurveDirection == -1) {
+    textXTranslate = -annotationWidth - 20;
+  } else {
+    textXTranslate = 30;
+  }
 
   function handleEvent(_event, annotation) {
     selectedAnnotation = annotation;
@@ -116,13 +121,13 @@
           <path
             d="M {startX} {startY} 
                 C
-                {startX}
+                {startX} 
                 {startY - 10}
 
-                {startX}
+                {startX + selectedAnnotation.AdditionalCurveFactor}
                 {endY}
 
-                {endX}
+                {endX} 
                 {endY}
                 "
             stroke="#c4c4c4"
@@ -130,14 +135,32 @@
           />
         {/if}
 
-        <text
+        <!-- <text
           class="annotation-label"
           x={xScale(selectedAnnotation.Date)}
           y={yScale(selectedAnnotation.Search)}
           transform="translate({curveWidth + 5}, -{curveHeight - 6})"
         >
           {selectedAnnotation.Person}
-        </text>
+        </text> -->
+
+        <foreignObject
+          width={annotationWidth}
+          height="100"
+          x={xScale(selectedAnnotation.Date)}
+          y={yScale(selectedAnnotation.Search)}
+          transform="translate({textXTranslate}, -{innerHeight *
+            selectedAnnotation.CurveHeightFactor +
+            10})"
+        >
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#c4c4c4;"
+            class="annotation-label"
+          >
+            {selectedAnnotation.Person}
+          </div>
+        </foreignObject>
       </g>
 
       <g class="x-axis axis">
@@ -168,6 +191,10 @@
 
   svg {
     overflow: visible;
+  }
+
+  .annotation {
+    pointer-events: all;
   }
 
   .annotation-label {
