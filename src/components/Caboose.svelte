@@ -3,7 +3,6 @@
   import MagazineExamples from "./MagazineExamples.svelte";
 
   export let cumulativeData;
-  export let yt;
   export let google;
   export let screenHeight;
   export let screenWidth;
@@ -41,7 +40,7 @@
 
   <div class="section last-section">
     <div class="body-text">
-      Vogue launched its flagship website in 1998 <a
+      Vogue launched its flagship website in <a
         target="_blank"
         href="https://web.archive.org/web/19981212022034/http://vogue.com/"
         >1998</a
@@ -127,13 +126,7 @@
       >
     </div>
 
-    <AreaChart
-      {screenHeight}
-      {screenWidth}
-      points={google}
-      xKey="Date"
-      yKey="Search"
-    />
+    <AreaChart {screenHeight} {screenWidth} points={google} />
   </div>
 
   <div class="section">
@@ -191,12 +184,12 @@
     font-family: "encode";
   }
 
-  a {
+  .chart-subtitle > a {
     color: #8a8a8a;
     text-decoration: underline;
   }
 
-  a:hover {
+  .chart-subtitle > a:hover {
     color: #8a8a8a;
     text-decoration: none;
   }

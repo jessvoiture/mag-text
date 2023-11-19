@@ -3,6 +3,7 @@
   import { scaleLinear } from "d3-scale";
   import { extent } from "d3-array";
   import { timeFormat } from "d3-time-format";
+  import { format } from "d3-format";
 
   import { hoveredDatapoint } from "../stores";
 
@@ -47,7 +48,7 @@
 
   const margin = { top: 40, left: 40, right: 40, bottom: 40 };
 
-  const formatTick = timeFormat("%Y");
+  const formatTick = format(".0f");
 
   $: if (screenWidth <= 860) {
     height = 0.8 * screenHeight;
