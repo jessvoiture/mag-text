@@ -63,13 +63,16 @@
 
   <div class="section">
     <div class="body-text">
-      In 2010, Instagram was launched and quickly found success, with one
-      million registered users in two months, 10 million in a year, and 1
-      billion by June 2018 (13). Digitisation and social media dramatically
-      affected how people interacted with print publications. People's initial
-      encounters with magazines transpired online, rather than in physical
-      stores. While subscriptions remained the primary source of revenue, social
-      media platforms replaced the newsstand as the marketplace.
+      In 2010, Instagram was launched and quickly
+      <a href="https://en.wikipedia.org/wiki/Instagram" target="_blank"
+        >found success,</a
+      >
+      with one million registered users in two months, 10 million in a year, and
+      1 billion by June 2018. Digitisation and social media dramatically affected
+      how people interacted with print publications. People's initial encounters
+      with magazines transpired online, rather than in physical stores. While subscriptions
+      remained the primary source of revenue, social media platforms replaced the
+      newsstand as the marketplace.
     </div>
   </div>
 
@@ -97,7 +100,7 @@
       The clickbait titles and noisy, maximalist design didn’t translate well to
       small screens. Graphic design as a whole trended toward minimalism,
       offering visual efficacy both on billboards and mobile displays and
-      imbuing a sense of modernity (9).
+      imbuing a sense of modernity.
     </div>
   </div>
 
@@ -110,6 +113,13 @@
       subject themself. To differentiate themselves from the ocean of celebrity
       photos and content, Vogue needed to put forth high-impact visuals for
       shock value. Accompanied by a juicy interview and Vogue's got a winner.
+      <a
+        target="_blank"
+        href="https://www.washingtonpost.com/news/arts-and-entertainment/wp/2014/03/25/why-we-are-still-talking-about-kanye-west-and-kim-kardashians-vogue-cover/"
+      >
+        Kim Kardashian's and Kayne West's controversial cover
+      </a> in 2014 engendered an boost in Google search interest in vogue magazine
+      covers.
     </div>
   </div>
 

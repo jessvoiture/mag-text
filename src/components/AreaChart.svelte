@@ -70,7 +70,7 @@
 
   $: xTicks = xScale.ticks(xTickCount);
 
-  let selectedAnnotation = parsedAnnotationDates[1];
+  let selectedAnnotation = parsedAnnotationDates[0];
   $: startX = xScale(selectedAnnotation.Date);
   $: startY = yScale(selectedAnnotation.Search);
   $: endX = startX + curveWidth * selectedAnnotation.CurveDirection; // use opposite of curve width to change direction
@@ -118,6 +118,40 @@
             on:click={(event) => handleEvent(event, annotationDate)}
           />
         {/each}
+      </g>
+
+      <g>
+        <defs>
+          <marker
+            id="head"
+            orient="auto"
+            markerWidth="2"
+            markerHeight="4"
+            refX="0"
+            refY="2"
+          >
+            <path d="M0,0 V4 L2,2 Z" fill="#8a8a8a" />
+          </marker>
+        </defs>
+
+        <path
+          id="arrow-line"
+          marker-end="url(#head)"
+          stroke-width="2"
+          fill="none"
+          stroke="#8a8a8a"
+          d="M 0 30 L 0 -30"
+        />
+
+        <foreignObject width="60" height="100" x="10" y="-35">
+          <div
+            xmlns="http://www.w3.org/1999/xhtml"
+            style="width: 60px; font-family: 'encode'; font-size: 10pt; color:#8a8a8a; line-height: 14pt"
+            class="axis-label"
+          >
+            More Interest
+          </div>
+        </foreignObject>
       </g>
 
       <g class="annotation" transform="translate(0, -{2 * circleRadius})">
