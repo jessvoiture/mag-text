@@ -9,9 +9,9 @@
 
   console.log(google[0]);
 
-  let examplesEarly2000sYears = [20011101, 20030701, 20060901];
-  let examplesEarly2010sYears = [20120901, 20140401, 20170801];
-  let examplesLate2010sYears = [20180901, 20201201, 20210201];
+  let examplesEarly2000sYears = [20011101, 20030701, 20060901, 20090301];
+  let examplesEarly2010sYears = [20120901, 20140401, 20160501, 20170801];
+  let examplesLate2010sYears = [20180901, 20201201, 20210201, 20221101];
 
   let examplesEarly2000s = cumulativeData.filter((d) =>
     examplesEarly2000sYears.includes(d.Date)

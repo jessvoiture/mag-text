@@ -76,7 +76,7 @@
         <button
           class="sort-option"
           class:active={sortBy == "ratio"}
-          on:click={() => sort("ratio")}>Text Coverage (%)</button
+          on:click={() => sort("ratio")}>Text (%)</button
         >
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->

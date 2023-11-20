@@ -5,24 +5,14 @@
     { Date: "19120615", month: 6, year: 1912 },
     { Date: "19320701", month: 7, year: 1932 },
     { Date: "19450315", month: 3, year: 1945 },
+    { Date: "19500401", month: 4, year: 1950 },
   ];
 
   let examples1960s = [
-    { Date: "19590115", month: 1, year: 1959 },
+    { Date: "19670701", month: 7, year: 1967 },
     { Date: "19740801", month: 8, year: 1974 },
     { Date: "19881101", month: 11, year: 1988 },
-  ];
-
-  let examples1990s = [
-    { Date: "19890501", month: 5, year: 1989 },
-    { Date: "20011101", month: 11, year: 2001 },
-    { Date: "20060901", month: 9, year: 2006 },
-  ];
-
-  let examples2010s = [
-    { Date: "20140401", month: 4, year: 2014 },
-    { Date: "20201201", month: 12, year: 2020 },
-    { Date: "20210201", month: 2, year: 2021 },
+    { Date: "19950901", month: 9, year: 1995 },
   ];
 
   let showingRatio = false;
