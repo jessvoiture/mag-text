@@ -118,7 +118,7 @@
         href="https://www.washingtonpost.com/news/arts-and-entertainment/wp/2014/03/25/why-we-are-still-talking-about-kanye-west-and-kim-kardashians-vogue-cover/"
       >
         Kim Kardashian's and Kayne West's controversial cover
-      </a> in 2014 engendered an boost in Google search interest in vogue magazine
+      </a> in 2014 engendered a boost in Google search interest in Vogue magazine
       covers.
     </div>
   </div>

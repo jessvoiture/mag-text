@@ -117,8 +117,8 @@
 
   <div class="section">
     <div class="body-text">
-      This stategy, perhaps unintentially, sensationalised the role of the cover
-      star. The role of cover star became one of honor, for it signified a
+      This stategy, perhaps unintentionally, sensationalised the role of the
+      cover star. The role of cover star became one of honor, for it signified a
       celebration and acknoweledgement of not only a person's
       <a
         target="_blank"
