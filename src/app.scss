@@ -13,7 +13,8 @@ $font-serif: "didot";
 $color-background: #180e0d;
 $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
-$color-white: #c4c4c4;
+$color-white: #fcfdfd;
+$color-text: #c4c4c4;
 $color-accent: #f7a4f6;
 $type-size-small: 14pt;
 $type-size-very_small: 10pt;
@@ -25,7 +26,7 @@ $type-line_height-small: 22pt;
 }
 
 .white-text {
-  color: $color-white;
+  color: $color-text;
 }
 
 .type-font-didot-light {
@@ -41,7 +42,7 @@ text {
 }
 
 .body-text {
-  color: $color-white;
+  color: $color-text;
 }
 
 text {
@@ -113,7 +114,7 @@ button {
 
 a,
 a:visited {
-  color: $color-white;
+  color: $color-text;
   text-decoration: underline;
 }
 

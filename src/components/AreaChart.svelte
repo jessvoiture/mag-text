@@ -130,7 +130,7 @@
             refX="0"
             refY="2"
           >
-            <path d="M0,0 V4 L2,2 Z" fill="#8a8a8a" />
+            <path d="M0,0 V4 L2,2 Z" fill="#fcfdfd" />
           </marker>
         </defs>
 
@@ -139,14 +139,14 @@
           marker-end="url(#head)"
           stroke-width="2"
           fill="none"
-          stroke="#8a8a8a"
+          stroke="#fcfdfd"
           d="M 0 30 L 0 -30"
         />
 
         <foreignObject width="60" height="100" x="10" y="-35">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
-            style="width: 60px; font-family: 'encode'; font-size: 10pt; color:#8a8a8a; line-height: 14pt"
+            style="width: 60px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; line-height: 14pt"
             class="axis-label"
           >
             More Interest
@@ -168,7 +168,7 @@
                 {endX} 
                 {endY}
                 "
-            stroke="#c4c4c4"
+            stroke="#fcfdfd"
             fill="none"
           />
         {/if}
@@ -191,7 +191,7 @@
         >
           <div
             xmlns="http://www.w3.org/1999/xhtml"
-            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#c4c4c4; text-align:{textAlign}"
+            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; text-align:{textAlign}"
             class="annotation-label"
           >
             {selectedAnnotation.Person}
