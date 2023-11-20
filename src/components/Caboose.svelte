@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <div class="section">
+  <div class="section chart-container">
     <div class="chart-title">
       Google Search Interest in 'vogue magazine cover'
     </div>
@@ -202,5 +202,10 @@
   .chart-subtitle > a:hover {
     color: #8a8a8a;
     text-decoration: none;
+  }
+
+  .chart-container {
+    margin-top: 24px;
+    margin-bottom: 48px;
   }
 </style>
