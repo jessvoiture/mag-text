@@ -13,8 +13,9 @@
   let width;
   let curveWidth = 20;
   let textXTranslate;
+  let textAlign;
 
-  const annotationWidth = 180;
+  const annotationWidth = 140;
   const circleRadius = 7;
 
   const annotationDatesJoined = annotationDates.map((annotation) => {
@@ -75,10 +76,13 @@
   $: endX = startX + curveWidth * selectedAnnotation.CurveDirection; // use opposite of curve width to change direction
   $: endY = startY - innerHeight * selectedAnnotation.CurveHeightFactor; // change this for longer curve
   $: if (selectedAnnotation.CurveDirection == -1) {
-    textXTranslate = -annotationWidth - 20;
+    textXTranslate = -annotationWidth - 30;
+    textAlign = "end";
   } else {
     textXTranslate = 30;
+    textAlign = "start";
   }
+  $: textYtranslate = innerHeight * selectedAnnotation.CurveHeightFactor + 10;
 
   function handleEvent(_event, annotation) {
     selectedAnnotation = annotation;
@@ -110,7 +114,7 @@
             r={circleRadius}
             stroke="white"
             fill="white"
-            fill-opacity="0.5"
+            fill-opacity="0.3"
             on:click={(event) => handleEvent(event, annotationDate)}
           />
         {/each}
@@ -149,13 +153,11 @@
           height="100"
           x={xScale(selectedAnnotation.Date)}
           y={yScale(selectedAnnotation.Search)}
-          transform="translate({textXTranslate}, -{innerHeight *
-            selectedAnnotation.CurveHeightFactor +
-            10})"
+          transform="translate({textXTranslate}, -{textYtranslate})"
         >
           <div
             xmlns="http://www.w3.org/1999/xhtml"
-            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#c4c4c4;"
+            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#c4c4c4; text-align:{textAlign}"
             class="annotation-label"
           >
             {selectedAnnotation.Person}
