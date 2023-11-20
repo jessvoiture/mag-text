@@ -5,7 +5,6 @@
   import ScrollyWrapper from "../components/ScrollyWrapper.svelte";
   import MagazineList from "../components/MagazineList.svelte";
   import Introduction from "../components/Introduction.svelte";
-  import AnalysisSection from "../components/AnalysisSection.svelte";
   import Footer from "../components/Footer.svelte";
 
   export let data;
@@ -28,6 +27,5 @@
 <Hero />
 <Introduction />
 <ScrollyWrapper {data} {screenHeight} {screenWidth} />
-<!-- <AnalysisSection /> -->
 <MagazineList {data} {screenWidth} />
 <Footer />

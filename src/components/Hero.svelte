@@ -18,12 +18,12 @@
 
 <style>
   .hero {
-    min-height: 100vh; /* Use min-height instead of height */
+    min-height: 100vh;
     width: 100vw;
     position: relative;
     display: flex;
-    flex-direction: column; /* Make sure it's a column layout */
-    overflow: hidden; /* Prevent any potential overflow */
+    flex-direction: column;
+    overflow: hidden;
     background: radial-gradient(
       69.96% 103.49% at -1.8% 4.63%,
       #8a8a8a 0%,

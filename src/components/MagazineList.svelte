@@ -100,7 +100,13 @@
   >
     {#each sortedMagazinesRatio.slice(0, displayingCount) as d}
       <div class="list-element" style="width: {magWidth}px;">
-        <MagCaption {d} {magWidth} showingRatio={true} imageType={"original"} />
+        <MagCaption
+          {d}
+          {magWidth}
+          showingRatio={true}
+          imageType={"original"}
+          colour={"white"}
+        />
       </div>
     {/each}
   </div>

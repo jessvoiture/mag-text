@@ -2,6 +2,7 @@
   import MagCaption from "./MagCaption.svelte";
 
   export let magList;
+  export let showingRatio;
 
   let magWidth = "200";
 </script>
@@ -9,7 +10,13 @@
 <div class="example-wrapper">
   {#each magList as d}
     <div class="example">
-      <MagCaption {d} {magWidth} showingRatio={false} imageType={"special"} />
+      <MagCaption
+        {d}
+        {magWidth}
+        {showingRatio}
+        imageType={"special"}
+        colour={"white"}
+      />
     </div>
   {/each}
 </div>

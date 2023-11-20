@@ -4,6 +4,7 @@
 
   import Scroll from "./Scrolly.svelte";
   import Scatterplot from "./Scatterplot.svelte";
+  import MagCaption from "./MagCaption.svelte";
 
   export let cumulativeData;
   export let screenHeight;
@@ -12,12 +13,15 @@
 
   let stepWidth;
   let tweenedY;
+  let yVals;
 
   let steps = [];
   let currentStep = 0;
+  let exampleMagDate = 20011101;
   let showingMeanValues = false;
   let showingMonthRatios = false;
-  let yVals;
+  let showingRectangle = false;
+  let stepsWithMags = [7, 9, 13, 16, 19];
 
   onMount(() => {
     showingMeanValues = false;
@@ -27,7 +31,7 @@
   // scroll steps
   $: steps = [
     // 0 -> all mags with bg
-    `<p>Here we have all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]} organised by month and year</p>`,
+    `<p>Here are all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]}. Each column is a year and each row is a month. Each block represents one magazine.</p>`,
     // 1 -> all mags with bg
     `<p>Just as before, we've plotted a magazine's text coverage in proportion to the magazine's cover area.</p>`,
     // 2 -> remove bg, by month
@@ -38,32 +42,40 @@
     "<p>To see trends more clearly, let's just plot the text coverages by year</p>",
     // 5 -> barcode
     "<p>We can see a sort of inverted U shape, with text coverage increasing slightly in the early aughts, peaking in the mid 2000s and then steadily declining</p>",
+    // 6 ->  means
+    `<p>Plotting the average text coverage by year further confirms the trend</p>`,
   ];
 
   // initialise tween values
   $: tweenedY = tweened(cumulativeData.map((d) => d.month));
 
-  // scrolly stuff
-  $: if (currentStep == 0) {
-    // first chart! just the background
-    showingMeanValues = false;
+  // showing Month Ratios
+  $: if (currentStep >= 0) {
     showingMonthRatios = true;
+  } else {
+    showingMonthRatios = false;
+  }
+
+  // setting month values
+  $: if ((currentStep == 0) | (currentStep == 1)) {
     setMonthValues();
-  } else if (currentStep == 1) {
-    // add on the ratios with fly transition
-    setMonthValues();
-    showingMeanValues = false;
-    showingMonthRatios = true;
-  } else if ((currentStep == 2) | (currentStep == 3)) {
-    // rescale
-    showingMeanValues = false;
-    showingMonthRatios = true;
+  }
+
+  // setting rel heights values
+  $: if ((currentStep == 2) | (currentStep == 3)) {
     setRelativeHeightValues();
-  } else if ((currentStep == 4) | (currentStep == 5)) {
-    // barcode
-    showingMeanValues = false;
-    showingMonthRatios = true;
+  }
+
+  // setting ratio values
+  $: if (currentStep >= 4) {
     setRatioValues();
+  }
+
+  // mean values
+  $: if (currentStep >= 6) {
+    showingMeanValues = true;
+  } else {
+    showingMeanValues = false;
   }
 
   // chart: y vals for all the magazines by month/year with mag bg + contours
@@ -116,3 +128,11 @@
     </Scroll>
   </div>
 </div>
+
+<style>
+  .step-content {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+  }
+</style>

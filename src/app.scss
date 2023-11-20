@@ -13,11 +13,11 @@ $font-serif: "didot";
 $color-background: #180e0d;
 $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
-$color-white: #e0e0e0;
+$color-white: #c4c4c4;
 $color-accent: #f7a4f6;
-$type-size-small: 12pt;
+$type-size-small: 14pt;
 $type-size-very_small: 10pt;
-$type-line_height-small: 20pt;
+$type-line_height-small: 22pt;
 
 .type-accent {
   color: $color-accent;
@@ -53,8 +53,8 @@ text {
   color: $color-accent;
   font-family: $font-serif;
   font-weight: bold;
-  font-size: 250%;
-  padding: 16px 0px 8px 8px;
+  font-size: 500%;
+  padding: 32px 8px 16px 8px;
   margin-right: 6px;
   float: left;
 }

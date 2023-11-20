@@ -24,58 +24,7 @@
       calculate the percentage of black pixels to the total image size.
     </div>
     <div class="methods-section">
-      This wee site was made using sveltekit, d3, and scrollama. The
-      development—both conceptually and technically—was greatly assisted by
-      several wonderful resources. Including but not limited to:
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://learn.svelte.dev/tutorial/introducing-sveltekit"
-            >the Sveltekit</a
-          >
-          and
-          <a
-            target="_blank"
-            href="https://learn.svelte.dev/tutorial/welcome-to-svelte">Svelte</a
-          >
-          tutorials by svelte plus Rich Harris' courses on
-          <a
-            target="_blank"
-            href="https://frontendmasters.com/courses/svelte-v2/"
-            >frontend masters</a
-          >
-        </li>
-        <li>
-          <a target="_blank" href="pudding.cool">The Pudding,</a>
-          including the
-          <a target="_blank" href="https://pudding.cool/resources/"
-            >how-to blogs,</a
-          >
-          <a
-            target="_blank"
-            href="https://github.com/the-pudding/svelte-starter"
-            >the svelte starter,</a
-          >
-          and the
-          <a
-            target="_blank"
-            href="https://www.youtube.com/watch?v=lqvY_0gJf_I&t=812s"
-            >svelte way youtube series</a
-          >
-        </li>
-        <li>
-          <a target="_blank" href="https://www.connorrothschild.com/"
-            >Connor Rothschild's</a
-          >
-          blog posts, specifically this one on
-          <a
-            target="_blank"
-            href="https://www.connorrothschild.com/post/svelte-scrollytelling"
-            >scrollytelling with scrollama</a
-          >
-        </li>
-      </ul>
+      This wee site was made with sveltekit, d3, and scrollama.
     </div>
   </div>
 
@@ -111,14 +60,5 @@
 
   .methods-section {
     margin-bottom: 10px;
-  }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    padding: 2px 16px;
   }
 </style>

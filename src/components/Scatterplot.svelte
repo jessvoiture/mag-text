@@ -2,6 +2,8 @@
   import { fade } from "svelte/transition";
   import { scaleLinear } from "d3-scale";
   import { extent } from "d3-array";
+  import { timeFormat } from "d3-time-format";
+  import { format } from "d3-format";
 
   import { hoveredDatapoint } from "../stores";
 
@@ -11,7 +13,6 @@
   import AxisX from "./AxisX.svelte";
   import AxisY from "./AxisY.svelte";
   import Tooltip from "./Tooltip.svelte";
-  import ScatterplotRectangle from "./ScatterplotRectangle.svelte";
 
   export let width;
   export let height;
@@ -23,8 +24,6 @@
   export let screenHeight;
   export let showingMonthRatios;
   export let justAdded;
-  export let rectangle;
-  export let showingRectangle;
 
   cumulativeData.sort((a, b) => a.Date - b.Date);
 
@@ -49,6 +48,8 @@
 
   const margin = { top: 40, left: 40, right: 40, bottom: 40 };
 
+  const formatTick = format(".0f");
+
   $: if (screenWidth <= 860) {
     height = 0.8 * screenHeight;
     width = 0.9 * screenWidth;
@@ -71,10 +72,10 @@
   $: rectWidth = (innerWidth / uniqueYearsCount) * 0.9;
 
   // make ticks
+  $: xTickCount = Math.floor(innerWidth / 100);
+
   $: xTicks = xScale.ticks(xTickCount);
   $: yTicks = yScale.ticks(yTickCount);
-
-  $: xTickCount = Math.floor(innerWidth / 100);
 
   $: if (yVals == "month") {
     rectHeightMultiplyingFactor = innerHeight / uniqueMonthsCount;
@@ -128,10 +129,6 @@
         />
       {/if}
 
-      {#if showingRectangle}
-        <ScatterplotRectangle {rectangle} {innerHeight} {xScale} />
-      {/if}
-
       {#if showingMonthRatios}
         <ScatterplotRatios
           {cumulativeData}
@@ -157,7 +154,7 @@
       {/if}
     </g>
 
-    <AxisX {marginUnit} {xTicks} {xScale} {height} />
+    <AxisX {marginUnit} {xTicks} {xScale} {height} {formatTick} />
 
     <AxisY {yTicks} {yScale} {marginUnit} {yVals} />
   </svg>
