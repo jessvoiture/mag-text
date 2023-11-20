@@ -29,12 +29,12 @@
 <div class="body-section">
   <div class="section">
     <div class="body-text">
-      In the early aughts, on the wave of a digital publishing revolution with
-      the gaining prominence of Adobe software, Vogue covers clung steadfastly
-      to tried and tested traditions of illustration, photography, and
-      celebrity-focused portraiture. Text coverage increased in the first half
-      of the 2000s, likely a product of y2k maximalism, new graphics software,
-      and competition with tabloids.
+      In the early aughts, on the wave of a digital publishing revolution thanks
+      to Adobe software, Vogue covers clung steadfastly to tried and tested
+      traditions of illustration, photography, and celebrity-focused
+      portraiture. Text coverage increased in the first half of the 2000s,
+      likely a product of y2k maximalism, new graphics software, and competition
+      with tabloids.
     </div>
   </div>
 
@@ -118,8 +118,8 @@
         href="https://www.washingtonpost.com/news/arts-and-entertainment/wp/2014/03/25/why-we-are-still-talking-about-kanye-west-and-kim-kardashians-vogue-cover/"
       >
         Kim Kardashian's and Kayne West's controversial cover
-      </a> in 2014 engendered a boost in Google search interest in Vogue magazine
-      covers.
+      </a> in 2014, for example, engendered a boost in Google search interest in
+      Vogue magazine covers.
     </div>
   </div>
 

@@ -36,7 +36,7 @@
       In this extremely important, time sensitive, and highly requested
       endeavour, I analysed 22 years of US Vogue covers to ascertain if the
       amount of text on covers has indeed dwindled. But, before we dive into
-      data on Vogue's recent relationship with text, we must fist appreciate
+      data on Vogue's recent relationship with text, we must first appreciate
       Vogue covers' origin story.
     </div>
   </div>
@@ -49,9 +49,9 @@
         target="_blank"
         href="https://d2cu82y6eo7f22.cloudfront.net/2022/02/07212140/JMM_5.1_Grow.pdf"
         >poster</a
-      >, thus creatively dubbed poster covers. The 1930s saw the transition from
-      illustrated covers to photographed ones, with Vogue debuting its first
-      cover with a
+      >. Thus, they were creatively dubbed poster covers. The 1930s saw the
+      transition from illustrated covers to photographed ones, with Vogue
+      debuting its first cover with a
       <a
         target="_blank"
         href="https://www.moma.org/interactives/objectphoto/publications/788.html"
@@ -74,8 +74,7 @@
         >subscriptions to newsstand sales.</a
       >
       This economic shift manifested on the covers, as they now functioned as an
-      advertisement. Text describing the magazine's contents (referred to as cover
-      lines in industry parlance) began infiltrating the
+      advertisement. Text describing the magazine's contents began infiltrating the
       <a
         target="_blank"
         href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7966324/"
@@ -91,7 +90,7 @@
         href="https://d2cu82y6eo7f22.cloudfront.net/2022/02/07212140/JMM_5.1_Grow.pdf"
         >innovative typography</a
       >, by designers such as Herb Lubalin (&lt;3), and advances in graphic
-      design technology, including phototypesetting
+      design technology, including phototypesetting.
     </div>
   </div>
 
@@ -139,7 +138,7 @@
   <div class="section last-section">
     <div class="body-text">
       This brings us up to the 2000s, where the effects of the tech boom and
-      Anna Wintout truly precipitate. Let's get into the data!
+      Anna Wintour truly precipitate. Let's get into the data!
     </div>
   </div>
 </div>
