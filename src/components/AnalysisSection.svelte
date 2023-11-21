@@ -1,6 +1,8 @@
 <script>
   import MagazineExamples from "./MagazineExamples.svelte";
 
+  export let screenWidth;
+
   let examples1900s = [
     { Date: "19120615", month: 6, year: 1912 },
     { Date: "19320701", month: 7, year: 1932 },
@@ -52,7 +54,7 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1900s} {showingRatio} />
+  <MagazineExamples magList={examples1900s} {showingRatio} {screenWidth} />
 
   <div class="section">
     <div class="body-text">
@@ -84,7 +86,7 @@
     </div>
   </div>
 
-  <MagazineExamples magList={examples1960s} {showingRatio} />
+  <MagazineExamples magList={examples1960s} {showingRatio} {screenWidth} />
 
   <div class="section">
     <div class="body-text">

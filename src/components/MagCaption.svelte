@@ -7,10 +7,15 @@
   export let d;
   export let imageType;
   export let colour;
+
+  let whRatioEstimate = 0.68;
+  $: magHeight = magWidth / whRatioEstimate;
+
+  console.log("magWidth", magWidth);
 </script>
 
 <div class="mag-caption">
-  <div class="list-img">
+  <div class="list-img" style="height: {magHeight}px;">
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
@@ -34,9 +39,5 @@
   .mag-caption {
     display: flex;
     flex-direction: column;
-  }
-
-  .list-img {
-    height: 220px;
   }
 </style>

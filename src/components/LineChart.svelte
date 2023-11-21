@@ -25,7 +25,7 @@
     { start: 2018, end: 2022 },
   ];
 
-  const margin = { top: 15, left: 15, bottom: 30, right: 15 };
+  const margin = { top: 15, left: 15, bottom: 40, right: 15 };
   const formatTick = format(".0f");
 
   let yearlyMean = rollup(

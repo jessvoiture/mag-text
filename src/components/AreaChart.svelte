@@ -108,6 +108,7 @@
           <!-- svelte-ignore a11y-mouse-events-have-key-events -->
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <circle
+            class:selected={annotationDate == selectedAnnotation}
             cx={xScale(annotationDate.Date)}
             cy={yScale(annotationDate.Search)}
             id={`${xScale(annotationDate.Date)}-circle`}
@@ -230,5 +231,11 @@
     font-family: "encode";
     fill: #c4c4c4;
     color: #180e0d;
+  }
+
+  .selected {
+    fill: #f7a4f6;
+    stroke: #f7a4f6;
+    z-index: 999;
   }
 </style>
