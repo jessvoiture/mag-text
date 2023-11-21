@@ -65,7 +65,7 @@
                 >1998</a
               >. Despite, this early affinity to the internet, the web design
               reflects how the magazine (and much of the rest of the internet)
-              was applying print design thinking to ditigal mediums. The result
+              was applying print design thinking to digital mediums. The result
               was a rather clunky, modular design, slightly averse to positive
               user experiences. The potential of digital mediums had yet to be
               realised.
