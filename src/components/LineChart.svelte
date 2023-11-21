@@ -83,12 +83,12 @@
     height={innerHeight}
     transform="translate({margin.left}, {margin.top})"
   >
-    <g class="minimap-path">
-      <path d={pathLine(yearlyMean)} />
-    </g>
-
     <g class="minimap-rectangle">
       <Rectangle {rectangle} {innerHeight} {xScale} />
+    </g>
+
+    <g class="minimap-path">
+      <path d={pathLine(yearlyMean)} />
     </g>
   </g>
 

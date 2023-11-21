@@ -13,7 +13,7 @@
     width={xScale($rectangle.end) - xScale($rectangle.start)}
     height={innerHeight}
     fill="#6b5b6a"
-    opacity="0.3"
+    opacity="0.6"
   />
 </g>
 
