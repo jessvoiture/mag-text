@@ -186,7 +186,9 @@
             style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; text-align:{textAlign}"
             class="annotation-label"
           >
-            {selectedAnnotation.Person}
+            <a href={selectedAnnotation.Link} target="_blank"
+              >{selectedAnnotation.Person}</a
+            >
           </div>
         </foreignObject>
       </g>
@@ -237,5 +239,13 @@
     fill: #f7a4f6;
     stroke: #f7a4f6;
     z-index: 999;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 </style>
