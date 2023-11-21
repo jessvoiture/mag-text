@@ -42,7 +42,7 @@
 
 <ScrollyMethod {cumulativeData} {screenHeight} {screenWidth} />
 
-<AnalysisSection />
+<AnalysisSection {screenWidth} />
 
 <ScrollyChart {cumulativeData} {screenHeight} {screenWidth} {dateExtent} />
 

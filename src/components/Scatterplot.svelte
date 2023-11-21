@@ -2,7 +2,7 @@
   import { fade } from "svelte/transition";
   import { scaleLinear } from "d3-scale";
   import { extent } from "d3-array";
-  import { timeFormat } from "d3-time-format";
+import { timeFormat } from "d3-time-format";
   import { format } from "d3-format";
 
   import { hoveredDatapoint } from "../stores";

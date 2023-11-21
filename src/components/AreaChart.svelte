@@ -108,6 +108,7 @@
           <!-- svelte-ignore a11y-mouse-events-have-key-events -->
           <!-- svelte-ignore a11y-click-events-have-key-events -->
           <circle
+            class:selected={annotationDate == selectedAnnotation}
             cx={xScale(annotationDate.Date)}
             cy={yScale(annotationDate.Search)}
             id={`${xScale(annotationDate.Date)}-circle`}
@@ -173,15 +174,6 @@
           />
         {/if}
 
-        <!-- <text
-          class="annotation-label"
-          x={xScale(selectedAnnotation.Date)}
-          y={yScale(selectedAnnotation.Search)}
-          transform="translate({curveWidth + 5}, -{curveHeight - 6})"
-        >
-          {selectedAnnotation.Person}
-        </text> -->
-
         <foreignObject
           width={annotationWidth}
           height="100"
@@ -194,7 +186,9 @@
             style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; text-align:{textAlign}"
             class="annotation-label"
           >
-            {selectedAnnotation.Person}
+            <a href={selectedAnnotation.Link} target="_blank"
+              >{selectedAnnotation.Person}</a
+            >
           </div>
         </foreignObject>
       </g>
@@ -239,5 +233,19 @@
     font-family: "encode";
     fill: #c4c4c4;
     color: #180e0d;
+  }
+
+  .selected {
+    fill: #f7a4f6;
+    stroke: #f7a4f6;
+    z-index: 999;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 </style>
