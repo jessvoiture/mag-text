@@ -35,4 +35,8 @@
     display: flex;
     flex-direction: column;
   }
+
+  .list-img {
+    height: 220px;
+  }
 </style>

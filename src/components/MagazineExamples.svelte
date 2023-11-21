@@ -4,7 +4,7 @@
   export let magList;
   export let showingRatio;
 
-  let magWidth = "150";
+  let magWidth = "136";
 </script>
 
 <div class="example-wrapper">

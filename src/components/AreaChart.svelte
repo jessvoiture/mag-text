@@ -173,15 +173,6 @@
           />
         {/if}
 
-        <!-- <text
-          class="annotation-label"
-          x={xScale(selectedAnnotation.Date)}
-          y={yScale(selectedAnnotation.Search)}
-          transform="translate({curveWidth + 5}, -{curveHeight - 6})"
-        >
-          {selectedAnnotation.Person}
-        </text> -->
-
         <foreignObject
           width={annotationWidth}
           height="100"
