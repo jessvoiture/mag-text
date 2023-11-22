@@ -4,7 +4,6 @@
 
   import Scroll from "./Scrolly.svelte";
   import Scatterplot from "./Scatterplot.svelte";
-  import MagCaption from "./MagCaption.svelte";
 
   export let cumulativeData;
   export let screenHeight;
@@ -17,11 +16,8 @@
 
   let steps = [];
   let currentStep = 0;
-  let exampleMagDate = 20011101;
   let showingMeanValues = false;
   let showingMonthRatios = false;
-  let showingRectangle = false;
-  let stepsWithMags = [7, 9, 13, 16, 19];
 
   onMount(() => {
     showingMeanValues = false;
@@ -31,11 +27,11 @@
   // scroll steps
   $: steps = [
     // 0 -> all mags with bg
-    `<p>Here are all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]}. Each column is a year and each row is a month. Each block represents one magazine.</p>`,
+    `<p>Here are all US Vogue magazines from ${dateExtent[0]} to ${dateExtent[1]}. Each column is a year and each row is a month. Each block represents one magazine</p>`,
     // 1 -> all mags with bg
-    `<p>Just as with the Rihanna covers, we've plotted a magazine's text coverage in proportion to the magazine's cover area.</p>`,
+    `<p>Just as with the Rihanna covers, we've plotted a magazine's text coverage in proportion to the magazine's cover area</p>`,
     // 2 -> remove bg, by month
-    "<p>But, let's remove the background. We'll also rescale the text coverage rectangles so we can better compare them.<p>",
+    "<p>Let's remove the background and rescale the text coverage rectangles, so we can better analyse text coverage over time<p>",
     // 3 -> remove bg, by month
     "<p>We can start to see a trend! More recent covers seem to have a lower text coverage than older covers</p>",
     // 4 -> barcode

@@ -259,9 +259,9 @@
 
   .minimap {
     position: sticky;
-    top: 30px;
-    margin-left: 30px;
-    float: left;
+    top: 2.5vw;
+    margin-right: 3vw;
+    float: right;
   }
 
   @media (min-width > 1200) {

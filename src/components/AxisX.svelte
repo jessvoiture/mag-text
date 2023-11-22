@@ -6,7 +6,7 @@
   export let formatTick;
 </script>
 
-<g transform="translate({marginUnit},0)" class="axis xaxis">
+<g transform="translate({marginUnit},10)" class="axis xaxis">
   {#each xTicks as tick}
     <g transform="translate({xScale(tick)}, 0)">
       <text y={height}>{formatTick(tick)}</text>

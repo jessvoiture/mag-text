@@ -76,9 +76,11 @@
   $: endX = startX + curveWidth * selectedAnnotation.CurveDirection; // use opposite of curve width to change direction
   $: endY = startY - innerHeight * selectedAnnotation.CurveHeightFactor; // change this for longer curve
   $: if (selectedAnnotation.CurveDirection == -1) {
+    // curve to the left
     textXTranslate = -annotationWidth - 30;
     textAlign = "end";
   } else {
+    // curve to the right
     textXTranslate = 30;
     textAlign = "start";
   }

@@ -13,7 +13,7 @@ $font-serif: "didot";
 $color-background: #180e0d;
 $color-light_grey: #8a8a8a;
 $color-dark_grey: #6b5b6a;
-$color-white: #fcfdfd;
+$color-white: #ebecec;
 $color-text: #e1e1e1;
 $color-accent: #f7a4f6;
 $type-size-small: 14pt;
@@ -120,7 +120,6 @@ a:visited {
 
 a:hover {
   text-decoration: none;
-  color: $color-accent;
 }
 
 body {
