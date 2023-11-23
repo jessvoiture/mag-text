@@ -57,7 +57,7 @@
             </div>
           </div>
 
-          <div class="section last-section">
+          <div class="section ">
             <div class="body-text">
               Vogue launched its flagship website in <a
                 target="_blank"
@@ -72,18 +72,19 @@
             </div>
           </div>
 
+          <div class="section last-section">
+            <div class="body-text">
+              Text coverage peaked around 2005 and 2006, with an average annual
+              text coverage of 35%. Stunning!
+            </div>
+          </div>
+
           <MagazineExamples
             magList={examplesEarly2000s}
             {showingRatio}
             {screenWidth}
           />
 
-          <div class="section">
-            <div class="body-text">
-              Text coverage peaked around 2005 and 2006, with an average annual
-              text coverage of 35%. Stunning!
-            </div>
-          </div>
         </div>
 
         <div class="timeframe">
@@ -156,13 +157,6 @@
             </div>
           </div>
 
-          <div class="section">
-            <div class="body-text">
-              Between 2006 and 2016, average annual text coverage decreased by
-              15%.
-            </div>
-          </div>
-
           <div class="section chart-container">
             <div class="chart-title">
               Google Search Interest in 'vogue magazine cover'
@@ -179,7 +173,13 @@
             <AreaChart {screenHeight} {screenWidth} points={google} />
           </div>
 
-          
+
+          <div class="section">
+            <div class="body-text">
+              Between 2006 and 2016, average annual text coverage decreased by
+              15%.
+            </div>
+          </div>
         </div>
 
         <div class="timeframe">
@@ -197,7 +197,7 @@
           <div class="section last-section">
             <div class="body-text">
               By 2022, average text coverage dwindled to just 10%, 25% less than
-              the peak in the mid 2000s.
+              the peak in the mid 2000s and 10% less than the average in 2016.
             </div>
           </div>
 
@@ -216,10 +216,7 @@
               star themself. The dissemination of visuals, as well as
               accompanying media such as YouTube videos, across social media
               serves as an advertising medium thus rendering the cover lines
-              obsolete and unnecessary noise. The high-production editorial
-              shoots provokes greater visual impact and efficacy on large
-              screens, mobile devices, and print while also imbuing a sense of
-              modernity and artistry.
+              somewhat obsolete and unnecessary noise. The high-production editorial shoots provoke greater visual impact and efficacy on large screens, mobile devices, and print while also instilling a sense of modernity and artistry.
             </div>
           </div>
         </div>

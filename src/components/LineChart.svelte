@@ -40,7 +40,7 @@
   });
 
   $: width = 0.15 * screenWidth;
-  $: height = 0.25 * screenHeight;
+  $: height = 0.2 * screenHeight;
   $: innerHeight = height - margin.top - margin.bottom;
   $: innerWidth = width - margin.left - margin.right;
 
