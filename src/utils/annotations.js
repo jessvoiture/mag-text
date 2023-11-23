@@ -20,7 +20,7 @@ export const annotationDates = [
     Date: "2018-08-01",
     Person: "Beyonce, Sept 2018",
     Link: "https://www.vox.com/culture/2018/8/6/17656852/beyonce-vogue-september-issue",
-    CurveHeightFactor: 0.4,
+    CurveHeightFactor: 0.5,
     CurveDirection: -1,
     AdditionalCurveFactor: 20,
   },

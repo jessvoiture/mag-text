@@ -47,8 +47,6 @@
   $: yExtent = extent(cumulativeData, (d) => d.ratio);
   $: xExtent = extent(cumulativeData, (d) => d.year);
 
-  $: yMax = yExtent[1];
-
   $: xScale = scaleLinear().domain(xExtent).range([0, innerWidth]);
   $: yScale = scaleLinear().domain(yExtent).range([innerHeight, 0]);
 

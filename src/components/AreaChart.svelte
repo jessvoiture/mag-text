@@ -178,7 +178,7 @@
 
         <foreignObject
           width={annotationWidth}
-          height="100"
+          height="40"
           x={xScale(selectedAnnotation.Date)}
           y={yScale(selectedAnnotation.Search)}
           transform="translate({textXTranslate}, -{textYtranslate})"
