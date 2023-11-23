@@ -156,6 +156,13 @@
             </div>
           </div>
 
+          <div class="section">
+            <div class="body-text">
+              Between 2006 and 2016, average annual text coverage decreased by
+              15%.
+            </div>
+          </div>
+
           <div class="section chart-container">
             <div class="chart-title">
               Google Search Interest in 'vogue magazine cover'
@@ -172,16 +179,11 @@
             <AreaChart {screenHeight} {screenWidth} points={google} />
           </div>
 
-          <div class="section">
-            <div class="body-text">
-              Between 2006 and 2016, average annual text coverage decreased by
-              15%.
-            </div>
-          </div>
+          
         </div>
 
         <div class="timeframe">
-          <div class="section last-section">
+          <div class="section ">
             <div class="body-text">
               Since 2018, there has been a consistent yearly dip in text
               coverage, marking an intensified progression of the pattern seen
@@ -192,18 +194,20 @@
             </div>
           </div>
 
+          <div class="section last-section">
+            <div class="body-text">
+              By 2022, average text coverage dwindled to just 10%, 25% less than
+              the peak in the mid 2000s.
+            </div>
+          </div>
+
           <MagazineExamples
             magList={examplesLate2010s}
             {showingRatio}
             {screenWidth}
           />
 
-          <div class="section">
-            <div class="body-text">
-              By 2022, average text coverage dwindled to just 10%, 25% less than
-              the peak in the mid 2000s.
-            </div>
-          </div>
+          
 
           <div class="section">
             <div class="body-text">
