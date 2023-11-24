@@ -142,14 +142,14 @@
           marker-end="url(#head)"
           stroke-width="2"
           fill="none"
-          stroke="#fcfdfd"
+          stroke="#c1c1c1"
           d="M 0 30 L 0 -30"
         />
 
         <foreignObject width="60" height="100" x="10" y="-35">
           <div
             xmlns="http://www.w3.org/1999/xhtml"
-            style="width: 60px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; line-height: 14pt"
+            style="width: 60px; font-family: 'encode'; font-size: 10pt; color:#c1c1c1; line-height: 14pt"
             class="axis-label"
           >
             More Interest
@@ -185,7 +185,7 @@
         >
           <div
             xmlns="http://www.w3.org/1999/xhtml"
-            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#fcfdfd; text-align:{textAlign}"
+            style="width: {annotationWidth}px; font-family: 'encode'; font-size: 10pt; color:#dbdbdb; text-align:{textAlign}"
             class="annotation-label"
           >
             <a href={selectedAnnotation.Link} target="_blank"
