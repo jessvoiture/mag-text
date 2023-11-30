@@ -19,7 +19,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img
-      class="original-image"
+      class="original-image {colour}"
       style="width: {magWidth}px; height: auto;"
       src={getImagePath(d.Date, imageType, ".jpg")}
       alt="Vogue cover"
@@ -28,7 +28,7 @@
 
   <Caption {d} {colour}
     >{#if showingRatio}
-      <div class="img-captions body-text">
+      <div class="img-captions body-text caption-text-coverage">
         {Math.round(d.ratio * 100)}% text
       </div>
     {/if}</Caption
@@ -39,5 +39,9 @@
   .mag-caption {
     display: flex;
     flex-direction: column;
+  }
+
+  .caption-text-coverage {
+    color: #8a8a8a;
   }
 </style>

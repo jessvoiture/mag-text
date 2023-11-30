@@ -15,7 +15,7 @@
   let textXTranslate;
   let textAlign;
 
-  const annotationWidth = 140;
+  const annotationWidth = 150;
   const circleRadius = 7;
 
   const annotationDatesJoined = annotationDates.map((annotation) => {

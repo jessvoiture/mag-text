@@ -5,7 +5,7 @@
 </script>
 
 <div class="caption">
-  <div class="img-captions body-text {colour}">
+  <div class="img-captions body-text caption-title {colour}">
     {d.year} — {$months[d.month - 1]}
   </div>
 
@@ -13,16 +13,15 @@
 </div>
 
 <style>
-  .img-captions {
-    font-size: 12pt;
-    line-height: 20pt;
-  }
-
   .white {
-    color: #e0e0e0;
+    color: #c1c1c1;
   }
 
   .black {
     color: #180e0d;
+  }
+
+  .caption-title {
+    font-weight: 500;
   }
 </style>
